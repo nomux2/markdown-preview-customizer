@@ -1,0 +1,53 @@
+/* Minutes Simple Theme - Pure white, minimal, clean structure */
+body.antigravity-theme-minutes-simple {
+    font-family: "Corbel", "Arial", sans-serif;
+    line-height: 1.5;
+    color: #222;
+    background-color: #fff;
+}
+
+body.antigravity-theme-minutes-simple h1 {
+    font-size: 1.8em;
+    color: #000;
+    text-align: center;
+    border: 2px solid #000;
+    padding: 10px;
+    margin-bottom: 30px;
+}
+
+body.antigravity-theme-minutes-simple h2 {
+    font-size: 1.4em;
+    color: #333;
+    border-bottom: 1px solid #aaa;
+    margin-top: 25px;
+    padding-bottom: 5px;
+}
+
+body.antigravity-theme-minutes-simple ul {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+body.antigravity-theme-minutes-simple li {
+    margin-bottom: 8px;
+}
+
+/* Specific styling for typical minutes items */
+body.antigravity-theme-minutes-simple strong {
+    background: transparent;
+    border-bottom: 2px solid #ddd;
+    font-weight: bold;
+    padding: 0 2px;
+}
+
+body.antigravity-theme-minutes-simple table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+body.antigravity-theme-minutes-simple th,
+body.antigravity-theme-minutes-simple td {
+    border: 1px solid #ccc;
+    padding: 8px;
+}

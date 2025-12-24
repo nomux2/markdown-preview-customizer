@@ -1,0 +1,84 @@
+/* Theme: Simple (シンプル・洗練) */
+/* Design System Pattern C */
+/* Base: #FFFFFF (70%), Main: #000000 (25%), Accent: #E53E3E (5%) */
+
+body.antigravity-theme-simple {
+    --ag-color-base: #FFFFFF;
+    --ag-color-main: #000000;
+    --ag-color-accent: #E53E3E;
+    --ag-color-text: #000000;
+    --ag-color-background: #FFFFFF;
+
+    --ag-font-family: "BIZ UDPGothic", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
+
+    font-family: var(--ag-font-family);
+    color: var(--ag-color-text);
+    background-color: var(--ag-color-background);
+    line-height: 1.6;
+    letter-spacing: 0.05em;
+}
+
+/* Headers */
+body.antigravity-theme-simple h1,
+body.antigravity-theme-simple h2,
+body.antigravity-theme-simple h3 {
+    color: var(--ag-color-main);
+    font-weight: 800;
+    letter-spacing: 0.1em;
+}
+
+body.antigravity-theme-simple h1 {
+    border-bottom: 4px solid var(--ag-color-main);
+    padding-bottom: 0.5em;
+    text-transform: uppercase;
+}
+
+body.antigravity-theme-simple h2 {
+    position: relative;
+    padding-left: 1em;
+}
+
+body.antigravity-theme-simple h2::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 6px;
+    height: 6px;
+    background: var(--ag-color-accent);
+}
+
+/* Links */
+body.antigravity-theme-simple a {
+    color: var(--ag-color-text);
+    text-decoration: underline;
+    text-decoration-color: var(--ag-color-accent);
+    text-decoration-thickness: 2px;
+}
+
+body.antigravity-theme-simple a:hover {
+    background: var(--ag-color-accent);
+    color: white;
+}
+
+/* Codes */
+body.antigravity-theme-simple code {
+    font-family: "Consolas", monospace;
+    color: var(--ag-color-accent);
+    background: #F5F5F5;
+    padding: 2px 4px;
+}
+
+body.antigravity-theme-simple pre {
+    background: #111;
+    color: #FFF;
+    border: 1px solid #000;
+}
+
+/* Blockquotes */
+body.antigravity-theme-simple blockquote {
+    border: 1px solid #000;
+    padding: 1em;
+    font-style: italic;
+}

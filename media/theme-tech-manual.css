@@ -1,0 +1,51 @@
+/* Tech Manual Theme - Clean, readable, product manual style */
+body.antigravity-theme-manual {
+    font-family: "Segoe UI", "Tahoma", sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #fff;
+}
+
+body.antigravity-theme-manual h1 {
+    font-size: 2em;
+    color: #004085;
+    /* Navy Blue */
+    border-bottom: 2px solid #b8daff;
+    padding-bottom: 0.3em;
+}
+
+body.antigravity-theme-manual h2 {
+    font-size: 1.5em;
+    color: #1a5c9a;
+    border-left: 5px solid #004085;
+    padding-left: 10px;
+    background: #f0f7ff;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+body.antigravity-theme-manual table {
+    width: 100%;
+    margin-bottom: 1em;
+    border-collapse: collapse;
+}
+
+body.antigravity-theme-manual th {
+    background: #004085;
+    color: #fff;
+    padding: 8px;
+    text-align: left;
+}
+
+body.antigravity-theme-manual td {
+    padding: 8px;
+    border: 1px solid #dee2e6;
+}
+
+body.antigravity-theme-manual code {
+    background-color: #f8f9fa;
+    color: #e83e8c;
+    padding: 2px 4px;
+    border-radius: 3px;
+    border: 1px solid #dee2e6;
+}

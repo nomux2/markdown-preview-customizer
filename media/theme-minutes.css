@@ -1,0 +1,36 @@
+/* Minutes Theme - For meeting notes, clear sections, bullet focus */
+body.antigravity-theme-minutes {
+    font-family: "Calibri", "Arial", sans-serif;
+    line-height: 1.5;
+    color: #444;
+    background-color: #fffef9;
+    /* Slight yellow tint like legal pad */
+}
+
+body.antigravity-theme-minutes h1 {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    border-radius: 4px;
+}
+
+body.antigravity-theme-minutes h2 {
+    border-bottom: 2px solid #555;
+    color: #555;
+    margin-top: 30px;
+}
+
+body.antigravity-theme-minutes ul {
+    list-style-type: square;
+}
+
+body.antigravity-theme-minutes li {
+    margin-bottom: 5px;
+}
+
+/* Highlight importance */
+body.antigravity-theme-minutes strong {
+    background-color: #fff0b3;
+    padding: 0 2px;
+}

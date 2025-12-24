@@ -1,0 +1,83 @@
+/*
+ * Manuscript Theme
+ * Designed for creative writing and reading.
+ * Features: Serif fonts, comfortable line height, justified text, paper-like margins.
+ */
+
+body.antigravity-theme-manuscript {
+    font-family: 'Georgia', 'Cambria', 'Times New Roman', serif;
+    font-size: 18px;
+    line-height: 1.8;
+    color: var(--vscode-editor-foreground);
+    background-color: var(--vscode-editor-background);
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2em;
+    text-align: justify;
+}
+
+/* Headers */
+body.antigravity-theme-manuscript h1,
+body.antigravity-theme-manuscript h2,
+body.antigravity-theme-manuscript h3 {
+    font-family: 'Georgia', serif;
+    color: var(--vscode-editor-foreground);
+    text-align: center;
+    border-bottom: none;
+    font-weight: normal;
+}
+
+body.antigravity-theme-manuscript h1 {
+    font-size: 2.5em;
+    margin-top: 2em;
+    margin-bottom: 1em;
+}
+
+body.antigravity-theme-manuscript h2 {
+    font-size: 1.8em;
+    margin-top: 1.5em;
+    border-bottom: 1px solid var(--vscode-scrollbarSlider-background);
+    display: inline-block;
+    padding: 0 1em 0.5em 1em;
+}
+
+/* Paragraphs */
+body.antigravity-theme-manuscript p {
+    margin-bottom: 1.5em;
+    text-indent: 1em;
+}
+
+/* Blockquotes */
+body.antigravity-theme-manuscript blockquote {
+    font-style: italic;
+    border-left: none;
+    margin: 2em 4em;
+    padding: 0;
+    color: var(--vscode-descriptionForeground);
+    text-align: center;
+}
+
+/* Code not emphasized in manuscript but kept readable */
+body.antigravity-theme-manuscript pre {
+    background: none;
+    border-top: 1px solid var(--vscode-panel-border);
+    border-bottom: 1px solid var(--vscode-panel-border);
+    text-align: left;
+}
+
+/* Custom Containers - Subtle style */
+body.antigravity-theme-manuscript .antigravity-container {
+    border: 1px solid var(--vscode-panel-border);
+    background: none;
+    border-radius: 2px;
+    margin: 2em 0;
+    padding: 1em;
+}
+
+body.antigravity-theme-manuscript .antigravity-container-title {
+    font-weight: bold;
+    font-style: italic;
+    display: block;
+    margin-bottom: 0.5em;
+    text-align: center;
+}

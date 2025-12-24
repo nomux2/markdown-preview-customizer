@@ -1,0 +1,43 @@
+/* Proposal Theme - Persuasive, strong headers, accent colors */
+body.antigravity-theme-proposal {
+    font-family: "Helvetica Neue", "Arial", sans-serif;
+    color: #2c3e50;
+    background-color: #ffffff;
+}
+
+body.antigravity-theme-proposal h1 {
+    font-size: 2.5em;
+    color: #e74c3c;
+    /* Accent Red */
+    border-left: 10px solid #2c3e50;
+    padding-left: 20px;
+    margin-bottom: 30px;
+}
+
+body.antigravity-theme-proposal h2 {
+    color: #2c3e50;
+    border-bottom: 2px solid #e74c3c;
+    padding-bottom: 5px;
+}
+
+body.antigravity-theme-proposal blockquote {
+    border-left: 4px solid #e74c3c;
+    background: #f9f9f9;
+    padding: 15px;
+    font-weight: bold;
+    color: #555;
+}
+
+body.antigravity-theme-proposal a {
+    color: #e74c3c;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+body.antigravity-theme-proposal .antigravity-card {
+    border: 1px solid #eee;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 20px 0;
+    border-top: 4px solid #2c3e50;
+}

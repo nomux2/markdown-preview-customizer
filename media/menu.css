@@ -1,0 +1,61 @@
+.antigravity-menu {
+    position: fixed;
+    z-index: 10000;
+    width: 200px;
+    background-color: var(--vscode-menu-background);
+    color: var(--vscode-menu-foreground);
+    border: 1px solid var(--vscode-menu-border);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    padding: 4px 0;
+    border-radius: 4px;
+    display: none;
+    font-family: var(--vscode-font-family);
+    font-size: 13px;
+}
+
+.antigravity-menu.visible {
+    display: block;
+}
+
+.antigravity-menu-item {
+    padding: 6px 12px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.antigravity-menu-item:hover {
+    background-color: var(--vscode-menu-selectionBackground);
+    color: var(--vscode-menu-selectionForeground);
+}
+
+.antigravity-menu-separator {
+    height: 1px;
+    background-color: var(--vscode-menu-separatorBackground);
+    margin: 4px 0;
+}
+
+.antigravity-menu-submenu {
+    position: absolute;
+    left: 100%;
+    top: 0;
+    display: none;
+    background-color: var(--vscode-menu-background);
+    border: 1px solid var(--vscode-menu-border);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    border-radius: 4px;
+    padding: 4px 0;
+    width: 180px;
+}
+
+.antigravity-menu-item:hover>.antigravity-menu-submenu {
+    display: block;
+}
+
+/* Arrow for submenu */
+.antigravity-menu-item.has-submenu::after {
+    content: '▶';
+    font-size: 10px;
+    margin-left: 10px;
+}

@@ -1,0 +1,50 @@
+/* Corporate Theme - Professional, trustworthy, blue/grey palette */
+body.antigravity-theme-corporate {
+    font-family: "Segoe UI", "Roboto", "Helvetica Neue", sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f4f6f8;
+}
+
+body.antigravity-theme-corporate h1,
+body.antigravity-theme-corporate h2,
+body.antigravity-theme-corporate h3 {
+    color: #2c3e50;
+    font-weight: 600;
+}
+
+body.antigravity-theme-corporate h1 {
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+body.antigravity-theme-corporate h2 {
+    border-left: 5px solid #3498db;
+    padding-left: 10px;
+    background: #eaf2f8;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+body.antigravity-theme-corporate blockquote {
+    background: #fff;
+    border-left: 4px solid #bdc3c7;
+    padding: 10px 20px;
+    margin: 20px 0;
+    font-style: italic;
+}
+
+body.antigravity-theme-corporate code {
+    background: #dfe6e9;
+    padding: 2px 5px;
+    border-radius: 3px;
+    color: #c0392b;
+}
+
+body.antigravity-theme-corporate pre {
+    background: #2d3436;
+    color: #dfe6e9;
+    padding: 15px;
+    border-radius: 5px;
+}

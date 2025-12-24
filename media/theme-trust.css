@@ -1,0 +1,81 @@
+/* Theme: Trust (信頼・誠実) */
+/* Design System Pattern A */
+/* Base: #FFFFFF (70%), Main: #1A365D (25%), Accent: #F6AD55 (5%) */
+
+body.antigravity-theme-trust {
+    --ag-color-base: #FFFFFF;
+    --ag-color-main: #1A365D;
+    --ag-color-accent: #F6AD55;
+    --ag-color-text: #1A365D;
+    --ag-color-background: #FFFFFF;
+
+    --ag-font-family: "BIZ UDPGothic", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
+
+    font-family: var(--ag-font-family);
+    color: var(--ag-color-text);
+    background-color: var(--ag-color-background);
+    line-height: 1.8;
+}
+
+/* Headers */
+body.antigravity-theme-trust h1,
+body.antigravity-theme-trust h2,
+body.antigravity-theme-trust h3 {
+    color: var(--ag-color-main);
+    font-weight: 700;
+}
+
+body.antigravity-theme-trust h1 {
+    border-bottom: 2px solid var(--ag-color-accent);
+    padding-bottom: 0.3em;
+}
+
+body.antigravity-theme-trust h2 {
+    border-left: 6px solid var(--ag-color-main);
+    padding-left: 12px;
+    background: #F0F4F8;
+    /* Light Blue tint */
+    padding: 8px 12px;
+}
+
+/* Links */
+body.antigravity-theme-trust a {
+    color: var(--ag-color-accent);
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+}
+
+/* Codes */
+body.antigravity-theme-trust code {
+    color: var(--ag-color-main);
+    background: #F0F4F8;
+    padding: 2px 5px;
+    border-radius: 3px;
+}
+
+body.antigravity-theme-trust pre {
+    background: #1A365D;
+    color: #FFFFFF;
+    border-left: 4px solid var(--ag-color-accent);
+    border-radius: 4px;
+}
+
+body.antigravity-theme-trust pre code {
+    background: none;
+    color: inherit;
+    padding: 0;
+}
+
+/* Blockquotes */
+body.antigravity-theme-trust blockquote {
+    border-left: 4px solid var(--ag-color-accent);
+    background: #FFF8F0;
+    /* Light Orange tint */
+    color: var(--ag-color-main);
+    padding: 1em;
+}
+
+/* Base Slide Styles (Will be overridden by Slide Mode) */
+body.antigravity-theme-trust .antigravity-slide {
+    background: var(--ag-color-base);
+}

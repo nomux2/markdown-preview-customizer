@@ -1,0 +1,47 @@
+/* Dark Slides Theme - Easy on eyes, professional dark mode */
+body.antigravity-theme-slides-dark {
+    font-family: "Segoe UI", "Roboto", sans-serif;
+    font-size: 20px;
+    line-height: 1.6;
+    color: #e0e0e0;
+    background-color: #263238;
+    /* Material Blue Grey 900 */
+    padding: 50px;
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+body.antigravity-theme-slides-dark h1 {
+    font-size: 2.5em;
+    color: #80cbc4;
+    /* Teal 200 */
+    border-bottom: 1px solid #546e7a;
+    padding-bottom: 10px;
+}
+
+body.antigravity-theme-slides-dark h2 {
+    font-size: 1.8em;
+    color: #81d4fa;
+    /* Light Blue 200 */
+    margin-top: 1.5em;
+}
+
+body.antigravity-theme-slides-dark a {
+    color: #ce93d8;
+    /* Purple 200 */
+    text-decoration: none;
+}
+
+body.antigravity-theme-slides-dark code {
+    background: #37474f;
+    color: #ffccbc;
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+body.antigravity-theme-slides-dark pre {
+    background: #000;
+    border: 1px solid #546e7a;
+    padding: 15px;
+    border-radius: 8px;
+}

@@ -1,0 +1,36 @@
+/* Whiteboard Theme - Marker-style, casual, hand-drawn look */
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
+
+body.antigravity-theme-whiteboard {
+    font-family: "Patrick Hand", "Comic Sans MS", cursive, sans-serif;
+    font-size: 22px;
+    color: #2c3e50;
+    /* Erasable marker blueish-black */
+    background-color: #fff;
+    /* Optional: Grid background */
+    background-image: linear-gradient(#f0f0f0 1px, transparent 1px), linear-gradient(90deg, #f0f0f0 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+
+body.antigravity-theme-whiteboard h1 {
+    color: #c0392b;
+    /* Red marker */
+    text-align: center;
+    transform: rotate(-2deg);
+}
+
+body.antigravity-theme-whiteboard h2 {
+    color: #2980b9;
+    /* Blue marker */
+    border-bottom: 2px solid #2980b9;
+    border-radius: 0 0 50% 50% / 0 0 10% 20%;
+}
+
+body.antigravity-theme-whiteboard .antigravity-container {
+    border: 2px solid #2c3e50;
+    border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+    /* Irregular border */
+    padding: 20px;
+    background: #fff;
+    box-shadow: 2px 5px 0 rgba(0, 0, 0, 0.1);
+}

@@ -1,0 +1,46 @@
+/* Report Theme - Formal, print-ready, serif headers, justified */
+body.antigravity-theme-report {
+    font-family: "Times New Roman", "Georgia", serif;
+    line-height: 1.8;
+    color: #000;
+    background-color: #fff;
+    text-align: justify;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+body.antigravity-theme-report h1 {
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-bottom: 1px solid #000;
+    padding-bottom: 20px;
+    margin-bottom: 40px;
+}
+
+body.antigravity-theme-report h2 {
+    font-variant: small-caps;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 5px;
+    margin-top: 30px;
+}
+
+body.antigravity-theme-report table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+body.antigravity-theme-report th,
+body.antigravity-theme-report td {
+    border: 1px solid #000;
+    padding: 8px;
+    text-align: left;
+}
+
+body.antigravity-theme-report th {
+    background-color: #f0f0f0;
+    font-weight: bold;
+}

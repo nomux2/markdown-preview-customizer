@@ -1,0 +1,115 @@
+/* Base styles for Antigravity Markdown Preview */
+
+/* Custom Container: Alert/Info/Tip/Warning/Danger */
+.antigravity-container {
+    padding: 1rem;
+    margin: 1rem 0;
+}
+
+.antigravity-container-title {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    display: block;
+    text-transform: uppercase;
+    font-size: 0.85em;
+    opacity: 0.8;
+}
+
+/* Specific Colors */
+.antigravity-container.info {
+    border-left-color: #3b82f6;
+    background-color: rgba(59, 130, 246, 0.1);
+}
+
+.antigravity-container.info .antigravity-container-title {
+    color: #3b82f6;
+}
+
+.antigravity-container.tip {
+    border-left-color: #10b981;
+    background-color: rgba(16, 185, 129, 0.1);
+}
+
+.antigravity-container.tip .antigravity-container-title {
+    color: #10b981;
+}
+
+.antigravity-container.warning {
+    border-left-color: #f59e0b;
+    background-color: rgba(245, 158, 11, 0.1);
+}
+
+.antigravity-container.warning .antigravity-container-title {
+    color: #f59e0b;
+}
+
+.antigravity-container.danger {
+    border-left-color: #ef4444;
+    background-color: rgba(239, 68, 68, 0.1);
+}
+
+.antigravity-container.danger .antigravity-container-title {
+    color: #ef4444;
+}
+
+/* Custom Container: Card */
+.antigravity-card {
+    border: 1px solid var(--vscode-widget-border);
+    background-color: var(--vscode-editor-background);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 1rem 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.antigravity-card h3 {
+    margin-top: 0;
+    border-bottom: 1px solid var(--vscode-widget-border);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+/* Custom Container: Columns */
+.antigravity-columns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.antigravity-column {
+    flex: 1;
+    min-width: 250px;
+}
+
+/* Details/Summary styling enhancement if needed */
+details {
+    border: 1px solid var(--vscode-widget-border);
+    border-radius: 4px;
+    padding: 0.5rem;
+    margin: 1rem 0;
+}
+
+summary {
+    cursor: pointer;
+    font-weight: bold;
+    padding: 0.5rem;
+}
+
+details[open] summary {
+    border-bottom: 1px solid var(--vscode-widget-border);
+    margin-bottom: 0.5rem;
+}
+
+/* Data Visualization (Charts) for Normal Preview */
+[class*="graph-"] {
+    min-height: 400px;
+    margin: 1.5rem 0;
+    width: 100%;
+    display: block;
+    background-color: var(--vscode-editor-background);
+    border: 1px solid var(--vscode-widget-border);
+    border-radius: 4px;
+    padding: 10px;
+    box-sizing: border-box;
+}

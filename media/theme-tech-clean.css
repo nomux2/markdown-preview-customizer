@@ -1,0 +1,40 @@
+/* Tech Clean Theme - Minimalist, high whitespace, grayscale */
+body.antigravity-theme-clean {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.8;
+    color: #24292e;
+    background-color: #fff;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px;
+}
+
+body.antigravity-theme-clean h1 {
+    font-weight: 300;
+    font-size: 2.5em;
+    border-bottom: 1px solid #eaecef;
+    padding-bottom: 0.3em;
+    margin-bottom: 1em;
+}
+
+body.antigravity-theme-clean h2 {
+    font-weight: 400;
+    font-size: 1.8em;
+    margin-top: 2em;
+}
+
+body.antigravity-theme-clean a {
+    color: #24292e;
+    text-decoration: underline;
+    text-decoration-color: #ccc;
+}
+
+body.antigravity-theme-clean a:hover {
+    color: #0366d6;
+}
+
+body.antigravity-theme-clean pre {
+    background: #f6f8fa;
+    border-radius: 6px;
+    padding: 16px;
+}

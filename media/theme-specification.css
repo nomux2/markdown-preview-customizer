@@ -1,0 +1,53 @@
+/* Specification Theme - Numbered headers, dense, table focus */
+body.antigravity-theme-specification {
+    font-family: "Cambria", "Times New Roman", serif;
+    line-height: 1.4;
+    color: #000;
+}
+
+body.antigravity-theme-specification h1,
+body.antigravity-theme-specification h2,
+body.antigravity-theme-specification h3 {
+    font-family: "Arial", sans-serif;
+    color: #000;
+}
+
+body.antigravity-theme-specification h1 {
+    border: 2px solid #000;
+    padding: 10px;
+    text-align: center;
+    background: #eee;
+}
+
+body.antigravity-theme-specification h2 {
+    border-bottom: 1px solid #000;
+    counter-increment: h2counter;
+    counter-reset: h3counter;
+}
+
+body.antigravity-theme-specification h2::before {
+    content: counter(h2counter) ". ";
+}
+
+body.antigravity-theme-specification h3 {
+    counter-increment: h3counter;
+}
+
+body.antigravity-theme-specification h3::before {
+    content: counter(h2counter) "." counter(h3counter) ". ";
+}
+
+body.antigravity-theme-specification table {
+    border: 2px solid #000;
+    width: 100%;
+}
+
+body.antigravity-theme-specification th {
+    background: #ddd;
+    border: 1px solid #000;
+    text-align: center;
+}
+
+body.antigravity-theme-specification td {
+    border: 1px solid #000;
+}
