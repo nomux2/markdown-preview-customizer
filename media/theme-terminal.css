@@ -1,5 +1,5 @@
 /* Terminal Theme - Hacker style, dark mode, monospaced */
-body.antigravity-theme-terminal {
+body.mpc-theme-terminal {
     font-family: "Consolas", "Monaco", "Courier New", monospace;
     background-color: #0d1117;
     color: #00ff00;
@@ -7,36 +7,36 @@ body.antigravity-theme-terminal {
     line-height: 1.5;
 }
 
-body.antigravity-theme-terminal h1,
-body.antigravity-theme-terminal h2,
-body.antigravity-theme-terminal h3 {
+body.mpc-theme-terminal h1,
+body.mpc-theme-terminal h2,
+body.mpc-theme-terminal h3 {
     color: #00ff00;
     text-transform: uppercase;
     border-bottom: 1px dashed #00ff00;
 }
 
-body.antigravity-theme-terminal h1::before {
+body.mpc-theme-terminal h1::before {
     content: "> ";
 }
 
-body.antigravity-theme-terminal a {
+body.mpc-theme-terminal a {
     color: #fff;
     text-decoration: underline;
 }
 
-body.antigravity-theme-terminal pre {
+body.mpc-theme-terminal pre {
     border: 1px solid #333;
     background: #000;
     color: #fff;
 }
 
-body.antigravity-theme-terminal code {
+body.mpc-theme-terminal code {
     color: #ff00ff;
     /* Magenta for inline code */
     background: #222;
 }
 
-body.antigravity-theme-terminal ::selection {
+body.mpc-theme-terminal ::selection {
     background: #00ff00;
     color: #000;
 }

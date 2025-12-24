@@ -1,5 +1,5 @@
 /* Newspaper Theme - Multi-column mimicry, dense serif */
-body.antigravity-theme-newspaper {
+body.mpc-theme-newspaper {
     font-family: "Times New Roman", serif;
     background-color: #f4ecd8;
     /* Aged paper */
@@ -10,7 +10,7 @@ body.antigravity-theme-newspaper {
     text-align: justify;
 }
 
-body.antigravity-theme-newspaper h1 {
+body.mpc-theme-newspaper h1 {
     column-span: all;
     text-align: center;
     font-family: "Impact", sans-serif;
@@ -23,20 +23,20 @@ body.antigravity-theme-newspaper h1 {
     font-size: 3em;
 }
 
-body.antigravity-theme-newspaper h2 {
+body.mpc-theme-newspaper h2 {
     font-weight: bold;
     border-bottom: 1px solid #000;
     margin-top: 0;
 }
 
-body.antigravity-theme-newspaper img {
+body.mpc-theme-newspaper img {
     max-width: 100%;
     filter: grayscale(100%) contrast(1.2);
     border: 1px solid #000;
     padding: 2px;
 }
 
-body.antigravity-theme-newspaper blockquote {
+body.mpc-theme-newspaper blockquote {
     border-left: none;
     font-style: italic;
     font-weight: bold;

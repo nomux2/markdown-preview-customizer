@@ -1,11 +1,11 @@
 /* Neon Theme - Dark mode, high contrast, glowing accents */
-body.antigravity-theme-neon {
+body.mpc-theme-neon {
     font-family: "Segoe UI", sans-serif;
     background-color: #121212;
     color: #e0e0e0;
 }
 
-body.antigravity-theme-neon h1 {
+body.mpc-theme-neon h1 {
     color: #00fff2;
     text-shadow: 0 0 10px #00fff2;
     text-transform: uppercase;
@@ -13,25 +13,25 @@ body.antigravity-theme-neon h1 {
     box-shadow: 0 2px 10px rgba(0, 255, 242, 0.2);
 }
 
-body.antigravity-theme-neon h2 {
+body.mpc-theme-neon h2 {
     color: #ff00ff;
     text-shadow: 0 0 8px #ff00ff;
     border-left: 4px solid #ff00ff;
     padding-left: 10px;
 }
 
-body.antigravity-theme-neon a {
+body.mpc-theme-neon a {
     color: #f1c40f;
     text-shadow: 0 0 5px #f1c40f;
 }
 
-body.antigravity-theme-neon code {
+body.mpc-theme-neon code {
     background: rgba(255, 255, 255, 0.1);
     color: #fff;
     border: 1px solid #333;
 }
 
-body.antigravity-theme-neon .antigravity-card {
+body.mpc-theme-neon .mpc-card {
     background: #1e1e1e;
     border: 1px solid #333;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);

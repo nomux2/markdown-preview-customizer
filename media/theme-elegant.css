@@ -1,37 +1,37 @@
-/* Elegant Theme - Wide margins, high-end serif, minimal */
-body.antigravity-theme-elegant {
-    font-family: "Didot", "Bodoni MT", "Times New Roman", serif;
-    line-height: 2;
-    color: #222;
-    background-color: #fdfdfd;
-    max-width: 700px;
-    margin: 0 auto;
-    padding: 60px;
+﻿/* MPC Theme: Elegant */
+.mpc-theme-elegant {
+    --mpc-color-main: #881337;
+    --mpc-color-accent: #F43F5E;
+    --mpc-color-bg: #FFF1F2;
+    --mpc-color-text: #4C0519;
+    --vscode-font-family: var(--font-serif);
+    --vscode-editor-font-family: var(--font-serif);
 }
 
-body.antigravity-theme-elegant h1 {
-    font-weight: normal;
-    text-align: center;
-    font-style: italic;
-    font-size: 3em;
-    margin-bottom: 2em;
+.mpc-theme-elegant h1, 
+.mpc-theme-elegant h2, 
+.mpc-theme-elegant h3,
+.mpc-theme-elegant h4,
+.mpc-theme-elegant h5,
+.mpc-theme-elegant h6 {
+    color: var(--mpc-color-main);
+    font-family: var(--vscode-font-family);
 }
 
-body.antigravity-theme-elegant h2 {
-    font-weight: normal;
-    text-align: center;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    font-size: 1.2em;
-    border-top: 1px solid #eee;
-    border-bottom: 1px solid #eee;
-    padding: 15px 0;
-    margin: 40px 0;
+.mpc-theme-elegant a {
+    color: var(--mpc-color-accent);
 }
 
-body.antigravity-theme-elegant p::first-letter {
-    font-size: 1.5em;
-    float: left;
-    margin-right: 5px;
-    line-height: 1;
+.mpc-theme-elegant blockquote {
+    border-left-color: var(--mpc-color-accent);
+    background-color: rgba(0,0,0,0.05);
 }
+
+/* Specific overrides for Hand/Pop fonts to ensure they apply */
+.mpc-theme-elegant body,
+.mpc-theme-elegant p,
+.mpc-theme-elegant li,
+.mpc-theme-elegant table {
+    font-family: var(--vscode-font-family);
+}
+

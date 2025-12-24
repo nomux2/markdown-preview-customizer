@@ -1,43 +1,37 @@
-/* Proposal Theme - Persuasive, strong headers, accent colors */
-body.antigravity-theme-proposal {
-    font-family: "Helvetica Neue", "Arial", sans-serif;
-    color: #2c3e50;
-    background-color: #ffffff;
+﻿/* MPC Theme: Proposal */
+.mpc-theme-proposal {
+    --mpc-color-main: #BE185D;
+    --mpc-color-accent: #EC4899;
+    --mpc-color-bg: #FFF1F2;
+    --mpc-color-text: #831843;
+    --vscode-font-family: var(--font-main);
+    --vscode-editor-font-family: var(--font-main);
 }
 
-body.antigravity-theme-proposal h1 {
-    font-size: 2.5em;
-    color: #e74c3c;
-    /* Accent Red */
-    border-left: 10px solid #2c3e50;
-    padding-left: 20px;
-    margin-bottom: 30px;
+.mpc-theme-proposal h1, 
+.mpc-theme-proposal h2, 
+.mpc-theme-proposal h3,
+.mpc-theme-proposal h4,
+.mpc-theme-proposal h5,
+.mpc-theme-proposal h6 {
+    color: var(--mpc-color-main);
+    font-family: var(--vscode-font-family);
 }
 
-body.antigravity-theme-proposal h2 {
-    color: #2c3e50;
-    border-bottom: 2px solid #e74c3c;
-    padding-bottom: 5px;
+.mpc-theme-proposal a {
+    color: var(--mpc-color-accent);
 }
 
-body.antigravity-theme-proposal blockquote {
-    border-left: 4px solid #e74c3c;
-    background: #f9f9f9;
-    padding: 15px;
-    font-weight: bold;
-    color: #555;
+.mpc-theme-proposal blockquote {
+    border-left-color: var(--mpc-color-accent);
+    background-color: rgba(0,0,0,0.05);
 }
 
-body.antigravity-theme-proposal a {
-    color: #e74c3c;
-    text-decoration: none;
-    font-weight: bold;
+/* Specific overrides for Hand/Pop fonts to ensure they apply */
+.mpc-theme-proposal body,
+.mpc-theme-proposal p,
+.mpc-theme-proposal li,
+.mpc-theme-proposal table {
+    font-family: var(--vscode-font-family);
 }
 
-body.antigravity-theme-proposal .antigravity-card {
-    border: 1px solid #eee;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    margin: 20px 0;
-    border-top: 4px solid #2c3e50;
-}

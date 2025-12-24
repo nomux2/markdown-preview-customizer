@@ -1,0 +1,37 @@
+﻿/* MPC Theme: Seminar */
+.mpc-theme-seminar {
+    --mpc-color-main: #059669;
+    --mpc-color-accent: #34D399;
+    --mpc-color-bg: #064E3B;
+    --mpc-color-text: #ECFDF5;
+    --vscode-font-family: var(--font-main);
+    --vscode-editor-font-family: var(--font-main);
+}
+
+.mpc-theme-seminar h1, 
+.mpc-theme-seminar h2, 
+.mpc-theme-seminar h3,
+.mpc-theme-seminar h4,
+.mpc-theme-seminar h5,
+.mpc-theme-seminar h6 {
+    color: var(--mpc-color-main);
+    font-family: var(--vscode-font-family);
+}
+
+.mpc-theme-seminar a {
+    color: var(--mpc-color-accent);
+}
+
+.mpc-theme-seminar blockquote {
+    border-left-color: var(--mpc-color-accent);
+    background-color: rgba(0,0,0,0.05);
+}
+
+/* Specific overrides for Hand/Pop fonts to ensure they apply */
+.mpc-theme-seminar body,
+.mpc-theme-seminar p,
+.mpc-theme-seminar li,
+.mpc-theme-seminar table {
+    font-family: var(--vscode-font-family);
+}
+

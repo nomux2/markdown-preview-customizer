@@ -1,8 +1,8 @@
 {
-    "name": "antigravity-markdown-preview",
-    "displayName": "Antigravity Markdown Preview",
-    "description": "Enhanced Markdown Preview with themes, custom containers, and export capabilities.",
-    "version": "0.0.1",
+    "name": "markdown-preview-customizer",
+    "displayName": "Markdown Preview Customizer",
+    "description": "Powerful Markdown preview with customizable themes, slideshow mode, and advanced export capabilities.",
+    "version": "2.0.0",
     "engines": {
         "vscode": "^1.80.0"
     },
@@ -16,63 +16,63 @@
     "contributes": {
         "commands": [
             {
-                "command": "antigravity.openPreview",
-                "title": "Antigravity: Open Preview to the Side",
+                "command": "markdownPreviewCustomizer.openPreview",
+                "title": "Markdown Preview: Open Preview to the Side",
                 "icon": "$(preview)"
             },
             {
-                "command": "antigravity.exportToPdf",
-                "title": "Antigravity: Export to PDF"
+                "command": "markdownPreviewCustomizer.exportToPdf",
+                "title": "Markdown Preview: Export to PDF"
             },
             {
-                "command": "antigravity.exportToWord",
-                "title": "Antigravity: Export to Word (.docx)"
+                "command": "markdownPreviewCustomizer.exportToWord",
+                "title": "Markdown Preview: Export to Word (.docx)"
             },
             {
-                "command": "antigravity.exportToHtml",
-                "title": "Antigravity: Export to HTML (Select Mode)"
+                "command": "markdownPreviewCustomizer.exportToHtml",
+                "title": "Markdown Preview: Export to HTML (Select Mode)"
             },
             {
-                "command": "antigravity.exportToHtmlFolder",
-                "title": "Antigravity: Export to HTML (Folder)"
+                "command": "markdownPreviewCustomizer.exportToHtmlFolder",
+                "title": "Markdown Preview: Export to HTML (Folder)"
             },
             {
-                "command": "antigravity.exportToHtmlBase64",
-                "title": "Antigravity: Export to HTML (Base64)"
+                "command": "markdownPreviewCustomizer.exportToHtmlBase64",
+                "title": "Markdown Preview: Export to HTML (Base64)"
             },
             {
-                "command": "antigravity.setTheme",
-                "title": "Antigravity: Set Theme"
+                "command": "markdownPreviewCustomizer.setTheme",
+                "title": "Markdown Preview: Set Theme"
             },
             {
-                "command": "antigravity.editCustomCss",
-                "title": "Antigravity: Edit Custom CSS"
+                "command": "markdownPreviewCustomizer.editCustomCss",
+                "title": "Markdown Preview: Edit Custom CSS"
             },
             {
-                "command": "antigravity.startSlideshow",
-                "title": "Antigravity: Start Slideshow",
+                "command": "markdownPreviewCustomizer.startSlideshow",
+                "title": "Markdown Preview: Start Slideshow",
                 "icon": "$(play)"
             },
             {
-                "command": "antigravity.startSlideshowInNewWindow",
-                "title": "Antigravity: 別ウィンドウでスライド起動",
+                "command": "markdownPreviewCustomizer.startSlideshowInNewWindow",
+                "title": "Markdown Preview: 別ウィンドウでスライド起動",
                 "icon": "$(empty-window)"
             },
             {
-                "command": "antigravity.exportSlideshowToHtml",
-                "title": "Antigravity: スライド出力 (Standalone HTML)",
+                "command": "markdownPreviewCustomizer.exportSlideshowToHtml",
+                "title": "Markdown Preview: スライド出力 (Standalone HTML)",
                 "icon": "$(save-as)"
             },
             {
-                "command": "antigravity.toggleLiveUpdate",
-                "title": "Antigravity: 自動更新を切り替え",
+                "command": "markdownPreviewCustomizer.toggleLiveUpdate",
+                "title": "Markdown Preview: 自動更新を切り替え",
                 "icon": "$(sync)"
             }
         ],
         "configuration": {
-            "title": "Antigravity Markdown",
+            "title": "Markdown Preview Customizer",
             "properties": {
-                "antigravity.preview.theme": {
+                "markdownPreviewCustomizer.theme": {
                     "type": "string",
                     "default": "Default",
                     "enum": [
@@ -93,59 +93,59 @@
             "./media/theme-manuscript.css"
         ],
         "markdown.previewScripts": [
-            "./media/antigravity.js"
+            "./media/preview-customizer.js"
         ],
         "menus": {
             "editor/context": [
                 {
-                    "command": "antigravity.exportToPdf",
+                    "command": "markdownPreviewCustomizer.exportToPdf",
                     "when": "editorLangId == markdown",
-                    "group": "antigravity"
+                    "group": "markdownPreview"
                 },
                 {
-                    "command": "antigravity.exportToWord",
+                    "command": "markdownPreviewCustomizer.exportToWord",
                     "when": "editorLangId == markdown",
-                    "group": "antigravity"
+                    "group": "markdownPreview"
                 },
                 {
-                    "command": "antigravity.exportToHtmlFolder",
+                    "command": "markdownPreviewCustomizer.exportToHtmlFolder",
                     "when": "editorLangId == markdown",
-                    "group": "antigravity"
+                    "group": "markdownPreview"
                 },
                 {
-                    "command": "antigravity.exportToHtmlBase64",
+                    "command": "markdownPreviewCustomizer.exportToHtmlBase64",
                     "when": "editorLangId == markdown",
-                    "group": "antigravity"
+                    "group": "markdownPreview"
                 },
                 {
-                    "command": "antigravity.exportSlideshowToHtml",
+                    "command": "markdownPreviewCustomizer.exportSlideshowToHtml",
                     "when": "editorLangId == markdown",
-                    "group": "antigravity"
+                    "group": "markdownPreview"
                 }
             ],
             "editor/title": [
                 {
-                    "command": "antigravity.openPreview",
+                    "command": "markdownPreviewCustomizer.openPreview",
                     "when": "editorLangId == markdown",
                     "group": "navigation"
                 },
                 {
-                    "command": "antigravity.startSlideshow",
+                    "command": "markdownPreviewCustomizer.startSlideshow",
                     "when": "editorLangId == markdown",
                     "group": "navigation@1"
                 },
                 {
-                    "command": "antigravity.startSlideshowInNewWindow",
+                    "command": "markdownPreviewCustomizer.startSlideshowInNewWindow",
                     "when": "editorLangId == markdown",
                     "group": "navigation@2"
                 },
                 {
-                    "command": "antigravity.exportSlideshowToHtml",
+                    "command": "markdownPreviewCustomizer.exportSlideshowToHtml",
                     "when": "editorLangId == markdown",
                     "group": "navigation@3"
                 },
                 {
-                    "command": "antigravity.exportToPdf",
+                    "command": "markdownPreviewCustomizer.exportToPdf",
                     "when": "editorLangId == markdown && !isInEmbeddedEditor",
                     "group": "navigation"
                 }
@@ -175,6 +175,8 @@
         "typescript": "^5.1.3"
     },
     "dependencies": {
+        "@types/highlight.js": "^9.12.4",
+        "highlight.js": "^11.11.1",
         "html-docx-js-typescript": "^0.1.5",
         "markdown-it": "^14.1.0",
         "markdown-it-container": "^3.0.0",

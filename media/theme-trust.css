@@ -1,81 +1,37 @@
-/* Theme: Trust (信頼・誠実) */
-/* Design System Pattern A */
-/* Base: #FFFFFF (70%), Main: #1A365D (25%), Accent: #F6AD55 (5%) */
-
-body.antigravity-theme-trust {
-    --ag-color-base: #FFFFFF;
-    --ag-color-main: #1A365D;
-    --ag-color-accent: #F6AD55;
-    --ag-color-text: #1A365D;
-    --ag-color-background: #FFFFFF;
-
-    --ag-font-family: "BIZ UDPGothic", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
-
-    font-family: var(--ag-font-family);
-    color: var(--ag-color-text);
-    background-color: var(--ag-color-background);
-    line-height: 1.8;
+﻿/* MPC Theme: Trust */
+.mpc-theme-trust {
+    --mpc-color-main: #1A365D;
+    --mpc-color-accent: #3182CE;
+    --mpc-color-bg: #FFFFFF;
+    --mpc-color-text: #2D3748;
+    --vscode-font-family: var(--font-main);
+    --vscode-editor-font-family: var(--font-main);
 }
 
-/* Headers */
-body.antigravity-theme-trust h1,
-body.antigravity-theme-trust h2,
-body.antigravity-theme-trust h3 {
-    color: var(--ag-color-main);
-    font-weight: 700;
+.mpc-theme-trust h1, 
+.mpc-theme-trust h2, 
+.mpc-theme-trust h3,
+.mpc-theme-trust h4,
+.mpc-theme-trust h5,
+.mpc-theme-trust h6 {
+    color: var(--mpc-color-main);
+    font-family: var(--vscode-font-family);
 }
 
-body.antigravity-theme-trust h1 {
-    border-bottom: 2px solid var(--ag-color-accent);
-    padding-bottom: 0.3em;
+.mpc-theme-trust a {
+    color: var(--mpc-color-accent);
 }
 
-body.antigravity-theme-trust h2 {
-    border-left: 6px solid var(--ag-color-main);
-    padding-left: 12px;
-    background: #F0F4F8;
-    /* Light Blue tint */
-    padding: 8px 12px;
+.mpc-theme-trust blockquote {
+    border-left-color: var(--mpc-color-accent);
+    background-color: rgba(0,0,0,0.05);
 }
 
-/* Links */
-body.antigravity-theme-trust a {
-    color: var(--ag-color-accent);
-    text-decoration: none;
-    border-bottom: 1px solid currentColor;
+/* Specific overrides for Hand/Pop fonts to ensure they apply */
+.mpc-theme-trust body,
+.mpc-theme-trust p,
+.mpc-theme-trust li,
+.mpc-theme-trust table {
+    font-family: var(--vscode-font-family);
 }
 
-/* Codes */
-body.antigravity-theme-trust code {
-    color: var(--ag-color-main);
-    background: #F0F4F8;
-    padding: 2px 5px;
-    border-radius: 3px;
-}
-
-body.antigravity-theme-trust pre {
-    background: #1A365D;
-    color: #FFFFFF;
-    border-left: 4px solid var(--ag-color-accent);
-    border-radius: 4px;
-}
-
-body.antigravity-theme-trust pre code {
-    background: none;
-    color: inherit;
-    padding: 0;
-}
-
-/* Blockquotes */
-body.antigravity-theme-trust blockquote {
-    border-left: 4px solid var(--ag-color-accent);
-    background: #FFF8F0;
-    /* Light Orange tint */
-    color: var(--ag-color-main);
-    padding: 1em;
-}
-
-/* Base Slide Styles (Will be overridden by Slide Mode) */
-body.antigravity-theme-trust .antigravity-slide {
-    background: var(--ag-color-base);
-}

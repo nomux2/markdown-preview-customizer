@@ -1,36 +1,37 @@
-/* Minutes Theme - For meeting notes, clear sections, bullet focus */
-body.antigravity-theme-minutes {
-    font-family: "Calibri", "Arial", sans-serif;
-    line-height: 1.5;
-    color: #444;
-    background-color: #fffef9;
-    /* Slight yellow tint like legal pad */
+﻿/* MPC Theme: Minutes */
+.mpc-theme-minutes {
+    --mpc-color-main: #047857;
+    --mpc-color-accent: #10B981;
+    --mpc-color-bg: #ECFDF5;
+    --mpc-color-text: #064E3B;
+    --vscode-font-family: var(--font-main);
+    --vscode-editor-font-family: var(--font-main);
 }
 
-body.antigravity-theme-minutes h1 {
-    background-color: #333;
-    color: #fff;
-    padding: 10px;
-    text-align: center;
-    border-radius: 4px;
+.mpc-theme-minutes h1, 
+.mpc-theme-minutes h2, 
+.mpc-theme-minutes h3,
+.mpc-theme-minutes h4,
+.mpc-theme-minutes h5,
+.mpc-theme-minutes h6 {
+    color: var(--mpc-color-main);
+    font-family: var(--vscode-font-family);
 }
 
-body.antigravity-theme-minutes h2 {
-    border-bottom: 2px solid #555;
-    color: #555;
-    margin-top: 30px;
+.mpc-theme-minutes a {
+    color: var(--mpc-color-accent);
 }
 
-body.antigravity-theme-minutes ul {
-    list-style-type: square;
+.mpc-theme-minutes blockquote {
+    border-left-color: var(--mpc-color-accent);
+    background-color: rgba(0,0,0,0.05);
 }
 
-body.antigravity-theme-minutes li {
-    margin-bottom: 5px;
+/* Specific overrides for Hand/Pop fonts to ensure they apply */
+.mpc-theme-minutes body,
+.mpc-theme-minutes p,
+.mpc-theme-minutes li,
+.mpc-theme-minutes table {
+    font-family: var(--vscode-font-family);
 }
 
-/* Highlight importance */
-body.antigravity-theme-minutes strong {
-    background-color: #fff0b3;
-    padding: 0 2px;
-}

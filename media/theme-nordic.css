@@ -1,0 +1,37 @@
+﻿/* MPC Theme: Nordic */
+.mpc-theme-nordic {
+    --mpc-color-main: #4C566A;
+    --mpc-color-accent: #88C0D0;
+    --mpc-color-bg: #ECEFF4;
+    --mpc-color-text: #2E3440;
+    --vscode-font-family: var(--font-main);
+    --vscode-editor-font-family: var(--font-main);
+}
+
+.mpc-theme-nordic h1, 
+.mpc-theme-nordic h2, 
+.mpc-theme-nordic h3,
+.mpc-theme-nordic h4,
+.mpc-theme-nordic h5,
+.mpc-theme-nordic h6 {
+    color: var(--mpc-color-main);
+    font-family: var(--vscode-font-family);
+}
+
+.mpc-theme-nordic a {
+    color: var(--mpc-color-accent);
+}
+
+.mpc-theme-nordic blockquote {
+    border-left-color: var(--mpc-color-accent);
+    background-color: rgba(0,0,0,0.05);
+}
+
+/* Specific overrides for Hand/Pop fonts to ensure they apply */
+.mpc-theme-nordic body,
+.mpc-theme-nordic p,
+.mpc-theme-nordic li,
+.mpc-theme-nordic table {
+    font-family: var(--vscode-font-family);
+}
+

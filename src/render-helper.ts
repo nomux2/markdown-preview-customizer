@@ -1,11 +1,23 @@
-import * as MarkdownIt from 'markdown-it';
+import MarkdownIt from 'markdown-it';
+import hljs from 'highlight.js';
 import { extendMarkdownIt } from './markdown-it-plugin';
 
 export function createMarkdownRenderer(): MarkdownIt {
     const md = new MarkdownIt({
         html: true,
         breaks: true,
-        linkify: true
+        linkify: true,
+        highlight: function (str: string, lang: string) {
+            if (lang && hljs.getLanguage(lang)) {
+                try {
+                    return '<pre class="hljs"><code>' +
+                        hljs.highlight(str, { language: lang, ignoreIllegals: true }).value +
+                        '</code></pre>';
+                } catch (__) { }
+            }
+
+            return ''; // use external default escaping
+        }
     });
     return extendMarkdownIt(md);
 }

@@ -10,7 +10,7 @@ window.addEventListener('load', () => {
             return;
         // Create button
         const button = document.createElement('button');
-        button.className = 'antigravity-copy-btn';
+        button.className = 'mpc-copy-btn';
         button.innerText = 'Copy';
         button.title = 'Copy code to clipboard';
         // Style button (inline for simplicity or use CSS)
@@ -52,12 +52,12 @@ window.addEventListener('load', () => {
     // ----------------------------------------------------------------
     // Create Menu DOM
     const menuConfig = [
-        { label: 'HTML出力', command: 'antigravity.exportToHtml' },
-        { label: 'PDF出力', command: 'antigravity.exportToPdf' },
+        { label: 'HTML出劁E, command: 'MPC.exportToHtml' },
+        { label: 'PDF出劁E, command: 'MPC.exportToPdf' },
         { separator: true },
-        { label: 'CSS編集', command: 'antigravity.editCustomCss' },
+        { label: 'CSS編雁E, command: 'MPC.editCustomCss' },
         {
-            label: 'CSSプリセット選択',
+            label: 'CSSプリセチE��選抁E,
             submenu: [
                 { label: 'Default', theme: 'Default' },
                 { label: 'Technical', theme: 'Technical' },
@@ -66,26 +66,26 @@ window.addEventListener('load', () => {
                 { label: 'Custom', theme: 'Custom' }
             ]
         },
-        // { label: 'CSSカスタム登録', command: 'antigravity.registerCustomCss' } // Integrated into editCustomCss
+        // { label: 'CSSカスタム登録', command: 'MPC.registerCustomCss' } // Integrated into editCustomCss
     ];
     const menu = document.createElement('div');
-    menu.className = 'antigravity-menu';
+    menu.className = 'mpc-menu';
     document.body.appendChild(menu);
     function buildMenu(container, items) {
         items.forEach(item => {
             if (item.separator) {
                 const sep = document.createElement('div');
-                sep.className = 'antigravity-menu-separator';
+                sep.className = 'mpc-menu-separator';
                 container.appendChild(sep);
                 return;
             }
             const div = document.createElement('div');
-            div.className = 'antigravity-menu-item';
+            div.className = 'mpc-menu-item';
             div.innerText = item.label;
             if (item.submenu) {
                 div.classList.add('has-submenu');
                 const sub = document.createElement('div');
-                sub.className = 'antigravity-menu-submenu';
+                sub.className = 'mpc-menu-submenu';
                 buildMenu(sub, item.submenu);
                 div.appendChild(sub);
             }
@@ -102,7 +102,7 @@ window.addEventListener('load', () => {
                     // Send command to set theme
                     window.parent.postMessage({
                         command: 'did-click-link',
-                        data: `command:antigravity.setTheme?${encodeURIComponent(JSON.stringify([item.theme]))}`
+                        data: `command:MPC.setTheme?${encodeURIComponent(JSON.stringify([item.theme]))}`
                     }, '*');
                 });
             }
@@ -125,11 +125,11 @@ window.addEventListener('load', () => {
     // ----------------------------------------------------------------
     // 3. Theme Application (from marker)
     // ----------------------------------------------------------------
-    const themeMarker = document.getElementById('antigravity-theme-marker');
+    const themeMarker = document.getElementById('mpc-theme-marker');
     if (themeMarker) {
         const theme = themeMarker.getAttribute('data-theme');
         if (theme) {
-            document.body.classList.add(`antigravity-theme-${theme.toLowerCase()}`);
+            document.body.classList.add(`mpc-theme-${theme.toLowerCase()}`);
         }
     }
 });

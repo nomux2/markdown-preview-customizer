@@ -1,0 +1,37 @@
+﻿/* MPC Theme: Keynote */
+.mpc-theme-keynote {
+    --mpc-color-main: #A855F7;
+    --mpc-color-accent: #D8B4FE;
+    --mpc-color-bg: #1F2937;
+    --mpc-color-text: #F3F4F6;
+    --vscode-font-family: var(--font-main);
+    --vscode-editor-font-family: var(--font-main);
+}
+
+.mpc-theme-keynote h1, 
+.mpc-theme-keynote h2, 
+.mpc-theme-keynote h3,
+.mpc-theme-keynote h4,
+.mpc-theme-keynote h5,
+.mpc-theme-keynote h6 {
+    color: var(--mpc-color-main);
+    font-family: var(--vscode-font-family);
+}
+
+.mpc-theme-keynote a {
+    color: var(--mpc-color-accent);
+}
+
+.mpc-theme-keynote blockquote {
+    border-left-color: var(--mpc-color-accent);
+    background-color: rgba(0,0,0,0.05);
+}
+
+/* Specific overrides for Hand/Pop fonts to ensure they apply */
+.mpc-theme-keynote body,
+.mpc-theme-keynote p,
+.mpc-theme-keynote li,
+.mpc-theme-keynote table {
+    font-family: var(--vscode-font-family);
+}
+

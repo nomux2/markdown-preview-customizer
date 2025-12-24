@@ -1,13 +1,13 @@
-/* eslint-disable @typescript-eslint/naming-convention */
+﻿/* eslint-disable @typescript-eslint/naming-convention */
 const container = require('markdown-it-container');
 import * as vscode from 'vscode';
 
 export function extendMarkdownIt(md: any) {
     // 0. Inject Theme Marker
-    md.core.ruler.push('antigravity_theme_injector', (state: any) => {
+    md.core.ruler.push('mpc_theme_injector', (state: any) => {
         const token = new state.Token('html_block', '', 0);
-        const theme = vscode.workspace.getConfiguration('antigravity').get('preview.theme') || 'Default';
-        token.content = `<div id="antigravity-theme-marker" data-theme="${theme}" style="display:none;"></div>`;
+        const theme = vscode.workspace.getConfiguration('markdownPreviewCustomizer').get('theme') || 'Default';
+        token.content = `<div id="mpc-theme-marker" data-theme="${theme}" style="display:none;"></div>`;
         state.tokens.unshift(token);
     });
 
@@ -25,8 +25,8 @@ export function extendMarkdownIt(md: any) {
                     if ((m && m[1]) === "") { title = type.toUpperCase(); } // Fallback if empty title string
 
                     const lineAttr = tokens[idx].map ? ` data-line="${tokens[idx].map[0]}"` : '';
-                    return '<div class="antigravity-container ' + type + '"' + lineAttr + '>\n' +
-                        '<span class="antigravity-container-title">' + title + '</span>\n';
+                    return '<div class="mpc-container ' + type + '"' + lineAttr + '>\n' +
+                        '<span class="mpc-container-title">' + title + '</span>\n';
                 } else {
                     // closing tag
                     return '</div>\n';
@@ -59,7 +59,7 @@ export function extendMarkdownIt(md: any) {
         render: function (tokens: any[], idx: number) {
             if (tokens[idx].nesting === 1) {
                 const lineAttr = tokens[idx].map ? ` data-line="${tokens[idx].map[0]}"` : '';
-                return '<div class="antigravity-card"' + lineAttr + '>\n';
+                return '<div class="mpc-card"' + lineAttr + '>\n';
             } else {
                 return '</div>\n';
             }
@@ -71,7 +71,7 @@ export function extendMarkdownIt(md: any) {
         render: function (tokens: any[], idx: number) {
             if (tokens[idx].nesting === 1) {
                 const lineAttr = tokens[idx].map ? ` data-line="${tokens[idx].map[0]}"` : '';
-                return '<div class="antigravity-columns"' + lineAttr + '>\n';
+                return '<div class="mpc-columns"' + lineAttr + '>\n';
             } else {
                 return '</div>\n';
             }
@@ -83,7 +83,7 @@ export function extendMarkdownIt(md: any) {
         render: function (tokens: any[], idx: number) {
             if (tokens[idx].nesting === 1) {
                 const lineAttr = tokens[idx].map ? ` data-line="${tokens[idx].map[0]}"` : '';
-                return '<div class="antigravity-column"' + lineAttr + '>\n';
+                return '<div class="mpc-column"' + lineAttr + '>\n';
             } else {
                 return '</div>\n';
             }
@@ -91,7 +91,7 @@ export function extendMarkdownIt(md: any) {
     });
 
     // 6. Generic/Custom Container (Catch-all for ::: my-box)
-    // Allows users to define ::: my-style and use .antigravity-container.my-style in CSS
+    // Allows users to define ::: my-style and use .mpc-container.my-style in CSS
     const knownTypes = ['alert', 'info', 'tip', 'warning', 'danger', 'details', 'card', 'columns', 'column'];
     md.use(container, 'generic', {
         validate: function (params: string) {
@@ -109,11 +109,11 @@ export function extendMarkdownIt(md: any) {
                 // Or we can be smart: if title provided, show it.
                 let header = '';
                 if (title) {
-                    header = `<div class="antigravity-container-title">${title}</div>\n`;
+                    header = `<div class="mpc-container-title">${title}</div>\n`;
                 }
 
                 const lineAttr = tokens[idx].map ? ` data-line="${tokens[idx].map[0]}"` : '';
-                return `<div class="antigravity-container ${md.utils.escapeHtml(type)}"${lineAttr}>\n${header}`;
+                return `<div class="mpc-container ${md.utils.escapeHtml(type)}"${lineAttr}>\n${header}`;
             } else {
                 return '</div>\n';
             }
@@ -121,7 +121,7 @@ export function extendMarkdownIt(md: any) {
     });
 
     // 7. Inject Line Numbers for Sync
-    md.core.ruler.push('antigravity_line_mapper', (state: any) => {
+    md.core.ruler.push('mpc_line_mapper', (state: any) => {
         state.tokens.forEach((token: any) => {
             if (token.map && token.type.endsWith('_open')) {
                 token.attrSet('data-line', token.map[0]);

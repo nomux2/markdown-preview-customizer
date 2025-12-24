@@ -1,81 +1,37 @@
-/* Theme: Modern V2 (清潔・モダン) */
-/* Design System Pattern B */
-/* Base: #F8F9FA (70%), Main: #2D3748 (25%), Accent: #3182CE (5%) */
-
-body.antigravity-theme-modern-v2 {
-    --ag-color-base: #F8F9FA;
-    --ag-color-main: #2D3748;
-    --ag-color-accent: #3182CE;
-    --ag-color-text: #2D3748;
-    --ag-color-background: #F8F9FA;
-
-    --ag-font-family: "BIZ UDPGothic", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
-
-    font-family: var(--ag-font-family);
-    color: var(--ag-color-text);
-    background-color: var(--ag-color-background);
-    line-height: 1.7;
+﻿/* MPC Theme: Modern V2 */
+.mpc-theme-modern-v2 {
+    --mpc-color-main: #3B82F6;
+    --mpc-color-accent: #10B981;
+    --mpc-color-bg: #1F2937;
+    --mpc-color-text: #F9FAFB;
+    --vscode-font-family: var(--font-main);
+    --vscode-editor-font-family: var(--font-main);
 }
 
-/* Headers */
-body.antigravity-theme-modern-v2 h1,
-body.antigravity-theme-modern-v2 h2,
-body.antigravity-theme-modern-v2 h3 {
-    color: var(--ag-color-main);
+.mpc-theme-modern-v2 h1, 
+.mpc-theme-modern-v2 h2, 
+.mpc-theme-modern-v2 h3,
+.mpc-theme-modern-v2 h4,
+.mpc-theme-modern-v2 h5,
+.mpc-theme-modern-v2 h6 {
+    color: var(--mpc-color-main);
+    font-family: var(--vscode-font-family);
 }
 
-body.antigravity-theme-modern-v2 h1 {
-    background: linear-gradient(to right, var(--ag-color-accent), transparent);
-    color: white;
-    padding: 0.5em 1em;
-    border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+.mpc-theme-modern-v2 a {
+    color: var(--mpc-color-accent);
 }
 
-body.antigravity-theme-modern-v2 h2 {
-    border-bottom: 2px solid var(--ag-color-accent);
-    padding-bottom: 0.3em;
+.mpc-theme-modern-v2 blockquote {
+    border-left-color: var(--mpc-color-accent);
+    background-color: rgba(0,0,0,0.05);
 }
 
-/* Links */
-body.antigravity-theme-modern-v2 a {
-    color: var(--ag-color-accent);
-    font-weight: bold;
+/* Specific overrides for Hand/Pop fonts to ensure they apply */
+.mpc-theme-modern-v2 body,
+.mpc-theme-modern-v2 p,
+.mpc-theme-modern-v2 li,
+.mpc-theme-modern-v2 table {
+    font-family: var(--vscode-font-family);
 }
 
-/* Codes */
-body.antigravity-theme-modern-v2 code {
-    color: var(--ag-color-accent);
-    background: #EBF8FF;
-    border: 1px solid #BEE3F8;
-    padding: 2px 6px;
-    border-radius: 4px;
-}
-
-body.antigravity-theme-modern-v2 pre {
-    background: #EDF2F7;
-    border: 1px solid #CBD5E0;
-    border-radius: 8px;
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
-}
-
-/* Blockquotes */
-body.antigravity-theme-modern-v2 blockquote {
-    border-left: none;
-    border-radius: 8px;
-    background: #FFFFFF;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-    padding: 1.5em;
-    color: #4A5568;
-    position: relative;
-}
-
-body.antigravity-theme-modern-v2 blockquote::before {
-    content: '"';
-    font-size: 3em;
-    color: var(--ag-color-accent);
-    position: absolute;
-    top: -10px;
-    left: 10px;
-    opacity: 0.3;
-}

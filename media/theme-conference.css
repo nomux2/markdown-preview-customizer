@@ -1,0 +1,37 @@
+﻿/* MPC Theme: Conference */
+.mpc-theme-conference {
+    --mpc-color-main: #0F172A;
+    --mpc-color-accent: #334155;
+    --mpc-color-bg: #F1F5F9;
+    --mpc-color-text: #020617;
+    --vscode-font-family: var(--font-main);
+    --vscode-editor-font-family: var(--font-main);
+}
+
+.mpc-theme-conference h1, 
+.mpc-theme-conference h2, 
+.mpc-theme-conference h3,
+.mpc-theme-conference h4,
+.mpc-theme-conference h5,
+.mpc-theme-conference h6 {
+    color: var(--mpc-color-main);
+    font-family: var(--vscode-font-family);
+}
+
+.mpc-theme-conference a {
+    color: var(--mpc-color-accent);
+}
+
+.mpc-theme-conference blockquote {
+    border-left-color: var(--mpc-color-accent);
+    background-color: rgba(0,0,0,0.05);
+}
+
+/* Specific overrides for Hand/Pop fonts to ensure they apply */
+.mpc-theme-conference body,
+.mpc-theme-conference p,
+.mpc-theme-conference li,
+.mpc-theme-conference table {
+    font-family: var(--vscode-font-family);
+}
+

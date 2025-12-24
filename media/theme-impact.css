@@ -1,44 +1,37 @@
-/* Impact Theme - High contrast, massive typography, for key messages */
-body.antigravity-theme-impact {
-    font-family: "Impact", "Arial Black", sans-serif;
-    font-size: 28px;
-    line-height: 1.3;
-    color: #fff;
-    background-color: #000;
-    text-align: center;
-    padding: 60px 20px;
+﻿/* MPC Theme: Impact */
+.mpc-theme-impact {
+    --mpc-color-main: #DC2626;
+    --mpc-color-accent: #F87171;
+    --mpc-color-bg: #111827;
+    --mpc-color-text: #FFFFFF;
+    --vscode-font-family: var(--font-main);
+    --vscode-editor-font-family: var(--font-main);
 }
 
-body.antigravity-theme-impact h1 {
-    font-size: 4em;
-    color: #ffeb3b;
-    /* Yellow */
-    text-transform: uppercase;
-    margin-bottom: 0.5em;
-    letter-spacing: 2px;
+.mpc-theme-impact h1, 
+.mpc-theme-impact h2, 
+.mpc-theme-impact h3,
+.mpc-theme-impact h4,
+.mpc-theme-impact h5,
+.mpc-theme-impact h6 {
+    color: var(--mpc-color-main);
+    font-family: var(--vscode-font-family);
 }
 
-body.antigravity-theme-impact h2 {
-    font-size: 2.5em;
-    color: #fff;
-    background: #e74c3c;
-    display: inline-block;
-    padding: 5px 20px;
-    transform: skew(-10deg);
+.mpc-theme-impact a {
+    color: var(--mpc-color-accent);
 }
 
-body.antigravity-theme-impact p {
-    font-family: "Helvetica Neue", sans-serif;
-    font-weight: 300;
-    margin-bottom: 40px;
+.mpc-theme-impact blockquote {
+    border-left-color: var(--mpc-color-accent);
+    background-color: rgba(0,0,0,0.05);
 }
 
-body.antigravity-theme-impact strong {
-    color: #ffeb3b;
-    text-decoration: underline;
+/* Specific overrides for Hand/Pop fonts to ensure they apply */
+.mpc-theme-impact body,
+.mpc-theme-impact p,
+.mpc-theme-impact li,
+.mpc-theme-impact table {
+    font-family: var(--vscode-font-family);
 }
 
-body.antigravity-theme-impact hr {
-    border: 2px solid #333;
-    margin: 50px 0;
-}

@@ -1,37 +1,37 @@
-/* Presentation Theme - Large text, high contrast, slide-like style */
-body.antigravity-theme-presentation {
-    font-family: "Arial", sans-serif;
-    font-size: 24px;
-    line-height: 1.4;
-    background-color: #222;
-    color: #fff;
-    max-width: 90%;
+﻿/* MPC Theme: Presentation */
+.mpc-theme-presentation {
+    --mpc-color-main: #2563EB;
+    --mpc-color-accent: #60A5FA;
+    --mpc-color-bg: #EFF6FF;
+    --mpc-color-text: #1E3A8A;
+    --vscode-font-family: var(--font-main);
+    --vscode-editor-font-family: var(--font-main);
 }
 
-body.antigravity-theme-presentation h1 {
-    font-size: 3em;
-    color: #f1c40f;
-    text-align: center;
-    margin-top: 20vh;
+.mpc-theme-presentation h1, 
+.mpc-theme-presentation h2, 
+.mpc-theme-presentation h3,
+.mpc-theme-presentation h4,
+.mpc-theme-presentation h5,
+.mpc-theme-presentation h6 {
+    color: var(--mpc-color-main);
+    font-family: var(--vscode-font-family);
 }
 
-body.antigravity-theme-presentation h2 {
-    font-size: 2em;
-    color: #3498db;
-    border-bottom: 4px solid #3498db;
-    margin-top: 100px;
+.mpc-theme-presentation a {
+    color: var(--mpc-color-accent);
 }
 
-body.antigravity-theme-presentation ul {
-    margin-left: 2em;
+.mpc-theme-presentation blockquote {
+    border-left-color: var(--mpc-color-accent);
+    background-color: rgba(0,0,0,0.05);
 }
 
-body.antigravity-theme-presentation li {
-    margin-bottom: 0.5em;
+/* Specific overrides for Hand/Pop fonts to ensure they apply */
+.mpc-theme-presentation body,
+.mpc-theme-presentation p,
+.mpc-theme-presentation li,
+.mpc-theme-presentation table {
+    font-family: var(--vscode-font-family);
 }
 
-body.antigravity-theme-presentation img {
-    max-height: 60vh;
-    display: block;
-    margin: 0 auto;
-}

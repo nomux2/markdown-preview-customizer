@@ -1,4 +1,4 @@
-import * as MarkdownIt from 'markdown-it';
+import MarkdownIt from 'markdown-it';
 import { extendMarkdownIt } from './markdown-it-plugin';
 
 // Mock VS Code environment is not needed for logic test if we decouple dependency
@@ -19,22 +19,22 @@ const testCases = [
     {
         name: 'Alert Container',
         input: '::: alert Warning\nContent\n:::',
-        expectedPartial: '<div class="antigravity-container alert">'
+        expectedPartial: '<div class="mpc-container alert">'
     },
     {
         name: 'Alert Title',
         input: '::: alert Warning\nContent\n:::',
-        expectedPartial: '<span class="antigravity-container-title">Warning</span>'
+        expectedPartial: '<span class="mpc-container-title">Warning</span>'
     },
     {
         name: 'Card Container',
         input: '::: card\n# Title\nBody\n:::',
-        expectedPartial: '<div class="antigravity-card">'
+        expectedPartial: '<div class="mpc-card">'
     },
     {
         name: 'Columns Container',
         input: '::: columns\n::: column\nA\n:::\n:::',
-        expectedPartial: '<div class="antigravity-columns">'
+        expectedPartial: '<div class="mpc-columns">'
     }
 ];
 

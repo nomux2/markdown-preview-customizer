@@ -14,18 +14,19 @@ export class WebContentProvider {
         const md = createMarkdownRenderer();
         const bodyContent = md.render(document.getText());
 
-        // CSS Paths
         const cssFiles = [
-            'main.css', 'menu.css',
-            'theme-tech.css', 'theme-manuscript.css',
-            'theme-corporate.css', 'theme-report.css', 'theme-minutes.css', 'theme-proposal.css',
-            'theme-minutes-simple.css', 'theme-proposal-simple.css',
-            'theme-specification.css', 'theme-terminal.css',
-            'theme-tech-manual.css', 'theme-tech-clean.css', 'theme-tech-formal.css',
-            'theme-elegant.css', 'theme-modern.css', 'theme-cute.css', 'theme-neon.css', 'theme-newspaper.css',
-            'theme-presentation.css', 'theme-whiteboard.css',
-            'theme-slides-light.css', 'theme-slides-dark.css', 'theme-impact.css',
+            'main.css', 'menu.css', 'highlight.css',
+            // Design System
             'theme-trust.css', 'theme-modern-v2.css', 'theme-simple.css',
+            'theme-nordic.css', 'theme-fresh.css', 'theme-warm.css', 'theme-minimal.css', 'theme-professional.css',
+            'theme-elegant.css', 'theme-classic.css', 'theme-pop.css',
+            // Business
+            'theme-corporate.css', 'theme-report.css', 'theme-minutes.css', 'theme-proposal.css',
+            'theme-contract.css', 'theme-invoice.css', 'theme-manual.css', 'theme-specification.css', 'theme-executive.css', 'theme-financial.css',
+            // Presentation
+            'theme-presentation.css', 'theme-whiteboard.css', 'theme-impact.css',
+            'theme-keynote.css', 'theme-pitch.css', 'theme-conference.css', 'theme-workshop.css', 'theme-seminar.css', 'theme-training.css', 'theme-demo.css',
+            // Base
             'slides.css'
         ];
 
@@ -35,12 +36,12 @@ export class WebContentProvider {
         }).join('\n');
 
         const chartJsUri = webview.asWebviewUri(vscode.Uri.file(path.join(this.context.extensionPath, 'media', 'chart.min.js')));
-        const jsUri = webview.asWebviewUri(vscode.Uri.file(path.join(this.context.extensionPath, 'media', 'antigravity.js')));
+        const jsUri = webview.asWebviewUri(vscode.Uri.file(path.join(this.context.extensionPath, 'media', 'preview-customizer.js')));
 
         // Theme Handling
-        const config = vscode.workspace.getConfiguration('antigravity');
-        const theme = config.get<string>('preview.theme') || 'Default';
-        const themeClass = `antigravity-theme-${theme.toLowerCase()}`;
+        const config = vscode.workspace.getConfiguration('markdownPreviewCustomizer');
+        const theme = config.get<string>('theme') || 'Default';
+        const themeClass = `mpc-theme-${theme.toLowerCase()}`;
 
         // CSP: Critical for enabling command: links and scripts
         // Allow command: links, unsafe-inline scripts (for event handlers), and local resources
@@ -50,13 +51,13 @@ export class WebContentProvider {
                      img-src ${webview.cspSource} https: data:; 
                      script-src 'unsafe-inline' 'unsafe-eval' ${webview.cspSource} https:; 
                      style-src 'unsafe-inline' ${webview.cspSource};
-                     font-src ${webview.cspSource};`;
+                     font-src ${webview.cspSource} https:;`;
 
         // Custom CSS Handling
         let customCssLink = '';
         if (vscode.workspace.workspaceFolders && vscode.workspace.workspaceFolders.length > 0) {
             const rootUri = vscode.workspace.workspaceFolders[0].uri;
-            const cssUri = vscode.Uri.joinPath(rootUri, '.vscode', 'antigravity.css');
+            const cssUri = vscode.Uri.joinPath(rootUri, '.vscode', 'markdownPreviewCustomizer.css');
             try {
                 // Check if file exists (dummy stat)
                 await vscode.workspace.fs.stat(cssUri);
@@ -74,7 +75,7 @@ export class WebContentProvider {
                 <meta charset="UTF-8">
                 <meta http-equiv="Content-Security-Policy" content="${csp}">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>Antigravity Preview</title>
+                <title>MPC Preview</title>
                 <style>
                     /* Basic Reset for Webview */
                     body { 
@@ -87,8 +88,8 @@ export class WebContentProvider {
                 ${cssLinks}
                 ${customCssLink}
             </head>
-            <body class="antigravity-preview ${themeClass}">
-                <div id="antigravity-content">${bodyContent}</div>
+            <body class="mpc-preview ${themeClass}">
+                <div id="mpc-content">${bodyContent}</div>
                 
                 <script>
                     // Hack to ensure Chart.js mounts to window instead of looking for CommonJS/AMD
@@ -103,9 +104,9 @@ export class WebContentProvider {
                 </script>
                 <script>
                     if (typeof Chart === 'undefined') {
-                        console.error('Antigravity Critical: Chart is still undefined after inline load!');
+                        console.error('MPC Critical: Chart is still undefined after inline load!');
                     } else {
-                        console.log('Antigravity: Chart loaded successfully inline.');
+                        console.log('MPC: Chart loaded successfully inline.');
                     }
                 </script>
                 <script src="${jsUri}"></script>

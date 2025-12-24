@@ -1,4 +1,4 @@
-.antigravity-menu {
+.mpc-menu {
     position: fixed;
     z-index: 10000;
     width: 200px;
@@ -13,11 +13,11 @@
     font-size: 13px;
 }
 
-.antigravity-menu.visible {
+.mpc-menu.visible {
     display: block;
 }
 
-.antigravity-menu-item {
+.mpc-menu-item {
     padding: 6px 12px;
     cursor: pointer;
     display: flex;
@@ -25,18 +25,18 @@
     align-items: center;
 }
 
-.antigravity-menu-item:hover {
+.mpc-menu-item:hover {
     background-color: var(--vscode-menu-selectionBackground);
     color: var(--vscode-menu-selectionForeground);
 }
 
-.antigravity-menu-separator {
+.mpc-menu-separator {
     height: 1px;
     background-color: var(--vscode-menu-separatorBackground);
     margin: 4px 0;
 }
 
-.antigravity-menu-submenu {
+.mpc-menu-submenu {
     position: absolute;
     left: 100%;
     top: 0;
@@ -49,12 +49,12 @@
     width: 180px;
 }
 
-.antigravity-menu-item:hover>.antigravity-menu-submenu {
+.mpc-menu-item:hover>.mpc-menu-submenu {
     display: block;
 }
 
 /* Arrow for submenu */
-.antigravity-menu-item.has-submenu::after {
+.mpc-menu-item.has-submenu::after {
     content: '▶';
     font-size: 10px;
     margin-left: 10px;

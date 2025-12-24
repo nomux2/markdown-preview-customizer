@@ -1,0 +1,37 @@
+﻿/* MPC Theme: Invoice */
+.mpc-theme-invoice {
+    --mpc-color-main: #4B5563;
+    --mpc-color-accent: #9CA3AF;
+    --mpc-color-bg: #FFFFFF;
+    --mpc-color-text: #1F2937;
+    --vscode-font-family: var(--font-main);
+    --vscode-editor-font-family: var(--font-main);
+}
+
+.mpc-theme-invoice h1, 
+.mpc-theme-invoice h2, 
+.mpc-theme-invoice h3,
+.mpc-theme-invoice h4,
+.mpc-theme-invoice h5,
+.mpc-theme-invoice h6 {
+    color: var(--mpc-color-main);
+    font-family: var(--vscode-font-family);
+}
+
+.mpc-theme-invoice a {
+    color: var(--mpc-color-accent);
+}
+
+.mpc-theme-invoice blockquote {
+    border-left-color: var(--mpc-color-accent);
+    background-color: rgba(0,0,0,0.05);
+}
+
+/* Specific overrides for Hand/Pop fonts to ensure they apply */
+.mpc-theme-invoice body,
+.mpc-theme-invoice p,
+.mpc-theme-invoice li,
+.mpc-theme-invoice table {
+    font-family: var(--vscode-font-family);
+}
+

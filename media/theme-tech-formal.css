@@ -1,5 +1,5 @@
 /* Tech Formal Theme - ISO/Standard document style, serif headers */
-body.antigravity-theme-formal {
+body.mpc-theme-formal {
     font-family: "Times New Roman", "Yu Mincho", serif;
     line-height: 1.5;
     color: #000;
@@ -7,14 +7,14 @@ body.antigravity-theme-formal {
 }
 
 /* Force headings to be sans-serif for contrast "Business Technical" feel */
-body.antigravity-theme-formal h1,
-body.antigravity-theme-formal h2,
-body.antigravity-theme-formal h3 {
+body.mpc-theme-formal h1,
+body.mpc-theme-formal h2,
+body.mpc-theme-formal h3 {
     font-family: "Arial", "Yu Gothic", sans-serif;
     color: #000;
 }
 
-body.antigravity-theme-formal h1 {
+body.mpc-theme-formal h1 {
     font-size: 18pt;
     font-weight: bold;
     border: 1px solid #000;
@@ -23,28 +23,28 @@ body.antigravity-theme-formal h1 {
     text-align: center;
 }
 
-body.antigravity-theme-formal h2 {
+body.mpc-theme-formal h2 {
     font-size: 14pt;
     font-weight: bold;
     border-bottom: 1px solid #000;
     margin-top: 20px;
 }
 
-body.antigravity-theme-formal table {
+body.mpc-theme-formal table {
     width: 100%;
     border: 2px solid #000;
     border-collapse: collapse;
     margin: 15px 0;
 }
 
-body.antigravity-theme-formal th,
-body.antigravity-theme-formal td {
+body.mpc-theme-formal th,
+body.mpc-theme-formal td {
     border: 1px solid #000;
     padding: 4px 8px;
     font-size: 10.5pt;
 }
 
-body.antigravity-theme-formal th {
+body.mpc-theme-formal th {
     background-color: #ddd;
     text-align: center;
 }

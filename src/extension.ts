@@ -1,4 +1,4 @@
-import * as vscode from 'vscode';
+﻿import * as vscode from 'vscode';
 import * as fs from 'fs';
 import * as path from 'path';
 import { extendMarkdownIt } from './markdown-it-plugin';
@@ -9,54 +9,54 @@ import { exportToHtml } from './export/html';
 import { PreviewManager } from './PreviewManager';
 
 export function activate(context: vscode.ExtensionContext) {
-    console.log('Congratulations, your extension "antigravity-markdown-preview" is now active!');
+    console.log('Congratulations, your extension "markdown-preview-customizer" is now active!');
 
     // Create Output Channel
-    const outputChannel = vscode.window.createOutputChannel("Antigravity");
+    const outputChannel = vscode.window.createOutputChannel("Markdown Preview Customizer");
     context.subscriptions.push(outputChannel);
-    outputChannel.appendLine('Antigravity: Extension Activated');
+    outputChannel.appendLine('MPC: Extension Activated');
 
     // 0. New Custom Preview Command
-    let disposablePreview = vscode.commands.registerCommand('antigravity.openPreview', () => {
-        outputChannel.appendLine('Antigravity: openPreview triggered');
+    let disposablePreview = vscode.commands.registerCommand('markdownPreviewCustomizer.openPreview', () => {
+        outputChannel.appendLine('MPC: openPreview triggered');
         PreviewManager.createOrShow(context, outputChannel);
     });
     context.subscriptions.push(disposablePreview);
 
     // 1. Export Commands
-    let disposablePdf = vscode.commands.registerCommand('antigravity.exportToPdf', () => {
-        outputChannel.appendLine('Antigravity: exportToPdf command triggered');
-        vscode.window.showInformationMessage('Antigravity: Exporting to PDF...');
+    let disposablePdf = vscode.commands.registerCommand('markdownPreviewCustomizer.exportToPdf', () => {
+        outputChannel.appendLine('MPC: exportToPdf command triggered');
+        vscode.window.showInformationMessage('Markdown Preview Customizer: Exporting to PDF...');
         exportToPdf(context, outputChannel);
     });
 
-    let disposableWord = vscode.commands.registerCommand('antigravity.exportToWord', () => {
-        outputChannel.appendLine('Antigravity: exportToWord command triggered');
-        vscode.window.showInformationMessage('Antigravity: Exporting to Word...');
+    let disposableWord = vscode.commands.registerCommand('markdownPreviewCustomizer.exportToWord', () => {
+        outputChannel.appendLine('MPC: exportToWord command triggered');
+        vscode.window.showInformationMessage('Markdown Preview Customizer: Exporting to Word...');
         exportToWord(context, outputChannel);
     });
 
-    let disposableHtml = vscode.commands.registerCommand('antigravity.exportToHtml', () => {
-        outputChannel.appendLine('Antigravity: exportToHtml command triggered');
+    let disposableHtml = vscode.commands.registerCommand('markdownPreviewCustomizer.exportToHtml', () => {
+        outputChannel.appendLine('MPC: exportToHtml command triggered');
         exportToHtml(context, outputChannel); // No arg = Prompt
     });
 
-    let disposableHtmlFolder = vscode.commands.registerCommand('antigravity.exportToHtmlFolder', () => {
-        outputChannel.appendLine('Antigravity: exportToHtmlFolder command triggered');
-        vscode.window.showInformationMessage('Antigravity: Exporting to HTML (Folder)...');
+    let disposableHtmlFolder = vscode.commands.registerCommand('markdownPreviewCustomizer.exportToHtmlFolder', () => {
+        outputChannel.appendLine('MPC: exportToHtmlFolder command triggered');
+        vscode.window.showInformationMessage('Markdown Preview Customizer: Exporting to HTML (Folder)...');
         exportToHtml(context, outputChannel, 'folder');
     });
 
-    let disposableHtmlBase64 = vscode.commands.registerCommand('antigravity.exportToHtmlBase64', () => {
-        outputChannel.appendLine('Antigravity: exportToHtmlBase64 command triggered');
-        vscode.window.showInformationMessage('Antigravity: Exporting to HTML (Base64)...');
+    let disposableHtmlBase64 = vscode.commands.registerCommand('markdownPreviewCustomizer.exportToHtmlBase64', () => {
+        outputChannel.appendLine('MPC: exportToHtmlBase64 command triggered');
+        vscode.window.showInformationMessage('Markdown Preview Customizer: Exporting to HTML (Base64)...');
         exportToHtml(context, outputChannel, 'base64');
     });
 
     // 2. Theme Command
-    let disposableTheme = vscode.commands.registerCommand('antigravity.setTheme', async (...args: any[]) => {
+    let disposableTheme = vscode.commands.registerCommand('markdownPreviewCustomizer.setTheme', async (...args: any[]) => {
         // Debug logging for arguments
-        console.log('Antigravity: setTheme args:', JSON.stringify(args));
+        console.log('MPC: setTheme args:', JSON.stringify(args));
         // vscode.window.showInformationMessage(`DEBUG: Theme Command Args: ${JSON.stringify(args)}`);
 
         let themeName = '';
@@ -86,30 +86,30 @@ export function activate(context: vscode.ExtensionContext) {
         }
 
         if (themeName) {
-            console.log(`Antigravity: Setting theme to ${themeName}`);
-            vscode.window.showInformationMessage(`Antigravity: Switched theme to ${themeName}`);
-            await vscode.workspace.getConfiguration('antigravity').update('preview.theme', themeName, vscode.ConfigurationTarget.Global);
+            console.log(`MPC: Setting theme to ${themeName}`);
+            vscode.window.showInformationMessage(`Markdown Preview Customizer: Switched theme to ${themeName}`);
+            await vscode.workspace.getConfiguration('markdownPreviewCustomizer').update('theme', themeName, vscode.ConfigurationTarget.Global);
             // v2: If Custom Preview is active, it will auto-update if we implement config listener, 
             // or we can force refresh here. For simplicity, we rely on user action or future improvement.
             // But since PreviewManager listens to textDoc change, it might not listen to Config change yet.
             // Let's create a refresh command or handle it in PreviewManager later.
             vscode.commands.executeCommand('markdown.preview.refresh'); // Legacy
         } else {
-            vscode.window.showErrorMessage('Antigravity: Failed to parse theme name from arguments.');
+            vscode.window.showErrorMessage('Markdown Preview Customizer: Failed to parse theme name from arguments.');
         }
     });
 
     // 3. Custom CSS Command
-    let disposableCss = vscode.commands.registerCommand('antigravity.editCustomCss', async () => {
+    let disposableCss = vscode.commands.registerCommand('markdownPreviewCustomizer.editCustomCss', async () => {
         const workspaceFolders = vscode.workspace.workspaceFolders;
         if (!workspaceFolders) {
-            vscode.window.showErrorMessage('Antigravity: Please open a folder to use Custom CSS features.');
+            vscode.window.showErrorMessage('Markdown Preview Customizer: Please open a folder to use Custom CSS features.');
             return;
         }
 
         const rootUri = workspaceFolders[0].uri;
         const vscodeDir = vscode.Uri.joinPath(rootUri, '.vscode');
-        const cssUri = vscode.Uri.joinPath(vscodeDir, 'antigravity.css');
+        const cssUri = vscode.Uri.joinPath(vscodeDir, 'markdownPreviewCustomizer.css');
 
         try {
             // Ensure .vscode directory exists
@@ -121,12 +121,12 @@ export function activate(context: vscode.ExtensionContext) {
             } catch {
                 // Create file if not exists
                 const defaultCss = new TextEncoder().encode(
-                    `/* Custom CSS for Antigravity Markdown Preview */
+                    `/* Custom CSS for Markdown Preview Customizer */
 /* This file is automatically loaded when you preview markdown in this workspace. */
 
 /* --- 1. Custom Theme Styling --- */
-/* body.antigravity-theme-custom is added to body when "Custom" theme is selected */
-body.antigravity-theme-custom {
+/* body.mpc-theme-custom is added to body when "Custom" theme is selected */
+body.mpc-theme-custom {
     /* Styles for "Custom" theme */
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     color: #333333;
@@ -142,7 +142,7 @@ body.antigravity-theme-custom {
    And style them here:
 */
 /* Note: Use "space" to target elements inside the container */
-.antigravity-container.memo {
+.mpc-container.memo {
     background-color: #fff8c4;
     border-left: 4px solid #ffd700;
     padding: 1em;
@@ -150,7 +150,7 @@ body.antigravity-theme-custom {
 }
 
 /* Target specific elements inside your custom container */
-.antigravity-container.memo h1 {
+.mpc-container.memo h1 {
     color: #d4a017;
     font-size: 1.2em;
 }
@@ -169,29 +169,29 @@ body {
             // Open document
             const doc = await vscode.workspace.openTextDocument(cssUri);
             await vscode.window.showTextDocument(doc);
-            vscode.window.showInformationMessage('Antigravity: Custom CSS file opened.');
+            vscode.window.showInformationMessage('Markdown Preview Customizer: Custom CSS file opened.');
 
         } catch (error: any) {
-            vscode.window.showErrorMessage(`Antigravity: Failed to setup custom CSS. ${error.message}`);
+            vscode.window.showErrorMessage(`Markdown Preview Customizer: Failed to setup custom CSS. ${error.message}`);
         }
     });
 
-    let disposableSlideshow = vscode.commands.registerCommand('antigravity.startSlideshow', () => {
-        outputChannel.appendLine('Antigravity: startSlideshow command triggered');
+    let disposableSlideshow = vscode.commands.registerCommand('markdownPreviewCustomizer.startSlideshow', () => {
+        outputChannel.appendLine('MPC: startSlideshow command triggered');
         PreviewManager.startSlideshow(context, outputChannel);
     });
 
-    let disposableSlideshowNewWindow = vscode.commands.registerCommand('antigravity.startSlideshowInNewWindow', () => {
-        outputChannel.appendLine('Antigravity: startSlideshowInNewWindow command triggered');
+    let disposableSlideshowNewWindow = vscode.commands.registerCommand('markdownPreviewCustomizer.startSlideshowInNewWindow', () => {
+        outputChannel.appendLine('MPC: startSlideshowInNewWindow command triggered');
         PreviewManager.startSlideshow(context, outputChannel, true);
     });
 
-    let disposableSlideExport = vscode.commands.registerCommand('antigravity.exportSlideshowToHtml', () => {
-        outputChannel.appendLine('Antigravity: exportSlideshowToHtml command triggered');
+    let disposableSlideExport = vscode.commands.registerCommand('markdownPreviewCustomizer.exportSlideshowToHtml', () => {
+        outputChannel.appendLine('MPC: exportSlideshowToHtml command triggered');
         exportToHtml(context, outputChannel, 'slideshow');
     });
 
-    let disposableLiveUpdate = vscode.commands.registerCommand('antigravity.toggleLiveUpdate', () => {
+    let disposableLiveUpdate = vscode.commands.registerCommand('markdownPreviewCustomizer.toggleLiveUpdate', () => {
         PreviewManager.toggleLiveUpdate();
     });
 

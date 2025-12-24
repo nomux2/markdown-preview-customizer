@@ -1,0 +1,37 @@
+﻿/* MPC Theme: Minimal */
+.mpc-theme-minimal {
+    --mpc-color-main: #000000;
+    --mpc-color-accent: #666666;
+    --mpc-color-bg: #FFFFFF;
+    --mpc-color-text: #000000;
+    --vscode-font-family: var(--font-main);
+    --vscode-editor-font-family: var(--font-main);
+}
+
+.mpc-theme-minimal h1, 
+.mpc-theme-minimal h2, 
+.mpc-theme-minimal h3,
+.mpc-theme-minimal h4,
+.mpc-theme-minimal h5,
+.mpc-theme-minimal h6 {
+    color: var(--mpc-color-main);
+    font-family: var(--vscode-font-family);
+}
+
+.mpc-theme-minimal a {
+    color: var(--mpc-color-accent);
+}
+
+.mpc-theme-minimal blockquote {
+    border-left-color: var(--mpc-color-accent);
+    background-color: rgba(0,0,0,0.05);
+}
+
+/* Specific overrides for Hand/Pop fonts to ensure they apply */
+.mpc-theme-minimal body,
+.mpc-theme-minimal p,
+.mpc-theme-minimal li,
+.mpc-theme-minimal table {
+    font-family: var(--vscode-font-family);
+}
+

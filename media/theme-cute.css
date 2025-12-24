@@ -2,20 +2,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Kosugi+Maru&display=swap');
 /* Try to load rounded font if possible, fallback to Arial Rounded */
 
-body.antigravity-theme-cute {
+body.mpc-theme-cute {
     font-family: "Kosugi Maru", "Arial Rounded MT Bold", "Varela Round", sans-serif;
     color: #5d5d5d;
     background-color: #fff0f5;
     /* Lavender Blush */
 }
 
-body.antigravity-theme-cute h1 {
+body.mpc-theme-cute h1 {
     color: #ff6b6b;
     border-bottom: 3px dotted #ff6b6b;
     text-align: center;
 }
 
-body.antigravity-theme-cute h2 {
+body.mpc-theme-cute h2 {
     background: #ffeaa7;
     color: #d35400;
     display: inline-block;
@@ -24,21 +24,21 @@ body.antigravity-theme-cute h2 {
     box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1);
 }
 
-body.antigravity-theme-cute blockquote {
+body.mpc-theme-cute blockquote {
     background: #fff;
     border: 2px solid #74b9ff;
     border-radius: 10px;
     color: #0984e3;
 }
 
-body.antigravity-theme-cute code {
+body.mpc-theme-cute code {
     background: #ffcccc;
     color: #d63031;
     border-radius: 5px;
     padding: 2px 6px;
 }
 
-body.antigravity-theme-cute .antigravity-container {
+body.mpc-theme-cute .mpc-container {
     background: #fff;
     border: 2px dashed #ff9ff3;
     border-radius: 15px;

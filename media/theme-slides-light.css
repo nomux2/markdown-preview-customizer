@@ -1,5 +1,5 @@
 /* Light Slides Theme - Standard clean presentation style */
-body.antigravity-theme-slides-light {
+body.mpc-theme-slides-light {
     font-family: "Segoe UI", "Helvetica Neue", sans-serif;
     font-size: 20px;
     line-height: 1.6;
@@ -10,7 +10,7 @@ body.antigravity-theme-slides-light {
     margin: 0 auto;
 }
 
-body.antigravity-theme-slides-light h1 {
+body.mpc-theme-slides-light h1 {
     font-size: 2.5em;
     color: #0056b3;
     border-bottom: 2px solid #e9ecef;
@@ -18,19 +18,19 @@ body.antigravity-theme-slides-light h1 {
     text-align: left;
 }
 
-body.antigravity-theme-slides-light h2 {
+body.mpc-theme-slides-light h2 {
     font-size: 1.8em;
     color: #495057;
     margin-top: 1.5em;
 }
 
-body.antigravity-theme-slides-light ul {
+body.mpc-theme-slides-light ul {
     background: #f8f9fa;
     border-left: 5px solid #0056b3;
     padding: 20px 20px 20px 40px;
     border-radius: 0 4px 4px 0;
 }
 
-body.antigravity-theme-slides-light li {
+body.mpc-theme-slides-light li {
     margin-bottom: 10px;
 }

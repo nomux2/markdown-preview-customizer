@@ -1,10 +1,10 @@
-import * as vscode from 'vscode';
+﻿import * as vscode from 'vscode';
 import * as fs from 'fs';
 import * as path from 'path';
 import { createMarkdownRenderer, generateHtmlSkeleton } from '../render-helper';
 
 export async function exportToHtml(context: vscode.ExtensionContext, outputChannel: vscode.OutputChannel, mode?: 'base64' | 'folder' | 'slideshow' | 'none') {
-    outputChannel.appendLine('Antigravity: Starting HTML export...');
+    outputChannel.appendLine('MPC: Starting HTML export...');
 
     // 1. Try to get active editor
     let editor = vscode.window.activeTextEditor;
@@ -13,7 +13,7 @@ export async function exportToHtml(context: vscode.ExtensionContext, outputChann
     }
 
     if (!editor) {
-        vscode.window.showErrorMessage('Antigravity: Could not find an open Markdown file to export.');
+        vscode.window.showErrorMessage('Markdown Preview Customizer: Could not find an open Markdown file to export.');
         return;
     }
 
@@ -65,7 +65,7 @@ export async function exportToHtml(context: vscode.ExtensionContext, outputChann
         extraHeads = `<style>${cssContents}</style>`;
 
         // Embed JS
-        const jsFiles = ['chart.min.js', 'antigravity.js'];
+        const jsFiles = ['chart.min.js', 'preview-customizer.js'];
         const jsContents = jsFiles.map(f => {
             const p = path.join(context.extensionPath, 'media', f);
             return fs.existsSync(p) ? fs.readFileSync(p, 'utf8') : '';
@@ -79,19 +79,19 @@ export async function exportToHtml(context: vscode.ExtensionContext, outputChann
     }
 
     // 4. Final HTML Construction
-    const config = vscode.workspace.getConfiguration('antigravity');
-    const theme = config.get<string>('preview.theme') || 'Default';
+    const config = vscode.workspace.getConfiguration('markdownPreviewCustomizer');
+    const theme = config.get<string>('theme') || 'Default';
 
     const finalHtml = `<!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Antigravity Export</title>
+    <title>MPC Export</title>
     ${extraHeads}
 </head>
-<body class="antigravity-preview antigravity-theme-${theme.toLowerCase()} ${selectedMode === 'slideshow' ? 'slideshow-auto-start' : ''}">
-    <div id="antigravity-content">${htmlBody}</div>
+<body class="mpc-preview mpc-theme-${theme.toLowerCase()} ${selectedMode === 'slideshow' ? 'slideshow-auto-start' : ''}">
+    <div id="mpc-content">${htmlBody}</div>
     ${extraScripts}
 </body>
 </html>`;

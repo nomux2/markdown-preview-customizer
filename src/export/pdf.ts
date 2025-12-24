@@ -18,7 +18,7 @@ function getChromePath(): string | undefined {
 }
 
 export async function exportToPdf(context: vscode.ExtensionContext, outputChannel: vscode.OutputChannel) {
-    outputChannel.appendLine('Antigravity: Starting PDF export...');
+    outputChannel.appendLine('MPC: Starting PDF export...');
 
     // 1. Try to get active editor, or find a visible markdown editor (since focus is in webview)
     let editor = vscode.window.activeTextEditor;
@@ -36,7 +36,7 @@ export async function exportToPdf(context: vscode.ExtensionContext, outputChanne
     }
 
     if (!editor) {
-        const msg = 'Antigravity: Could not find an open Markdown file to export.';
+        const msg = 'Markdown Preview Customizer: Could not find an open Markdown file to export.';
         outputChannel.appendLine(`Error: ${msg}`);
         vscode.window.showErrorMessage(msg);
         return;

@@ -1,0 +1,37 @@
+﻿/* MPC Theme: Pitch */
+.mpc-theme-pitch {
+    --mpc-color-main: #EC4899;
+    --mpc-color-accent: #F472B6;
+    --mpc-color-bg: #111827;
+    --mpc-color-text: #FFFFFF;
+    --vscode-font-family: var(--font-main);
+    --vscode-editor-font-family: var(--font-main);
+}
+
+.mpc-theme-pitch h1, 
+.mpc-theme-pitch h2, 
+.mpc-theme-pitch h3,
+.mpc-theme-pitch h4,
+.mpc-theme-pitch h5,
+.mpc-theme-pitch h6 {
+    color: var(--mpc-color-main);
+    font-family: var(--vscode-font-family);
+}
+
+.mpc-theme-pitch a {
+    color: var(--mpc-color-accent);
+}
+
+.mpc-theme-pitch blockquote {
+    border-left-color: var(--mpc-color-accent);
+    background-color: rgba(0,0,0,0.05);
+}
+
+/* Specific overrides for Hand/Pop fonts to ensure they apply */
+.mpc-theme-pitch body,
+.mpc-theme-pitch p,
+.mpc-theme-pitch li,
+.mpc-theme-pitch table {
+    font-family: var(--vscode-font-family);
+}
+

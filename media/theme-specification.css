@@ -1,53 +1,37 @@
-/* Specification Theme - Numbered headers, dense, table focus */
-body.antigravity-theme-specification {
-    font-family: "Cambria", "Times New Roman", serif;
-    line-height: 1.4;
-    color: #000;
+﻿/* MPC Theme: Specification */
+.mpc-theme-specification {
+    --mpc-color-main: #333333;
+    --mpc-color-accent: #555555;
+    --mpc-color-bg: #FFFFFF;
+    --mpc-color-text: #000000;
+    --vscode-font-family: var(--font-main);
+    --vscode-editor-font-family: var(--font-main);
 }
 
-body.antigravity-theme-specification h1,
-body.antigravity-theme-specification h2,
-body.antigravity-theme-specification h3 {
-    font-family: "Arial", sans-serif;
-    color: #000;
+.mpc-theme-specification h1, 
+.mpc-theme-specification h2, 
+.mpc-theme-specification h3,
+.mpc-theme-specification h4,
+.mpc-theme-specification h5,
+.mpc-theme-specification h6 {
+    color: var(--mpc-color-main);
+    font-family: var(--vscode-font-family);
 }
 
-body.antigravity-theme-specification h1 {
-    border: 2px solid #000;
-    padding: 10px;
-    text-align: center;
-    background: #eee;
+.mpc-theme-specification a {
+    color: var(--mpc-color-accent);
 }
 
-body.antigravity-theme-specification h2 {
-    border-bottom: 1px solid #000;
-    counter-increment: h2counter;
-    counter-reset: h3counter;
+.mpc-theme-specification blockquote {
+    border-left-color: var(--mpc-color-accent);
+    background-color: rgba(0,0,0,0.05);
 }
 
-body.antigravity-theme-specification h2::before {
-    content: counter(h2counter) ". ";
+/* Specific overrides for Hand/Pop fonts to ensure they apply */
+.mpc-theme-specification body,
+.mpc-theme-specification p,
+.mpc-theme-specification li,
+.mpc-theme-specification table {
+    font-family: var(--vscode-font-family);
 }
 
-body.antigravity-theme-specification h3 {
-    counter-increment: h3counter;
-}
-
-body.antigravity-theme-specification h3::before {
-    content: counter(h2counter) "." counter(h3counter) ". ";
-}
-
-body.antigravity-theme-specification table {
-    border: 2px solid #000;
-    width: 100%;
-}
-
-body.antigravity-theme-specification th {
-    background: #ddd;
-    border: 1px solid #000;
-    text-align: center;
-}
-
-body.antigravity-theme-specification td {
-    border: 1px solid #000;
-}

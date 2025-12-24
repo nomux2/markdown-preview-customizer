@@ -4,7 +4,7 @@ import { asBlob } from 'html-docx-js-typescript';
 import { createMarkdownRenderer, generateHtmlSkeleton } from '../render-helper';
 
 export async function exportToWord(context: vscode.ExtensionContext, outputChannel: vscode.OutputChannel) {
-    outputChannel.appendLine('Antigravity: Starting Word export...');
+    outputChannel.appendLine('MPC: Starting Word export...');
 
     // 1. Try to get active editor, or find a visible markdown editor
     let editor = vscode.window.activeTextEditor;
@@ -14,7 +14,7 @@ export async function exportToWord(context: vscode.ExtensionContext, outputChann
 
     if (!editor) {
         outputChannel.appendLine('Error: Could not find open Markdown file.');
-        vscode.window.showErrorMessage('Antigravity: Could not find an open Markdown file to export.');
+        vscode.window.showErrorMessage('Markdown Preview Customizer: Could not find an open Markdown file to export.');
         return;
     }
 

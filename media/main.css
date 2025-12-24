@@ -1,12 +1,86 @@
-/* Base styles for Antigravity Markdown Preview */
+/* Google Fonts fallback for export */
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@400;700&family=Shippori+Mincho:wght@400;700&family=Zen+Kurenaido&family=Hachi+Maru+Pop&display=swap');
+
+/* Local Fonts */
+@font-face {
+    font-family: 'MPC M PLUS 1p';
+    src: local('M PLUS 1p'), url('fonts/MPLUS1p-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'MPC M PLUS 1p';
+    src: local('M PLUS 1p'), url('fonts/MPLUS1p-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'MPC Zen Maru Gothic';
+    src: local('Zen Maru Gothic'), url('fonts/ZenMaruGothic-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'MPC Shippori Mincho';
+    src: local('Shippori Mincho'), url('fonts/ShipporiMincho-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'MPC Shippori Mincho';
+    src: local('Shippori Mincho'), url('fonts/ShipporiMincho-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'MPC Zen Kurenaido';
+    src: local('Zen Kurenaido'), url('fonts/ZenKurenaido-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'MPC Hachi Maru Pop';
+    src: local('Hachi Maru Pop'), url('fonts/HachiMaruPop-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+:root {
+    --vscode-font-family: 'MPC M PLUS 1p', "M PLUS 1p", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+
+    --font-main: 'MPC M PLUS 1p', "M PLUS 1p", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    --font-serif: 'MPC Shippori Mincho', "Shippori Mincho", "Yu Mincho", "Hiragino Mincho ProN", "Times New Roman", Times, serif;
+    --font-hand: 'MPC Zen Kurenaido', "Zen Kurenaido", "Comic Sans MS", "Chalkboard SE", cursive;
+    --font-pop: 'MPC Hachi Maru Pop', "Hachi Maru Pop", "Comic Sans MS", "Chalkboard SE", cursive;
+
+    --mpc-color-main: var(--vscode-textLink-foreground);
+    --mpc-color-accent: #3b82f6;
+    --mpc-color-bg: var(--vscode-editor-background);
+    --mpc-color-text: var(--vscode-editor-foreground);
+}
+
+/* Base styles for MPC Markdown Preview */
 
 /* Custom Container: Alert/Info/Tip/Warning/Danger */
-.antigravity-container {
+.mpc-container {
     padding: 1rem;
     margin: 1rem 0;
 }
 
-.antigravity-container-title {
+.mpc-container-title {
     font-weight: bold;
     margin-bottom: 0.5rem;
     display: block;
@@ -16,44 +90,44 @@
 }
 
 /* Specific Colors */
-.antigravity-container.info {
+.mpc-container.info {
     border-left-color: #3b82f6;
     background-color: rgba(59, 130, 246, 0.1);
 }
 
-.antigravity-container.info .antigravity-container-title {
+.mpc-container.info .mpc-container-title {
     color: #3b82f6;
 }
 
-.antigravity-container.tip {
+.mpc-container.tip {
     border-left-color: #10b981;
     background-color: rgba(16, 185, 129, 0.1);
 }
 
-.antigravity-container.tip .antigravity-container-title {
+.mpc-container.tip .mpc-container-title {
     color: #10b981;
 }
 
-.antigravity-container.warning {
+.mpc-container.warning {
     border-left-color: #f59e0b;
     background-color: rgba(245, 158, 11, 0.1);
 }
 
-.antigravity-container.warning .antigravity-container-title {
+.mpc-container.warning .mpc-container-title {
     color: #f59e0b;
 }
 
-.antigravity-container.danger {
+.mpc-container.danger {
     border-left-color: #ef4444;
     background-color: rgba(239, 68, 68, 0.1);
 }
 
-.antigravity-container.danger .antigravity-container-title {
+.mpc-container.danger .mpc-container-title {
     color: #ef4444;
 }
 
 /* Custom Container: Card */
-.antigravity-card {
+.mpc-card {
     border: 1px solid var(--vscode-widget-border);
     background-color: var(--vscode-editor-background);
     border-radius: 8px;
@@ -62,7 +136,7 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.antigravity-card h3 {
+.mpc-card h3 {
     margin-top: 0;
     border-bottom: 1px solid var(--vscode-widget-border);
     padding-bottom: 0.5rem;
@@ -70,14 +144,14 @@
 }
 
 /* Custom Container: Columns */
-.antigravity-columns {
+.mpc-columns {
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
     margin: 1rem 0;
 }
 
-.antigravity-column {
+.mpc-column {
     flex: 1;
     min-width: 250px;
 }
@@ -112,4 +186,33 @@ details[open] summary {
     border-radius: 4px;
     padding: 10px;
     box-sizing: border-box;
+}
+
+/* Code Block Styling Fix */
+pre {
+    padding: 1rem;
+    overflow: auto;
+    border-radius: 4px;
+    background-color: var(--vscode-text-codeBlock-background, rgba(10, 10, 10, 0.4));
+    border: 1px solid var(--vscode-widget-border, transparent);
+}
+
+code {
+    font-family: var(--vscode-editor-font-family, Consolas, 'Courier New', monospace) !important;
+}
+
+/* Inline code */
+:not(pre)>code {
+    background-color: var(--vscode-text-codeBlock-background, rgba(10, 10, 10, 0.2));
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+    font-family: var(--vscode-editor-font-family, Consolas, 'Courier New', monospace) !important;
+}
+
+
+/* Fix for double background on code blocks */
+pre code {
+    background-color: transparent !important;
+    border: none !important;
+    padding: 0 !important;
 }

@@ -1,36 +1,37 @@
-/* Whiteboard Theme - Marker-style, casual, hand-drawn look */
-@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
-
-body.antigravity-theme-whiteboard {
-    font-family: "Patrick Hand", "Comic Sans MS", cursive, sans-serif;
-    font-size: 22px;
-    color: #2c3e50;
-    /* Erasable marker blueish-black */
-    background-color: #fff;
-    /* Optional: Grid background */
-    background-image: linear-gradient(#f0f0f0 1px, transparent 1px), linear-gradient(90deg, #f0f0f0 1px, transparent 1px);
-    background-size: 20px 20px;
+﻿/* MPC Theme: Whiteboard */
+.mpc-theme-whiteboard {
+    --mpc-color-main: #1d4ed8;
+    --mpc-color-accent: #ef4444;
+    --mpc-color-bg: #ffffff;
+    --mpc-color-text: #1e293b;
+    --vscode-font-family: var(--font-hand);
+    --vscode-editor-font-family: var(--font-hand);
 }
 
-body.antigravity-theme-whiteboard h1 {
-    color: #c0392b;
-    /* Red marker */
-    text-align: center;
-    transform: rotate(-2deg);
+.mpc-theme-whiteboard h1, 
+.mpc-theme-whiteboard h2, 
+.mpc-theme-whiteboard h3,
+.mpc-theme-whiteboard h4,
+.mpc-theme-whiteboard h5,
+.mpc-theme-whiteboard h6 {
+    color: var(--mpc-color-main);
+    font-family: var(--vscode-font-family);
 }
 
-body.antigravity-theme-whiteboard h2 {
-    color: #2980b9;
-    /* Blue marker */
-    border-bottom: 2px solid #2980b9;
-    border-radius: 0 0 50% 50% / 0 0 10% 20%;
+.mpc-theme-whiteboard a {
+    color: var(--mpc-color-accent);
 }
 
-body.antigravity-theme-whiteboard .antigravity-container {
-    border: 2px solid #2c3e50;
-    border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
-    /* Irregular border */
-    padding: 20px;
-    background: #fff;
-    box-shadow: 2px 5px 0 rgba(0, 0, 0, 0.1);
+.mpc-theme-whiteboard blockquote {
+    border-left-color: var(--mpc-color-accent);
+    background-color: rgba(0,0,0,0.05);
 }
+
+/* Specific overrides for Hand/Pop fonts to ensure they apply */
+.mpc-theme-whiteboard body,
+.mpc-theme-whiteboard p,
+.mpc-theme-whiteboard li,
+.mpc-theme-whiteboard table {
+    font-family: var(--vscode-font-family);
+}
+

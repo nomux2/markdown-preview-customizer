@@ -1,4 +1,4 @@
-import * as vscode from 'vscode';
+﻿import * as vscode from 'vscode';
 import { WebContentProvider } from './WebContentProvider';
 
 export class PreviewManager {
@@ -37,7 +37,7 @@ export class PreviewManager {
     public static toggleLiveUpdate() {
         if (PreviewManager.instance) {
             PreviewManager.instance.liveUpdate = !PreviewManager.instance.liveUpdate;
-            vscode.window.showInformationMessage(`Antigravity: 自動更新を${PreviewManager.instance.liveUpdate ? 'ON' : 'OFF'}にしました。`);
+            vscode.window.showInformationMessage(`MPC: 自動更新を${PreviewManager.instance.liveUpdate ? 'ON' : 'OFF'}にしました。`);
         }
     }
 
@@ -45,10 +45,10 @@ export class PreviewManager {
         await this.show();
         if (this.panel) {
             if (newWindow) {
-                this.outputChannel.appendLine('Antigravity: Moving slideshow to new window');
+                this.outputChannel.appendLine('MPC: Moving slideshow to new window');
                 await vscode.commands.executeCommand('workbench.action.moveEditorToNewWindow');
             }
-            this.outputChannel.appendLine('Antigravity: Sending startSlideshow message to webview');
+            this.outputChannel.appendLine('MPC: Sending startSlideshow message to webview');
             this.panel.webview.postMessage({ command: 'startSlideshow' });
         }
     }
@@ -63,7 +63,7 @@ export class PreviewManager {
     private async show() {
         const editor = vscode.window.activeTextEditor;
         if (!editor || editor.document.languageId !== 'markdown') {
-            vscode.window.showErrorMessage('Antigravity: No Markdown file active.');
+            vscode.window.showErrorMessage('Markdown Preview Customizer: No Markdown file active.');
             return;
         }
 
@@ -74,8 +74,8 @@ export class PreviewManager {
             this.slideshowState = { isSlideshowMode: false, currentSlideIndex: 0 };
 
             this.panel = vscode.window.createWebviewPanel(
-                'antigravityPreview',
-                'Antigravity Preview',
+                'mpcPreview',
+                'MPC Preview',
                 vscode.ViewColumn.Beside,
                 {
                     enableScripts: true,
@@ -90,7 +90,7 @@ export class PreviewManager {
 
             this.panel.onDidDispose(() => {
                 this.panel = undefined;
-                this.outputChannel.appendLine('Antigravity: Preview panel disposed.');
+                this.outputChannel.appendLine('MPC: Preview panel disposed.');
             }, null, this.disposables);
 
             // Handle messages from Webview
@@ -100,7 +100,7 @@ export class PreviewManager {
                         vscode.window.showInformationMessage(message.text);
                         break;
                     case 'log':
-                        this.outputChannel.appendLine(`Antigravity Client: ${message.message}`);
+                        this.outputChannel.appendLine(`MPC Client: ${message.message}`);
                         break;
                     case 'syncEditor':
                         this.syncEditorToLine(message.line);
@@ -124,12 +124,12 @@ export class PreviewManager {
     }
 
     private async onConfigChanged(e: vscode.ConfigurationChangeEvent) {
-        if (e.affectsConfiguration('antigravity.preview.theme')) {
-            const config = vscode.workspace.getConfiguration('antigravity');
-            const newTheme = config.get<string>('preview.theme') || 'Default';
+        if (e.affectsConfiguration('markdownPreviewCustomizer.theme')) {
+            const config = vscode.workspace.getConfiguration('markdownPreviewCustomizer');
+            const newTheme = config.get<string>('theme') || 'Default';
 
             if (this.panel && this.panel.visible) {
-                this.outputChannel.appendLine(`Antigravity: Sending theme update message: ${newTheme}`);
+                this.outputChannel.appendLine(`MPC: Sending theme update message: ${newTheme}`);
                 this.panel.webview.postMessage({ command: 'updateTheme', theme: newTheme });
             }
         }
@@ -144,12 +144,12 @@ export class PreviewManager {
         }
 
         this.currentDocument = document; // Update tracked document
-        this.outputChannel.appendLine(`Antigravity: Updating preview for ${document.fileName}`);
+        this.outputChannel.appendLine(`MPC: Updating preview for ${document.fileName}`);
         const html = await this.contentProvider.provideContent(document, this.panel.webview);
 
         // Inject state marker at the end of body
         const stateJson = JSON.stringify(this.slideshowState);
-        const htmlWithState = html.replace('</body>', `<div id="antigravity-state-marker" data-state='${stateJson}' style="display:none;"></div></body>`);
+        const htmlWithState = html.replace('</body>', `<div id="mpc-state-marker" data-state='${stateJson}' style="display:none;"></div></body>`);
 
         this.panel.webview.html = htmlWithState;
         this.panel.title = `Preview: ${path.basename(document.fileName)}`;
@@ -160,7 +160,7 @@ export class PreviewManager {
         if (e.textEditor.document !== this.currentDocument) return;
 
         const line = e.selections[0].active.line;
-        this.outputChannel.appendLine(`Antigravity: Editor selection changed to line ${line}. Syncing slide.`);
+        this.outputChannel.appendLine(`MPC: Editor selection changed to line ${line}. Syncing slide.`);
         this.panel.webview.postMessage({ command: 'syncSlide', line: line });
     }
 

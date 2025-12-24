@@ -1,0 +1,37 @@
+﻿/* MPC Theme: Workshop */
+.mpc-theme-workshop {
+    --mpc-color-main: #EA580C;
+    --mpc-color-accent: #FB923C;
+    --mpc-color-bg: #FFF7ED;
+    --mpc-color-text: #7C2D12;
+    --vscode-font-family: var(--font-hand);
+    --vscode-editor-font-family: var(--font-hand);
+}
+
+.mpc-theme-workshop h1, 
+.mpc-theme-workshop h2, 
+.mpc-theme-workshop h3,
+.mpc-theme-workshop h4,
+.mpc-theme-workshop h5,
+.mpc-theme-workshop h6 {
+    color: var(--mpc-color-main);
+    font-family: var(--vscode-font-family);
+}
+
+.mpc-theme-workshop a {
+    color: var(--mpc-color-accent);
+}
+
+.mpc-theme-workshop blockquote {
+    border-left-color: var(--mpc-color-accent);
+    background-color: rgba(0,0,0,0.05);
+}
+
+/* Specific overrides for Hand/Pop fonts to ensure they apply */
+.mpc-theme-workshop body,
+.mpc-theme-workshop p,
+.mpc-theme-workshop li,
+.mpc-theme-workshop table {
+    font-family: var(--vscode-font-family);
+}
+
