@@ -1,37 +1,81 @@
-﻿/* MPC Theme: Proposal */
-.mpc-theme-proposal {
-    --mpc-color-main: #BE185D;
-    --mpc-color-accent: #EC4899;
-    --mpc-color-bg: #FFF1F2;
-    --mpc-color-text: #831843;
-    --vscode-font-family: var(--font-main);
-    --vscode-editor-font-family: var(--font-main);
+﻿/* Theme: Proposal (提案書)
+   Concept: Active, Persuasive, Accent Colors
+*/
+
+body.mpc-theme-proposal {
+    --mpc-font-family: 'Trebuchet MS', 'Lucida Sans Unicode', sans-serif;
+    --mpc-color-bg: #fff;
+    --mpc-color-fg: #2c3e50;
+    --mpc-color-main: #e74c3c;
+    /* Persuasive Red */
+    --mpc-color-sub: #3498db;
+    /* Trust Blue */
+
+    font-family: var(--mpc-font-family);
+    background-color: var(--mpc-color-bg);
+    color: var(--mpc-color-fg);
 }
 
-.mpc-theme-proposal h1, 
-.mpc-theme-proposal h2, 
-.mpc-theme-proposal h3,
-.mpc-theme-proposal h4,
-.mpc-theme-proposal h5,
-.mpc-theme-proposal h6 {
+/* Hero Header */
+body.mpc-theme-proposal h1 {
     color: var(--mpc-color-main);
-    font-family: var(--vscode-font-family);
+    font-size: 2.5em;
+    border-bottom: 4px solid var(--mpc-color-main);
+    display: inline-block;
+    padding-right: 20px;
+    margin-bottom: 10px;
 }
 
-.mpc-theme-proposal a {
-    color: var(--mpc-color-accent);
+body.mpc-theme-proposal h2 {
+    color: var(--mpc-color-sub);
+    font-size: 1.6em;
+    margin-top: 40px;
 }
 
-.mpc-theme-proposal blockquote {
-    border-left-color: var(--mpc-color-accent);
-    background-color: rgba(0,0,0,0.05);
+/* Value Props (Blockquotes) */
+body.mpc-theme-proposal blockquote {
+    border: none;
+    background: linear-gradient(90deg, #fdfefe, #ecf0f1);
+    border-left: 8px solid var(--mpc-color-main);
+    padding: 20px;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #333;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Specific overrides for Hand/Pop fonts to ensure they apply */
-.mpc-theme-proposal body,
-.mpc-theme-proposal p,
-.mpc-theme-proposal li,
-.mpc-theme-proposal table {
-    font-family: var(--vscode-font-family);
+/* Call to Action Buttons (Links) */
+body.mpc-theme-proposal a {
+    display: inline-block;
+    background-color: var(--mpc-color-sub);
+    color: #fff;
+    padding: 5px 10px;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: bold;
+    transition: background 0.3s;
 }
 
+body.mpc-theme-proposal a:hover {
+    background-color: #2980b9;
+}
+
+/* Comparison Tables */
+body.mpc-theme-proposal table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+body.mpc-theme-proposal th {
+    background-color: #34495e;
+    color: #fff;
+    padding: 10px;
+}
+
+body.mpc-theme-proposal td {
+    border-bottom: 1px solid #ecf0f1;
+    padding: 10px;
+    text-align: center;
+}

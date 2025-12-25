@@ -1,37 +1,80 @@
-﻿/* MPC Theme: Impact */
-.mpc-theme-impact {
-    --mpc-color-main: #DC2626;
-    --mpc-color-accent: #F87171;
-    --mpc-color-bg: #111827;
-    --mpc-color-text: #FFFFFF;
-    --vscode-font-family: var(--font-main);
-    --vscode-editor-font-family: var(--font-main);
+﻿/* Theme: Impact (強調)
+   Concept: High Contrast, Bold, Loud
+*/
+
+body.mpc-theme-impact {
+    --mpc-font-family: 'Arial Black', 'Impact', sans-serif;
+    --mpc-color-bg: #fff;
+    --mpc-color-fg: #000;
+    --mpc-color-main: #d50000;
+    /* Loud Red */
+    --mpc-color-accent: #000;
+
+    font-family: 'Arial', sans-serif;
+    /* Body is readable */
+    background-color: var(--mpc-color-bg);
+    color: var(--mpc-color-fg);
 }
 
-.mpc-theme-impact h1, 
-.mpc-theme-impact h2, 
-.mpc-theme-impact h3,
-.mpc-theme-impact h4,
-.mpc-theme-impact h5,
-.mpc-theme-impact h6 {
+/* Massive Headers */
+body.mpc-theme-impact h1,
+body.mpc-theme-impact h2,
+body.mpc-theme-impact h3 {
+    font-family: var(--mpc-font-family);
+    text-transform: uppercase;
+    line-height: 1.1;
+    margin-bottom: 0.5em;
+}
+
+body.mpc-theme-impact h1 {
+    font-size: 4em;
+    background: var(--mpc-color-accent);
+    color: #fff;
+    padding: 10px 20px;
+    display: inline-block;
+    transform: skew(-5deg);
+}
+
+body.mpc-theme-impact h2 {
+    font-size: 2.5em;
+    border-bottom: 5px solid var(--mpc-color-main);
+}
+
+/* Strong emphasis */
+body.mpc-theme-impact strong {
     color: var(--mpc-color-main);
-    font-family: var(--vscode-font-family);
+    font-weight: 900;
 }
 
-.mpc-theme-impact a {
-    color: var(--mpc-color-accent);
+/* Blockquotes */
+body.mpc-theme-impact blockquote {
+    font-size: 1.5em;
+    font-weight: bold;
+    border-left: 10px solid var(--mpc-color-main);
+    background: #000;
+    color: #fff;
+    padding: 30px;
+    margin: 30px 0;
 }
 
-.mpc-theme-impact blockquote {
-    border-left-color: var(--mpc-color-accent);
-    background-color: rgba(0,0,0,0.05);
+/* Code */
+body.mpc-theme-impact pre {
+    background: #000;
+    color: var(--mpc-color-main);
+    border: 5px solid var(--mpc-color-main);
+    font-weight: bold;
+    font-size: 1.2em;
 }
 
-/* Specific overrides for Hand/Pop fonts to ensure they apply */
-.mpc-theme-impact body,
-.mpc-theme-impact p,
-.mpc-theme-impact li,
-.mpc-theme-impact table {
-    font-family: var(--vscode-font-family);
+/* Lists */
+body.mpc-theme-impact ul li {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 10px;
 }
 
+body.mpc-theme-impact ul li::marker {
+    content: "Make it pop! ";
+    color: var(--mpc-color-main);
+    /* Just a circle */
+}

@@ -1,37 +1,86 @@
-﻿/* MPC Theme: Simple */
-.mpc-theme-simple {
-    --mpc-color-main: #4B5563;
-    --mpc-color-accent: #9CA3AF;
-    --mpc-color-bg: #FFFFFF;
-    --mpc-color-text: #111827;
-    --vscode-font-family: var(--font-main);
-    --vscode-editor-font-family: var(--font-main);
+﻿/* Theme: Simple (洗練)
+   Concept: Minimalist, Whitespace, Typography focused
+*/
+
+body.mpc-theme-simple {
+    --mpc-font-family: 'Lato', 'Segoe UI', Tahoma, sans-serif;
+    --mpc-color-bg: #fff;
+    --mpc-color-fg: #444;
+    --mpc-color-main: #222;
+    --mpc-color-accent: #666;
+
+    font-family: var(--mpc-font-family);
+    background-color: var(--mpc-color-bg);
+    color: var(--mpc-color-fg);
+    line-height: 1.8;
+    max-width: 700px;
+    /* Narrower for reading */
+    margin: 0 auto;
+    padding: 50px 20px;
 }
 
-.mpc-theme-simple h1, 
-.mpc-theme-simple h2, 
-.mpc-theme-simple h3,
-.mpc-theme-simple h4,
-.mpc-theme-simple h5,
-.mpc-theme-simple h6 {
+/* Minimal Headers */
+body.mpc-theme-simple h1,
+body.mpc-theme-simple h2,
+body.mpc-theme-simple h3 {
     color: var(--mpc-color-main);
-    font-family: var(--vscode-font-family);
+    font-weight: normal;
+    /* Lighter weight */
+    letter-spacing: 1px;
+    margin-top: 3em;
+    margin-bottom: 1.5em;
+    border-bottom: none;
 }
 
-.mpc-theme-simple a {
-    color: var(--mpc-color-accent);
+body.mpc-theme-simple h1 {
+    font-size: 2em;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 3px;
 }
 
-.mpc-theme-simple blockquote {
-    border-left-color: var(--mpc-color-accent);
-    background-color: rgba(0,0,0,0.05);
+body.mpc-theme-simple h2 {
+    font-size: 1.4em;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 0.5em;
 }
 
-/* Specific overrides for Hand/Pop fonts to ensure they apply */
-.mpc-theme-simple body,
-.mpc-theme-simple p,
-.mpc-theme-simple li,
-.mpc-theme-simple table {
-    font-family: var(--vscode-font-family);
+/* Justified Text */
+body.mpc-theme-simple p {
+    margin-bottom: 1.5em;
 }
 
+/* Subtle Links */
+body.mpc-theme-simple a {
+    color: var(--mpc-color-fg);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
+}
+
+body.mpc-theme-simple a:hover {
+    color: #000;
+    text-decoration-thickness: 2px;
+}
+
+/* Blockquote */
+body.mpc-theme-simple blockquote {
+    border-left: 2px solid #333;
+    padding-left: 20px;
+    font-style: italic;
+    color: #666;
+}
+
+/* Code */
+body.mpc-theme-simple pre,
+body.mpc-theme-simple code {
+    background-color: #f9f9f9;
+    color: #333;
+    border-radius: 0;
+    font-family: 'Consolas', monospace;
+}
+
+body.mpc-theme-simple pre {
+    border: 1px solid #eee;
+    padding: 20px;
+}

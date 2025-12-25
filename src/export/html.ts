@@ -48,14 +48,18 @@ export async function exportToHtml(context: vscode.ExtensionContext, outputChann
         htmlBody = await processImagesFolder(htmlBody, baseDir, imagesDirPath, imagesDirName, outputChannel);
     }
 
-    // 3. Bundling Assets for Slideshow
+    // 3. Bundling Assets
+    const config = vscode.workspace.getConfiguration('markdownPreviewCustomizer');
+    const theme = config.get<string>('theme') || 'Default';
+    const isCustomTheme = theme === 'Custom';
+
     let extraHeads = '';
     let extraScripts = '';
 
     if (selectedMode === 'slideshow') {
         // Embed ALL relevant CSS
-        const cssFiles = [
-            'main.css', 'menu.css', 'slides.css',
+        const cssFiles = isCustomTheme ? ['katex.min.css'] : [
+            'katex.min.css', 'main.css', 'menu.css', 'slides.css',
             'theme-trust.css', 'theme-modern-v2.css', 'theme-simple.css'
         ];
         const cssContents = cssFiles.map(f => {
@@ -73,14 +77,19 @@ export async function exportToHtml(context: vscode.ExtensionContext, outputChann
 
         extraScripts = `<script>${jsContents}</script>`;
     } else {
-        const cssPath = path.join(context.extensionPath, 'media', 'main.css');
-        const cssContent = fs.existsSync(cssPath) ? fs.readFileSync(cssPath, 'utf8') : '';
-        extraHeads = `<style>${cssContent}</style>`;
+        const katexPath = path.join(context.extensionPath, 'media', 'katex.min.css');
+        const katexContent = fs.existsSync(katexPath) ? fs.readFileSync(katexPath, 'utf8') : '';
+
+        if (isCustomTheme) {
+            extraHeads = `<style>${katexContent}</style>`;
+        } else {
+            const mainPath = path.join(context.extensionPath, 'media', 'main.css');
+            const mainContent = fs.existsSync(mainPath) ? fs.readFileSync(mainPath, 'utf8') : '';
+            extraHeads = `<style>${katexContent}\n${mainContent}</style>`;
+        }
     }
 
     // 4. Final HTML Construction
-    const config = vscode.workspace.getConfiguration('markdownPreviewCustomizer');
-    const theme = config.get<string>('theme') || 'Default';
 
     const finalHtml = `<!DOCTYPE html>
 <html lang="ja">
@@ -234,4 +243,122 @@ function resolvePath(src: string, baseDir: string): string {
 // Dummy helper to satisfy async requirement in loop logic check
 async function getBase64Replacement(src: string, baseDir: string, outputChannel: vscode.OutputChannel) {
     return true;
+}
+
+export async function generateStandaloneHtml(context: vscode.ExtensionContext, outputChannel: vscode.OutputChannel, capturedStyles?: any): Promise<string | undefined> {
+    const editor = vscode.window.activeTextEditor || vscode.window.visibleTextEditors.find(e => e.document.languageId === 'markdown');
+    if (!editor) return undefined;
+
+    const md = createMarkdownRenderer();
+    let htmlBody = md.render(editor.document.getText());
+    const baseDir = path.dirname(editor.document.uri.fsPath);
+
+    // Process images as Base64 for standalone
+    htmlBody = await processImagesBase64(htmlBody, baseDir, outputChannel);
+
+    const config = vscode.workspace.getConfiguration('markdownPreviewCustomizer');
+    const theme = config.get<string>('theme') || 'Default';
+    const isCustomTheme = theme === 'Custom';
+
+    const mediaPath = path.join(context.extensionPath, 'media');
+    const katexPath = path.join(mediaPath, 'katex.min.css');
+    const katexContent = fs.existsSync(katexPath) ? fs.readFileSync(katexPath, 'utf8') : '';
+
+    let styleContent = katexContent;
+    if (!isCustomTheme) {
+        // Embed main.css and highlight.css
+        const mainPath = path.join(mediaPath, 'main.css');
+        const highlightPath = path.join(mediaPath, 'highlight.css');
+
+        if (fs.existsSync(mainPath)) styleContent += '\n' + fs.readFileSync(mainPath, 'utf8');
+        if (fs.existsSync(highlightPath)) styleContent += '\n' + fs.readFileSync(highlightPath, 'utf8');
+
+        // Map theme name to file name
+        let themeKey = theme.toLowerCase();
+        if (themeKey === 'technical') themeKey = 'tech';
+
+        const themePath = path.join(mediaPath, `theme-${themeKey}.css`);
+        if (fs.existsSync(themePath)) {
+            outputChannel.appendLine(`MPC: Embedding theme CSS: theme-${themeKey}.css`);
+            styleContent += '\n' + fs.readFileSync(themePath, 'utf8');
+        }
+    }
+
+    // --- Font Path Correction for Standalone HTML ---
+    // Since the HTML is in a tmp folder, relative 'fonts/' URLs fail.
+    // Convert url('fonts/...') or url("fonts/...") to absolute file:/// URIs.
+    const fontsPath = path.join(mediaPath, 'fonts');
+    const fontsUriBase = vscode.Uri.file(fontsPath).toString() + '/';
+    styleContent = styleContent.replace(/url\(['"]?fonts\//g, (match) => {
+        const quote = match.includes("'") ? "'" : (match.includes('"') ? '"' : '');
+        return `url(${quote}${fontsUriBase}`;
+    });
+
+    // Capture CSS variables if provided
+    let capturedVars = '';
+    if (capturedStyles) {
+        capturedVars = ':root {\n';
+        for (const [key, value] of Object.entries(capturedStyles)) {
+            capturedVars += `  ${key}: ${value};\n`;
+        }
+        capturedVars += '}\n';
+    }
+
+    // Also embed custom stylesheet from .vscode if it exists
+    if (vscode.workspace.workspaceFolders && vscode.workspace.workspaceFolders.length > 0) {
+        const rootUri = vscode.workspace.workspaceFolders[0].uri;
+        const customCssPath = path.join(rootUri.fsPath, '.vscode', 'markdownPreviewCustomizer.css');
+        if (fs.existsSync(customCssPath)) {
+            outputChannel.appendLine(`MPC: Embedding user custom CSS: ${customCssPath}`);
+            styleContent += '\n/* --- User Custom CSS --- */\n' + fs.readFileSync(customCssPath, 'utf8');
+        }
+    }
+
+    return `<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MPC Print</title>
+    <style>
+        ${capturedVars}
+        body { padding: 20px; }
+        ${styleContent}
+
+        /* --- Print Optimization (Ink Saving) --- */
+        @media print {
+            body {
+                background-color: #ffffff !important;
+                color: #000000 !important;
+            }
+            /* Reset VS Code variables for print if they were dark */
+            :root {
+                --vscode-editor-background: #ffffff !important;
+                --vscode-editor-foreground: #000000 !important;
+                --vscode-textLink-foreground: #0000ee !important;
+            }
+            pre, code {
+                background-color: #f5f5f5 !important;
+                color: #000000 !important;
+                border: 1px solid #ddd !important;
+            }
+            .mpc-card {
+                background-color: #ffffff !important;
+                border: 1px solid #ccc !important;
+            }
+        }
+    </style>
+</head>
+<body class="mpc-preview mpc-theme-${theme.toLowerCase()}">
+    <div id="mpc-content">${htmlBody}</div>
+    <script>
+        // Wait for fonts/images to load if possible, then print
+        window.onload = () => {
+            setTimeout(() => {
+                window.print();
+            }, 500);
+        };
+    </script>
+</body>
+</html>`;
 }

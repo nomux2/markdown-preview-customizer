@@ -1,83 +1,98 @@
-/*
- * Manuscript Theme
- * Designed for creative writing and reading.
- * Features: Serif fonts, comfortable line height, justified text, paper-like margins.
- */
+/* Theme: Manuscript (原稿)
+   Concept: Typewriter, Paper Texture, Editorial
+*/
 
 body.mpc-theme-manuscript {
-    font-family: 'Georgia', 'Cambria', 'Times New Roman', serif;
-    font-size: 18px;
+    --mpc-font-family: 'Courier Prime', 'Courier New', Courier, monospace;
+    --mpc-color-bg: #fdfbf7;
+    /* Warm Paper */
+    --mpc-color-fg: #333;
+    --mpc-color-main: #2c2c2c;
+    --mpc-color-accent: #8b0000;
+    /* Dark Red Ink */
+    --mpc-color-border: #dcdcdc;
+
+    font-family: var(--mpc-font-family);
+    background-color: var(--mpc-color-bg);
+    color: var(--mpc-color-fg);
     line-height: 1.8;
-    color: var(--vscode-editor-foreground);
-    background-color: var(--vscode-editor-background);
     max-width: 800px;
+    /* A4-ish width */
     margin: 0 auto;
-    padding: 2em;
+    padding: 40px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+    /* Paper shadow */
     text-align: justify;
 }
 
 /* Headers */
 body.mpc-theme-manuscript h1,
-body.mpc-theme-manuscript h2,
-body.mpc-theme-manuscript h3 {
-    font-family: 'Georgia', serif;
-    color: var(--vscode-editor-foreground);
+body.mpc-theme-manuscript h2 {
     text-align: center;
-    border-bottom: none;
-    font-weight: normal;
+    border-bottom: 2px solid #333;
+    padding-bottom: 10px;
+    margin-top: 50px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
 }
 
 body.mpc-theme-manuscript h1 {
-    font-size: 2.5em;
-    margin-top: 2em;
-    margin-bottom: 1em;
+    font-variant: small-caps;
+    font-size: 2.2em;
+    border-bottom: 4px double #333;
 }
 
-body.mpc-theme-manuscript h2 {
-    font-size: 1.8em;
-    margin-top: 1.5em;
-    border-bottom: 1px solid var(--vscode-scrollbarSlider-background);
-    display: inline-block;
-    padding: 0 1em 0.5em 1em;
+/* Emphasis */
+body.mpc-theme-manuscript strong {
+    font-weight: bold;
+    text-decoration: underline;
+    /* Typewriter style emphasis */
+    text-decoration-color: var(--mpc-color-accent);
 }
 
-/* Paragraphs */
-body.mpc-theme-manuscript p {
-    margin-bottom: 1.5em;
-    text-indent: 1em;
+/* Code Blocks (Typewriter ribbon change) */
+body.mpc-theme-manuscript pre {
+    background-color: #f5f5f5;
+    border-left: 5px solid var(--mpc-color-accent);
+    padding: 15px;
+    font-size: 0.9em;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Blockquotes */
 body.mpc-theme-manuscript blockquote {
     font-style: italic;
     border-left: none;
-    margin: 2em 4em;
-    padding: 0;
-    color: var(--vscode-descriptionForeground);
-    text-align: center;
+    padding: 20px 40px;
+    position: relative;
+    background: transparent;
 }
 
-/* Code not emphasized in manuscript but kept readable */
-body.mpc-theme-manuscript pre {
-    background: none;
-    border-top: 1px solid var(--vscode-panel-border);
-    border-bottom: 1px solid var(--vscode-panel-border);
-    text-align: left;
+body.mpc-theme-manuscript blockquote::before {
+    content: '“';
+    font-size: 60px;
+    position: absolute;
+    top: -10px;
+    left: 0px;
+    color: var(--mpc-color-accent);
+    opacity: 0.3;
 }
 
-/* Custom Containers - Subtle style */
-body.mpc-theme-manuscript .mpc-container {
-    border: 1px solid var(--vscode-panel-border);
-    background: none;
-    border-radius: 2px;
-    margin: 2em 0;
-    padding: 1em;
+/* Links */
+body.mpc-theme-manuscript a {
+    color: var(--mpc-color-accent);
+    text-decoration: underline;
 }
 
-body.mpc-theme-manuscript .mpc-container-title {
-    font-weight: bold;
-    font-style: italic;
+/* Lists */
+body.mpc-theme-manuscript ul {
+    list-style-type: square;
+}
+
+/* Images like pasted photos */
+body.mpc-theme-manuscript img {
+    border: 5px solid white;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    transform: rotate(1deg);
     display: block;
-    margin-bottom: 0.5em;
-    text-align: center;
+    margin: 20px auto;
 }

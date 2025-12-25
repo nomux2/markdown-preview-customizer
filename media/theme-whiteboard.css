@@ -1,37 +1,101 @@
-﻿/* MPC Theme: Whiteboard */
-.mpc-theme-whiteboard {
-    --mpc-color-main: #1d4ed8;
-    --mpc-color-accent: #ef4444;
-    --mpc-color-bg: #ffffff;
-    --mpc-color-text: #1e293b;
-    --vscode-font-family: var(--font-hand);
-    --vscode-editor-font-family: var(--font-hand);
+﻿/* Theme: Whiteboard (ホワイトボード)
+   Concept: Hand-drawn, Brainstorming, Sketch
+*/
+
+@font-face {
+    font-family: 'Zen Kurenaido';
+    src: url('fonts/ZenKurenaido-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
 }
 
-.mpc-theme-whiteboard h1, 
-.mpc-theme-whiteboard h2, 
-.mpc-theme-whiteboard h3,
-.mpc-theme-whiteboard h4,
-.mpc-theme-whiteboard h5,
-.mpc-theme-whiteboard h6 {
+body.mpc-theme-whiteboard {
+    --mpc-font-family: 'Zen Kurenaido', 'Comic Sans MS', sans-serif;
+    --mpc-color-bg: #fff;
+    --mpc-color-fg: #333;
+    --mpc-color-main: #1e88e5;
+    /* Blue Marker */
+    --mpc-color-accent: #e53935;
+    /* Red Marker */
+    --mpc-color-marker-black: #212121;
+
+    font-family: var(--mpc-font-family);
+    background-color: var(--mpc-color-bg);
+    color: var(--mpc-color-fg);
+    font-size: 1.2em;
+    /* Larger for reading */
+}
+
+/* Hand-drawn Box Borders */
+body.mpc-theme-whiteboard .mpc-container,
+body.mpc-theme-whiteboard pre,
+body.mpc-theme-whiteboard blockquote {
+    border: 3px solid var(--mpc-color-main);
+    border-radius: 2px 255px 3px 25px / 255px 5px 225px 3px;
+    /* Sketchy border trick */
+    padding: 20px;
+    background: transparent;
+    box-shadow: 2px 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Headers - Underlined with marker */
+body.mpc-theme-whiteboard h1,
+body.mpc-theme-whiteboard h2 {
+    color: var(--mpc-color-marker-black);
+    position: relative;
+    display: inline-block;
+}
+
+body.mpc-theme-whiteboard h1 {
+    font-size: 2.5em;
+    border-bottom: 3px solid var(--mpc-color-main);
+    border-radius: 100% 0% 100% 0% / 0% 100% 0% 100%;
+    /* Curved underline */
+    margin-bottom: 1em;
+}
+
+body.mpc-theme-whiteboard h2 {
     color: var(--mpc-color-main);
-    font-family: var(--vscode-font-family);
+    margin-top: 1.5em;
 }
 
-.mpc-theme-whiteboard a {
+/* Lists */
+body.mpc-theme-whiteboard ul {
+    list-style: none;
+}
+
+body.mpc-theme-whiteboard ul li::before {
+    content: "•";
     color: var(--mpc-color-accent);
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+    font-size: 1.5em;
+    vertical-align: middle;
 }
 
-.mpc-theme-whiteboard blockquote {
-    border-left-color: var(--mpc-color-accent);
-    background-color: rgba(0,0,0,0.05);
+/* Emphasis */
+body.mpc-theme-whiteboard strong {
+    background: rgba(255, 255, 0, 0.3);
+    /* Highlighter */
+    padding: 0 5px;
+    box-shadow: 0 0 5px rgba(255, 255, 0, 0.3);
 }
 
-/* Specific overrides for Hand/Pop fonts to ensure they apply */
-.mpc-theme-whiteboard body,
-.mpc-theme-whiteboard p,
-.mpc-theme-whiteboard li,
-.mpc-theme-whiteboard table {
-    font-family: var(--vscode-font-family);
+/* Code */
+body.mpc-theme-whiteboard pre {
+    border-color: var(--mpc-color-marker-black);
+    color: var(--mpc-color-marker-black);
+    font-family: 'Zen Kurenaido', monospace;
+    /* Keep handwriting consistency */
 }
 
+/* Images as taped photos */
+body.mpc-theme-whiteboard img {
+    border: 10px solid #fff;
+    box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.2);
+    transform: rotate(-2deg);
+    margin: 20px auto;
+    display: block;
+}

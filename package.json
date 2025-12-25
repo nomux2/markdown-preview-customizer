@@ -78,7 +78,8 @@
                     "enum": [
                         "Default",
                         "Technical",
-                        "Manuscript"
+                        "Manuscript",
+                        "Custom"
                     ],
                     "description": "Select the theme for Markdown preview."
                 }
@@ -175,9 +176,11 @@
         "typescript": "^5.1.3"
     },
     "dependencies": {
+        "@traptitech/markdown-it-katex": "^3.6.0",
         "@types/highlight.js": "^9.12.4",
         "highlight.js": "^11.11.1",
         "html-docx-js-typescript": "^0.1.5",
+        "katex": "^0.16.27",
         "markdown-it": "^14.1.0",
         "markdown-it-container": "^3.0.0",
         "puppeteer-core": "^21.0.0"

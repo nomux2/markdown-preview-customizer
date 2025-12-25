@@ -1,37 +1,90 @@
-﻿/* MPC Theme: Nordic */
-.mpc-theme-nordic {
-    --mpc-color-main: #4C566A;
-    --mpc-color-accent: #88C0D0;
-    --mpc-color-bg: #ECEFF4;
-    --mpc-color-text: #2E3440;
-    --vscode-font-family: var(--font-main);
-    --vscode-editor-font-family: var(--font-main);
+﻿/* Theme: Nordic (北欧)
+   Concept: Muted Colors, Geometric, Hygge
+*/
+
+body.mpc-theme-nordic {
+    --mpc-font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
+    --mpc-color-bg: #eceff4;
+    /* Nord Snow Storm */
+    --mpc-color-fg: #2e3440;
+    /* Nord Polar Night */
+    --mpc-color-main: #5e81ac;
+    /* Nord Frost Blue */
+    --mpc-color-accent: #88c0d0;
+    /* Nord Frost Cyan */
+    --mpc-color-warm: #bf616a;
+    /* Nord Aurora Red */
+
+    font-family: var(--mpc-font-family);
+    background-color: var(--mpc-color-bg);
+    color: var(--mpc-color-fg);
+    line-height: 1.6;
 }
 
-.mpc-theme-nordic h1, 
-.mpc-theme-nordic h2, 
-.mpc-theme-nordic h3,
-.mpc-theme-nordic h4,
-.mpc-theme-nordic h5,
-.mpc-theme-nordic h6 {
+/* Cards */
+body.mpc-theme-nordic .mpc-container,
+body.mpc-theme-nordic pre,
+body.mpc-theme-nordic blockquote {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    /* Soft shadow */
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+/* Headers with Icons/Shapes optional idea, but keeping simple geometric */
+body.mpc-theme-nordic h1,
+body.mpc-theme-nordic h2 {
     color: var(--mpc-color-main);
-    font-family: var(--vscode-font-family);
+    position: relative;
+    padding-left: 15px;
+    border-left: 5px solid var(--mpc-color-accent);
 }
 
-.mpc-theme-nordic a {
-    color: var(--mpc-color-accent);
+body.mpc-theme-nordic h1 {
+    font-size: 2.2em;
+    border-bottom: none;
+    background: #e5e9f0;
+    padding: 15px;
+    border-radius: 0 8px 8px 0;
+    border-left: 8px solid var(--mpc-color-main);
 }
 
-.mpc-theme-nordic blockquote {
-    border-left-color: var(--mpc-color-accent);
-    background-color: rgba(0,0,0,0.05);
+/* Geometric details */
+body.mpc-theme-nordic hr {
+    border: none;
+    height: 4px;
+    background-image: repeating-linear-gradient(45deg,
+            var(--mpc-color-accent),
+            var(--mpc-color-accent) 10px,
+            transparent 10px,
+            transparent 20px);
+    margin: 40px 0;
+    opacity: 0.5;
 }
 
-/* Specific overrides for Hand/Pop fonts to ensure they apply */
-.mpc-theme-nordic body,
-.mpc-theme-nordic p,
-.mpc-theme-nordic li,
-.mpc-theme-nordic table {
-    font-family: var(--vscode-font-family);
+/* Lists */
+body.mpc-theme-nordic ul li::marker {
+    color: var(--mpc-color-warm);
+    content: "● ";
+    font-size: 0.8em;
 }
 
+/* Code */
+body.mpc-theme-nordic code {
+    background-color: #e5e9f0;
+    color: var(--mpc-color-fg);
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+body.mpc-theme-nordic pre {
+    background-color: #2e3440;
+    color: #d8dee9;
+}
+
+body.mpc-theme-nordic pre code {
+    background-color: transparent;
+    color: inherit;
+}

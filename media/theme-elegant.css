@@ -1,37 +1,110 @@
-﻿/* MPC Theme: Elegant */
-.mpc-theme-elegant {
-    --mpc-color-main: #881337;
-    --mpc-color-accent: #F43F5E;
-    --mpc-color-bg: #FFF1F2;
-    --mpc-color-text: #4C0519;
-    --vscode-font-family: var(--font-serif);
-    --vscode-editor-font-family: var(--font-serif);
+﻿/* Theme: Elegant (優雅)
+   Concept: Serif, Editorial, Sophisticated
+*/
+
+@font-face {
+    font-family: 'Shippori Mincho';
+    src: url('fonts/ShipporiMincho-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: auto;
 }
 
-.mpc-theme-elegant h1, 
-.mpc-theme-elegant h2, 
-.mpc-theme-elegant h3,
-.mpc-theme-elegant h4,
-.mpc-theme-elegant h5,
-.mpc-theme-elegant h6 {
+body.mpc-theme-elegant {
+    --mpc-font-family: 'Shippori Mincho', 'Times New Roman', serif;
+    --mpc-color-bg: #f8f8f5;
+    /* Off-white */
+    --mpc-color-fg: #2c2c2c;
+    --mpc-color-main: #5d4037;
+    /* Brown */
+    --mpc-color-accent: #d4af37;
+    /* Gold */
+
+    font-family: var(--mpc-font-family);
+    background-color: var(--mpc-color-bg);
+    color: var(--mpc-color-fg);
+    line-height: 2.0;
+    /* Loose line height */
+    text-align: left;
+    /* Keep left but maybe center titles */
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px;
+}
+
+/* Centered & Decorated Headers */
+body.mpc-theme-elegant h1,
+body.mpc-theme-elegant h2 {
+    text-align: center;
+    font-weight: normal;
     color: var(--mpc-color-main);
-    font-family: var(--vscode-font-family);
 }
 
-.mpc-theme-elegant a {
+body.mpc-theme-elegant h1 {
+    font-size: 2.8em;
+    margin-bottom: 10px;
+    border-bottom: 1px solid var(--mpc-color-main);
+    padding-bottom: 20px;
+    position: relative;
+}
+
+body.mpc-theme-elegant h1::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: var(--mpc-color-accent);
+    margin: 10px auto 0;
+}
+
+body.mpc-theme-elegant h2 {
+    font-size: 1.8em;
+    margin-top: 60px;
+    border-top: 1px solid #e0e0e0;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 10px 0;
+    letter-spacing: 2px;
+}
+
+/* Drop Cap for first paragraph */
+body.mpc-theme-elegant>p:first-of-type::first-letter {
+    font-size: 3em;
+    float: left;
+    margin-right: 10px;
+    line-height: 1;
     color: var(--mpc-color-accent);
+    font-family: 'Shippori Mincho', serif;
 }
 
-.mpc-theme-elegant blockquote {
-    border-left-color: var(--mpc-color-accent);
-    background-color: rgba(0,0,0,0.05);
+/* Fancy Blockquote */
+body.mpc-theme-elegant blockquote {
+    font-family: 'Shippori Mincho', serif;
+    font-style: italic;
+    border-left: 2px solid var(--mpc-color-accent);
+    background: #fff;
+    padding: 20px 30px;
+    margin: 30px 0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
 
-/* Specific overrides for Hand/Pop fonts to ensure they apply */
-.mpc-theme-elegant body,
-.mpc-theme-elegant p,
-.mpc-theme-elegant li,
-.mpc-theme-elegant table {
-    font-family: var(--vscode-font-family);
+/* Code - Keep it minimal but distinct */
+body.mpc-theme-elegant pre {
+    background: #2c2c2c;
+    color: #f8f8f5;
+    padding: 20px;
+    border-left: 5px solid var(--mpc-color-main);
+    font-family: 'Consolas', monospace;
+    font-size: 0.9em;
 }
 
+body.mpc-theme-elegant a {
+    color: var(--mpc-color-main);
+    text-decoration: underline;
+    text-decoration-color: var(--mpc-color-accent);
+}
+
+body.mpc-theme-elegant hr {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(93, 64, 55, 0.75), rgba(0, 0, 0, 0));
+    margin: 50px 0;
+}

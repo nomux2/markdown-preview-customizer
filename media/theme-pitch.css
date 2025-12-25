@@ -1,37 +1,73 @@
-﻿/* MPC Theme: Pitch */
-.mpc-theme-pitch {
-    --mpc-color-main: #EC4899;
-    --mpc-color-accent: #F472B6;
-    --mpc-color-bg: #111827;
-    --mpc-color-text: #FFFFFF;
-    --vscode-font-family: var(--font-main);
-    --vscode-editor-font-family: var(--font-main);
+﻿/* Theme: Pitch (ピッチ)
+   Concept: Startup, Vibrant, Energetic
+*/
+
+body.mpc-theme-pitch {
+    --mpc-font-family: 'Poppins', 'Segoe UI', sans-serif;
+    --mpc-color-bg: #fff;
+    --mpc-color-fg: #333;
+    --mpc-color-main: #FF4B5C;
+    /* Energetic Red */
+    --mpc-color-accent: #2D3436;
+
+    font-family: var(--mpc-font-family);
+    background-color: var(--mpc-color-bg);
+    color: var(--mpc-color-fg);
 }
 
-.mpc-theme-pitch h1, 
-.mpc-theme-pitch h2, 
-.mpc-theme-pitch h3,
-.mpc-theme-pitch h4,
-.mpc-theme-pitch h5,
-.mpc-theme-pitch h6 {
+/* Big Hero Headers */
+body.mpc-theme-pitch h1 {
+    font-size: 3em;
+    font-weight: 900;
+    color: var(--mpc-color-accent);
+    line-height: 1.1;
+    margin-bottom: 20px;
+}
+
+body.mpc-theme-pitch h1::after {
+    content: ".";
     color: var(--mpc-color-main);
-    font-family: var(--vscode-font-family);
 }
 
-.mpc-theme-pitch a {
+body.mpc-theme-pitch h2 {
+    font-size: 2em;
+    color: var(--mpc-color-main);
+    background: #ffeeee;
+    display: inline-block;
+    padding: 5px 15px;
+    border-radius: 50px;
+}
+
+/* Highlighting */
+body.mpc-theme-pitch strong {
+    color: var(--mpc-color-main);
+}
+
+/* Cards with drop shadow */
+body.mpc-theme-pitch blockquote {
+    background: #fff;
+    border-left: 8px solid var(--mpc-color-main);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    border-radius: 0 10px 10px 0;
+    font-size: 1.4em;
+    font-style: italic;
     color: var(--mpc-color-accent);
 }
 
-.mpc-theme-pitch blockquote {
-    border-left-color: var(--mpc-color-accent);
-    background-color: rgba(0,0,0,0.05);
+body.mpc-theme-pitch a {
+    color: #fff;
+    background-color: var(--mpc-color-main);
+    padding: 10px 20px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    box-shadow: 0 5px 15px rgba(255, 75, 92, 0.4);
+    transition: transform 0.2s;
+    display: inline-block;
+    margin-top: 10px;
 }
 
-/* Specific overrides for Hand/Pop fonts to ensure they apply */
-.mpc-theme-pitch body,
-.mpc-theme-pitch p,
-.mpc-theme-pitch li,
-.mpc-theme-pitch table {
-    font-family: var(--vscode-font-family);
+body.mpc-theme-pitch a:hover {
+    transform: translateY(-2px);
 }
-

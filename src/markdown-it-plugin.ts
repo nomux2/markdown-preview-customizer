@@ -1,8 +1,15 @@
 ﻿/* eslint-disable @typescript-eslint/naming-convention */
 const container = require('markdown-it-container');
+const katex = require('@traptitech/markdown-it-katex');
 import * as vscode from 'vscode';
 
 export function extendMarkdownIt(md: any) {
+    // 0. LaTeX Support
+    md.use(katex, {
+        throwOnError: false,
+        errorColor: ' #cc0000'
+    });
+
     // 0. Inject Theme Marker
     md.core.ruler.push('mpc_theme_injector', (state: any) => {
         const token = new state.Token('html_block', '', 0);

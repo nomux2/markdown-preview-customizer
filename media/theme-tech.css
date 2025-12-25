@@ -1,74 +1,135 @@
-/*
- * Technical Theme
- * Designed for documentation and technical writing.
- * Features: High contrast code blocks, clear typography for headers, distinct alerts.
- */
+/* Theme: Technical (技術)
+   Concept: Retro Hacker Terminal
+*/
 
-body.mpc-theme-technical {
-    font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
-    line-height: 1.6;
-    color: var(--vscode-editor-foreground);
-    background-color: var(--vscode-editor-background);
+body.mpc-theme-tech {
+    --mpc-font-family: 'Courier New', Courier, monospace;
+    --mpc-color-bg: #0d0d0d;
+    --mpc-color-fg: #00ff00;
+    /* Green Terminal */
+    --mpc-color-main: #00ff00;
+    --mpc-color-accent: #ffb000;
+    /* Amber Warning */
+    --mpc-color-border: #333;
+    --mpc-color-code-bg: #111;
+
+    font-family: var(--mpc-font-family);
+    background-color: var(--mpc-color-bg);
+    color: var(--mpc-color-fg);
+    position: relative;
+    overflow-x: hidden;
 }
 
-/* Headers */
-body.mpc-theme-technical h1,
-body.mpc-theme-technical h2,
-body.mpc-theme-technical h3,
-body.mpc-theme-technical h4,
-body.mpc-theme-technical h5,
-body.mpc-theme-technical h6 {
-    font-family: 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
-    color: var(--vscode-textLink-foreground);
-    border-bottom: none;
+/* Scanline Effect Overlay */
+body.mpc-theme-tech::before {
+    content: " ";
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+    z-index: 9999;
+    background-size: 100% 2px, 3px 100%;
+    pointer-events: none;
 }
 
-body.mpc-theme-technical h1 {
-    border-bottom: 2px solid var(--vscode-textLink-foreground);
-    padding-bottom: 0.3em;
+/* Headers like Prompts */
+body.mpc-theme-tech h1::before {
+    content: "> ";
+    color: var(--mpc-color-accent);
 }
 
-body.mpc-theme-technical h2 {
-    border-bottom: 1px dashed var(--vscode-descriptionForeground);
-    padding-bottom: 0.3em;
+body.mpc-theme-tech h2::before {
+    content: "$ ";
+    color: var(--mpc-color-accent);
 }
 
-/* Code Blocks */
-body.mpc-theme-technical pre {
-    border: 1px solid var(--vscode-panel-border);
-    background-color: var(--vscode-editor-inactiveSelectionBackground);
-    border-radius: 4px;
+body.mpc-theme-tech h3::before {
+    content: "# ";
+    color: var(--mpc-color-accent);
 }
 
-body.mpc-theme-technical code {
-    font-family: 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
-    color: var(--vscode-debugTokenExpression-string);
-}
-
-/* Alerts / Custom Containers */
-body.mpc-theme-technical .mpc-container {
-    border-left-width: 6px;
-    border-radius: 0;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-body.mpc-theme-technical .mpc-container.info {
-    border-left-color: #3794ff;
-    background-color: rgba(55, 148, 255, 0.1);
-}
-
-body.mpc-theme-technical .mpc-container.warning {
-    border-left-color: #ff9900;
-    background-color: rgba(255, 153, 0, 0.1);
-}
-
-body.mpc-theme-technical .mpc-container.danger {
-    border-left-color: #f63c3c;
-    background-color: rgba(246, 60, 60, 0.1);
-}
-
-body.mpc-theme-technical .mpc-container-title {
-    font-family: 'Cascadia Code', monospace;
+body.mpc-theme-tech h1,
+body.mpc-theme-tech h2,
+body.mpc-theme-tech h3 {
+    border-bottom: 1px solid var(--mpc-color-main);
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
+}
+
+/* Container / Cards as Windows */
+body.mpc-theme-tech .mpc-container,
+body.mpc-theme-tech pre {
+    border: 1px solid var(--mpc-color-main);
+    background-color: #000;
+    box-shadow: 4px 4px 0px #222;
+    border-radius: 0;
+    /* Strict squares */
+    position: relative;
+    margin-top: 30px;
+}
+
+/* Pseudo-Title Bar for Boxes */
+body.mpc-theme-tech pre::before {
+    content: " [ SYSTEM_SOURCE ] ";
+    display: block;
+    background: var(--mpc-color-main);
+    color: #000;
+    font-weight: bold;
+    font-size: 0.8em;
+    padding: 2px 5px;
+    margin-bottom: 10px;
+    text-align: right;
+}
+
+body.mpc-theme-tech code {
+    font-family: 'Courier New', monospace;
+    background-color: #222;
+    color: var(--mpc-color-accent);
+}
+
+/* Blinking Cursor for Inline Code */
+body.mpc-theme-tech code::after {
+    content: "█";
+    animation: blink 1s step-end infinite;
+    font-size: 0.8em;
+    margin-left: 2px;
+    opacity: 0.5;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+body.mpc-theme-tech a {
+    color: var(--mpc-color-accent);
+    text-decoration: underline;
+}
+
+body.mpc-theme-tech a:hover {
+    background-color: var(--mpc-color-accent);
+    color: #000;
+}
+
+/* Tables */
+body.mpc-theme-tech table {
+    border-collapse: collapse;
+    width: 100%;
+    border: 1px solid var(--mpc-color-main);
+}
+
+body.mpc-theme-tech th {
+    border: 1px solid var(--mpc-color-main);
+    padding: 5px;
+    background-color: var(--mpc-color-main);
+    color: #000;
+}
+
+body.mpc-theme-tech td {
+    border: 1px solid var(--mpc-color-main);
+    padding: 5px;
 }

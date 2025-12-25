@@ -48,8 +48,20 @@ export async function exportToPdf(context: vscode.ExtensionContext, outputChanne
     const htmlBody = md.render(editor.document.getText());
 
     // Read CSS
-    const cssPath = path.join(context.extensionPath, 'media', 'main.css');
-    const cssContent = fs.existsSync(cssPath) ? fs.readFileSync(cssPath, 'utf8') : '';
+    const config = vscode.workspace.getConfiguration('markdownPreviewCustomizer');
+    const theme = config.get<string>('theme') || 'Default';
+    const isCustomTheme = theme === 'Custom';
+
+    const katexPath = path.join(context.extensionPath, 'media', 'katex.min.css');
+    const katexContent = fs.existsSync(katexPath) ? fs.readFileSync(katexPath, 'utf8') : '';
+
+    let cssContent = katexContent;
+    if (!isCustomTheme) {
+        const mainPath = path.join(context.extensionPath, 'media', 'main.css');
+        const mainContent = fs.existsSync(mainPath) ? fs.readFileSync(mainPath, 'utf8') : '';
+        cssContent += '\n' + mainContent;
+    }
+
     const fullHtml = generateHtmlSkeleton(htmlBody, cssContent);
 
     // Save Dialog

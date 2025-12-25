@@ -1,5 +1,8 @@
 ﻿import * as vscode from 'vscode';
 import { WebContentProvider } from './WebContentProvider';
+import { generateStandaloneHtml } from './export/html';
+import * as fs from 'fs';
+import * as os from 'os';
 
 export class PreviewManager {
     private static instance: PreviewManager;
@@ -102,11 +105,14 @@ export class PreviewManager {
                     case 'log':
                         this.outputChannel.appendLine(`MPC Client: ${message.message}`);
                         break;
-                    case 'syncEditor':
-                        this.syncEditorToLine(message.line);
+                    case 'revealLine':
+                        this.syncEditorToLine(message.line, message.isAtBottom);
                         break;
                     case 'persistState':
                         this.slideshowState = message.state;
+                        break;
+                    case 'print':
+                        this.handlePrint(message.styles);
                         break;
                 }
             }, null, this.disposables);
@@ -125,12 +131,10 @@ export class PreviewManager {
 
     private async onConfigChanged(e: vscode.ConfigurationChangeEvent) {
         if (e.affectsConfiguration('markdownPreviewCustomizer.theme')) {
-            const config = vscode.workspace.getConfiguration('markdownPreviewCustomizer');
-            const newTheme = config.get<string>('theme') || 'Default';
-
-            if (this.panel && this.panel.visible) {
-                this.outputChannel.appendLine(`MPC: Sending theme update message: ${newTheme}`);
-                this.panel.webview.postMessage({ command: 'updateTheme', theme: newTheme });
+            const editor = vscode.window.activeTextEditor || vscode.window.visibleTextEditors.find(e => e.document.languageId === 'markdown');
+            if (this.panel && this.panel.visible && editor) {
+                this.outputChannel.appendLine(`MPC: Theme changed. Refreshing preview...`);
+                await this.updatePreview(editor.document);
             }
         }
     }
@@ -164,19 +168,43 @@ export class PreviewManager {
         this.panel.webview.postMessage({ command: 'syncSlide', line: line });
     }
 
-    private syncEditorToLine(line: number) {
+    private syncEditorToLine(line: number, isAtBottom: boolean = false) {
         const editor = vscode.window.visibleTextEditors.find(e => e.document === this.currentDocument);
         if (editor) {
+            const document = editor.document;
+
+            if (isAtBottom) {
+                const lastLine = document.lineCount - 1;
+                const range = new vscode.Range(lastLine, 0, lastLine, 0);
+                // Only change view position, don't move cursor
+                editor.revealRange(range, vscode.TextEditorRevealType.InCenter);
+                return;
+            }
+
             const currentLine = editor.selection.active.line;
-            // Only sync if the line is significantly different (e.g., more than 5 lines away)
-            // or if it's a jump to a new slide.
-            // If the user is already on the target line, we MUST NOT touch the selection
-            // because it would reset the column position (cursor position in the line).
             if (Math.abs(currentLine - line) > 2) {
                 const range = new vscode.Range(line, 0, line, 0);
-                editor.selection = new vscode.Selection(line, 0, line, 0);
-                editor.revealRange(range, vscode.TextEditorRevealType.InCenterIfOutsideViewport);
+                // Only change view position, don't move cursor
+                editor.revealRange(range, vscode.TextEditorRevealType.AtTop);
             }
+        }
+    }
+
+    private async handlePrint(capturedStyles?: any) {
+        this.outputChannel.appendLine('MPC: Generating print HTML...');
+        const html = await generateStandaloneHtml(this.context, this.outputChannel, capturedStyles);
+        if (!html) {
+            vscode.window.showErrorMessage('MPC: Failed to generate print content.');
+            return;
+        }
+
+        const tmpPath = path.join(os.tmpdir(), `mpc_print_${Date.now()}.html`);
+        try {
+            fs.writeFileSync(tmpPath, html);
+            this.outputChannel.appendLine(`MPC: Print HTML written to ${tmpPath}`);
+            await vscode.env.openExternal(vscode.Uri.file(tmpPath));
+        } catch (e: any) {
+            vscode.window.showErrorMessage(`MPC: Failed to open print file: ${e.message}`);
         }
     }
 }

@@ -23,6 +23,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    text-decoration: none !important;
+    color: inherit;
 }
 
 .mpc-menu-item:hover {

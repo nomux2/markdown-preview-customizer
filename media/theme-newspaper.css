@@ -1,47 +1,129 @@
-/* Newspaper Theme - Multi-column mimicry, dense serif */
+/* Theme: Newspaper (新聞)
+   Concept: Editorials, Multi-column, Textured
+*/
+
 body.mpc-theme-newspaper {
-    font-family: "Times New Roman", serif;
-    background-color: #f4ecd8;
-    /* Aged paper */
-    color: #111;
-    column-count: 2;
-    column-gap: 40px;
-    column-rule: 1px solid #555;
-    text-align: justify;
+    --mpc-font-family: 'Times New Roman', Times, serif;
+    --mpc-color-bg: #f5f5f5;
+    /* Grey Newsprint */
+    --mpc-color-fg: #111;
+    --mpc-color-main: #000;
+    --mpc-color-accent: #2c3e50;
+
+    font-family: var(--mpc-font-family);
+    background-color: var(--mpc-color-bg);
+    color: var(--mpc-color-fg);
+    line-height: 1.6;
+    max-width: 900px;
+    /* Wider for columns */
+    margin: 0 auto;
+    padding: 20px 40px;
+    background-image:
+        linear-gradient(90deg, transparent 49%, rgba(0, 0, 0, 0.05) 50%, transparent 51%),
+        linear-gradient(transparent, transparent);
+    /* Faint noise/texture if possible */
 }
 
+/* Multi-column Layout for Desktop */
+@media (min-width: 800px) {
+
+    body.mpc-theme-newspaper p,
+    body.mpc-theme-newspaper ul,
+    body.mpc-theme-newspaper ol,
+    body.mpc-theme-newspaper blockquote {
+        column-count: 2;
+        column-gap: 40px;
+        column-rule: 1px solid #ccc;
+        text-align: justify;
+    }
+
+    /* Elements that span across columns */
+    body.mpc-theme-newspaper h1,
+    body.mpc-theme-newspaper h2,
+    body.mpc-theme-newspaper pre,
+    body.mpc-theme-newspaper table,
+    body.mpc-theme-newspaper img,
+    body.mpc-theme-newspaper .mpc-container {
+        column-span: all;
+    }
+}
+
+/* Headers */
 body.mpc-theme-newspaper h1 {
-    column-span: all;
-    text-align: center;
-    font-family: "Impact", sans-serif;
-    font-weight: normal;
+    font-family: 'Impact', 'Arial Black', sans-serif;
+    /* Headline font */
+    font-size: 3.5em;
     text-transform: uppercase;
-    border-bottom: 3px double #000;
-    border-top: 3px double #000;
-    padding: 10px 0;
+    text-align: center;
+    border-bottom: 4px double #000;
+    border-top: 1px solid #000;
+    padding: 20px 0;
     margin-bottom: 30px;
-    font-size: 3em;
+    letter-spacing: 2px;
 }
 
 body.mpc-theme-newspaper h2 {
-    font-weight: bold;
+    font-family: 'Arial Narrow', sans-serif;
+    font-size: 1.8em;
     border-bottom: 1px solid #000;
-    margin-top: 0;
+    margin-top: 30px;
 }
 
-body.mpc-theme-newspaper img {
-    max-width: 100%;
-    filter: grayscale(100%) contrast(1.2);
-    border: 1px solid #000;
-    padding: 2px;
-}
-
-body.mpc-theme-newspaper blockquote {
-    border-left: none;
-    font-style: italic;
+/* Drop Caps */
+body.mpc-theme-newspaper p:first-of-type::first-letter {
+    float: left;
+    font-size: 3.5em;
+    line-height: 0.8;
+    padding-right: 8px;
+    padding-top: 4px;
+    font-family: 'Times New Roman', serif;
     font-weight: bold;
-    text-align: center;
-    border-top: 1px solid #555;
-    border-bottom: 1px solid #555;
+}
+
+/* Images: Grayscale by default */
+body.mpc-theme-newspaper img {
+    filter: grayscale(100%) contrast(1.2);
+    transition: filter 0.3s;
+    border: 1px solid #ccc;
+    padding: 4px;
+    background: #fff;
+    max-width: 100%;
+}
+
+body.mpc-theme-newspaper img:hover {
+    filter: none;
+}
+
+/* Blockquote */
+body.mpc-theme-newspaper blockquote {
+    font-style: italic;
+    font-size: 1.2em;
+    text-align: center !important;
+    border-left: none;
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #000;
     padding: 10px 0;
+    margin: 20px 0;
+    column-span: all;
+    /* Pull quotes span all */
+}
+
+/* Code Blocks not suitable for newspaper but handled simply */
+body.mpc-theme-newspaper pre {
+    background-color: #eee;
+    padding: 10px;
+    border: 1px solid #999;
+    overflow-x: auto;
+}
+
+/* Date/Info Bar mimicking newspaper layout */
+body.mpc-theme-newspaper h1+p {
+    text-align: center;
+    font-style: italic;
+    font-size: 0.9em;
+    border-bottom: 1px solid #000;
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+    column-count: 1 !important;
+    /* Force metadata to be single column if possible */
 }
