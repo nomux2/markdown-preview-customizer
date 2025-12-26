@@ -108,3 +108,11 @@ body.mpc-theme-elegant hr {
     background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(93, 64, 55, 0.75), rgba(0, 0, 0, 0));
     margin: 50px 0;
 }
+
+/* Slideshow Integration */
+body.mpc-theme-elegant .mpc-slide {
+    --mpc-color-base: var(--mpc-color-bg, #ffffff);
+    --mpc-color-text: var(--mpc-color-fg, var(--mpc-color-text, #000000));
+    --mpc-color-main: var(--mpc-color-main, #1A365D);
+    --mpc-color-accent: var(--mpc-color-accent, #F6AD55);
+}

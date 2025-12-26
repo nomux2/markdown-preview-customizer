@@ -6,19 +6,141 @@ console.log('MPC: script loaded from media/preview-customizer.js');
 (function () {
     const init = () => {
         // --- VISUAL DEBUGGER START ---
-        let debugContainer = document.getElementById('mpc-debug-log');
-        if (!debugContainer) {
-            debugContainer = document.createElement('div');
-            debugContainer.id = 'mpc-debug-log';
-            debugContainer.style.cssText = 'position: fixed; bottom: 10px; right: 10px; background: rgba(0,0,0,0.8); color: lime; padding: 5px; font-family: monospace; font-size: 10px; z-index: 99999; max-width: 300px; max-height: 200px; overflow: auto; pointer-events: none; border-radius: 4px; display: block;';
-            document.body.appendChild(debugContainer);
-        }
+        // 1. Debug Log (conditional based on settings)
+        const showDebugLog = document.body.dataset.showDebugLog === 'true';
+        let debugLog = null;
+
+        const currentLang = navigator.language || 'en';
+        const isJa = currentLang.startsWith('ja');
+
+        const i18n = {
+            en: {
+                copy: 'Copy',
+                copyParams: 'Copy Params',
+                selectCssPreset: 'Select CSS Preset',
+                designSystem: 'Design System',
+                business: 'Business',
+                presentation: 'Presentation',
+                default: 'Default',
+                custom: 'Custom (Edit)',
+                editCss: 'Edit Custom CSS',
+                exportHtmlFolder: 'Export HTML (Folder)',
+                exportHtmlBase64: 'Export HTML (Base64)',
+                exportPdf: 'Export PDF',
+                print: 'Print',
+                slideOverview: 'Slide Overview',
+                exportSlideshow: 'Export Slideshow (Standalone HTML)',
+                copied: 'Copied!',
+                btnCopy: 'Copy',
+                // Themes - English users usually don't need Japanese descriptions
+                theme_trust: 'Trust',
+                theme_modernv2: 'Modern V2',
+                theme_simple: 'Simple',
+                theme_nordic: 'Nordic',
+                theme_elegant: 'Elegant',
+                theme_minimal: 'Minimal',
+                theme_classic: 'Classic',
+                theme_fresh: 'Fresh',
+                theme_warm: 'Warm',
+                theme_professional: 'Professional',
+                theme_pop: 'Pop',
+                theme_corporate: 'Corporate',
+                theme_report: 'Report',
+                theme_minutes: 'Minutes',
+                theme_proposal: 'Proposal',
+                theme_contract: 'Contract',
+                theme_invoice: 'Invoice',
+                theme_manual: 'Manual',
+                theme_specification: 'Specification',
+                theme_executive: 'Executive',
+                theme_financial: 'Financial',
+                theme_presentation: 'Presentation',
+                theme_whiteboard: 'Whiteboard',
+                theme_impact: 'Impact',
+                theme_keynote: 'Keynote',
+                theme_pitch: 'Pitch',
+                theme_conference: 'Conference',
+                theme_workshop: 'Workshop',
+                theme_seminar: 'Seminar',
+                theme_training: 'Training',
+                theme_demo: 'Demo'
+            },
+            ja: {
+                copy: 'コピー',
+                copyParams: 'コピー (パラメータ)',
+                selectCssPreset: 'CSSプリセット選択',
+                designSystem: 'Design System / 標準',
+                business: 'Business / 実務',
+                presentation: 'Presentation / 会議',
+                default: 'デフォルト',
+                custom: 'Custom (編集)',
+                editCss: 'CSS編集',
+                exportHtmlFolder: 'HTML出力 (Folder)',
+                exportHtmlBase64: 'HTML出力 (BASE64)',
+                exportPdf: 'PDF出力',
+                print: '印刷',
+                slideOverview: 'スライド一覧 (Overview)',
+                exportSlideshow: 'スライド出力 (Standalone HTML)',
+                copied: 'コピーしました!',
+                btnCopy: 'コピー',
+                // Themes - Keep existing style
+                theme_trust: 'Trust (信頼)',
+                theme_modernv2: 'Modern V2 (現代)',
+                theme_simple: 'Simple (洗練)',
+                theme_nordic: 'Nordic (北欧)',
+                theme_elegant: 'Elegant (優雅)',
+                theme_minimal: 'Minimal (最小限)',
+                theme_classic: 'Classic (古典)',
+                theme_fresh: 'Fresh (爽やか)',
+                theme_warm: 'Warm (温かみ)',
+                theme_professional: 'Professional (プロ)',
+                theme_pop: 'Pop (ポップ)',
+                theme_corporate: 'Corporate (企業)',
+                theme_report: 'Report (報告書)',
+                theme_minutes: 'Minutes (議事録)',
+                theme_proposal: 'Proposal (提案書)',
+                theme_contract: 'Contract (契約書)',
+                theme_invoice: 'Invoice (請求書)',
+                theme_manual: 'Manual (マニュアル)',
+                theme_specification: 'Specification (仕様書)',
+                theme_executive: 'Executive (役員向け)',
+                theme_financial: 'Financial (財務)',
+                theme_presentation: 'Presentation (投影)',
+                theme_whiteboard: 'Whiteboard (手書き)',
+                theme_impact: 'Impact (強調)',
+                theme_keynote: 'Keynote (基調講演)',
+                theme_pitch: 'Pitch (プレゼン)',
+                theme_conference: 'Conference (会議)',
+                theme_workshop: 'Workshop (ワークショップ)',
+                theme_seminar: 'Seminar (セミナー)',
+                theme_training: 'Training (研修)',
+                theme_demo: 'Demo (デモ)'
+            }
+        };
+
+        const t = (key) => {
+            const dictionary = isJa ? i18n.ja : i18n.en;
+            return dictionary[key] || key;
+        };
 
         function log(msg) {
-            const el = document.createElement('div');
-            el.innerText = `[${new Date().toLocaleTimeString()}] ${msg}`;
-            if (debugContainer) debugContainer.prepend(el);
-            console.log(`[MPC] ${msg}`);
+            console.log('[MPC]', msg);
+            if (debugLog) {
+                debugLog.innerText += msg + '\n';
+                debugLog.scrollTop = debugLog.scrollHeight;
+            }
+        }
+
+        if (showDebugLog) {
+            debugLog = document.createElement('div');
+            debugLog.id = 'mpc-debug-log';
+            Object.assign(debugLog.style, {
+                position: 'fixed', bottom: '10px', right: '10px', width: '300px', height: '150px',
+                background: 'rgba(0, 0, 0, 0.8)', color: '#0f0', fontFamily: 'monospace', fontSize: '10px',
+                padding: '8px', overflow: 'auto', zIndex: '9999', border: '1px solid #0f0', borderRadius: '4px'
+            });
+            document.body.appendChild(debugLog);
+            log('MPC Debug Log Initialized');
         }
 
         log('Script initialized.');
@@ -60,71 +182,73 @@ console.log('MPC: script loaded from media/preview-customizer.js');
 
         // 2. Menu Configuration
         const menuConfig = [
-            { label: 'Copy (コピー)', command: 'markdownPreviewCustomizer.copyParams' },
+            { label: t('copyParams'), command: 'markdownPreviewCustomizer.copyParams' },
             { separator: true },
             {
-                label: 'CSSプリセット選択',
+                label: t('selectCssPreset'),
                 submenu: [
                     {
-                        label: 'Design System / 標準',
+                        label: t('designSystem'),
                         submenu: [
-                            { label: 'Trust (信頼)', theme: 'Trust' },
-                            { label: 'Modern V2 (現代)', theme: 'Modern-v2' },
-                            { label: 'Simple (洗練)', theme: 'Simple' },
-                            { label: 'Nordic (北欧)', theme: 'Nordic' },
-                            { label: 'Elegant (優雅)', theme: 'Elegant' },
-                            { label: 'Minimal (最小限)', theme: 'Minimal' },
-                            { label: 'Classic (古典)', theme: 'Classic' },
-                            { label: 'Fresh (爽やか)', theme: 'Fresh' },
-                            { label: 'Warm (温かみ)', theme: 'Warm' },
-                            { label: 'Professional (プロ)', theme: 'Professional' },
-                            { label: 'Pop (ポップ)', theme: 'Pop' }
+                            { label: t('theme_trust'), theme: 'Trust' },
+                            { label: t('theme_modernv2'), theme: 'Modern-v2' },
+                            { label: t('theme_simple'), theme: 'Simple' },
+                            { label: t('theme_nordic'), theme: 'Nordic' },
+                            { label: t('theme_elegant'), theme: 'Elegant' },
+                            { label: t('theme_minimal'), theme: 'Minimal' },
+                            { label: t('theme_classic'), theme: 'Classic' },
+                            { label: t('theme_fresh'), theme: 'Fresh' },
+                            { label: t('theme_warm'), theme: 'Warm' },
+                            { label: t('theme_professional'), theme: 'Professional' },
+                            { label: t('theme_pop'), theme: 'Pop' }
                         ]
                     },
                     {
-                        label: 'Business / 実務',
+                        label: t('business'),
                         submenu: [
-                            { label: 'Corporate (企業)', theme: 'Corporate' },
-                            { label: 'Report (報告書)', theme: 'Report' },
-                            { label: 'Minutes (議事録)', theme: 'Minutes' },
-                            { label: 'Proposal (提案書)', theme: 'Proposal' },
-                            { label: 'Contract (契約書)', theme: 'Contract' },
-                            { label: 'Invoice (請求書)', theme: 'Invoice' },
-                            { label: 'Manual (マニュアル)', theme: 'Manual' },
-                            { label: 'Specification (仕様書)', theme: 'Specification' },
-                            { label: 'Executive (役員向け)', theme: 'Executive' },
-                            { label: 'Financial (財務)', theme: 'Financial' }
+                            { label: t('theme_corporate'), theme: 'Corporate' },
+                            { label: t('theme_report'), theme: 'Report' },
+                            { label: t('theme_minutes'), theme: 'Minutes' },
+                            { label: t('theme_proposal'), theme: 'Proposal' },
+                            { label: t('theme_contract'), theme: 'Contract' },
+                            { label: t('theme_invoice'), theme: 'Invoice' },
+                            { label: t('theme_manual'), theme: 'Manual' },
+                            { label: t('theme_specification'), theme: 'Specification' },
+                            { label: t('theme_executive'), theme: 'Executive' },
+                            { label: t('theme_financial'), theme: 'Financial' }
                         ]
                     },
                     {
-                        label: 'Presentation / 会議',
+                        label: t('presentation'),
                         submenu: [
-                            { label: 'Presentation (投影)', theme: 'Presentation' },
-                            { label: 'Whiteboard (手書き)', theme: 'Whiteboard' },
-                            { label: 'Impact (強調)', theme: 'Impact' },
-                            { label: 'Keynote (基調講演)', theme: 'Keynote' },
-                            { label: 'Pitch (プレゼン)', theme: 'Pitch' },
-                            { label: 'Conference (会議)', theme: 'Conference' },
-                            { label: 'Workshop (ワークショップ)', theme: 'Workshop' },
-                            { label: 'Seminar (セミナー)', theme: 'Seminar' },
-                            { label: 'Training (研修)', theme: 'Training' },
-                            { label: 'Demo (デモ)', theme: 'Demo' }
+                            { label: t('theme_presentation'), theme: 'Presentation' },
+                            { label: t('theme_whiteboard'), theme: 'Whiteboard' },
+                            { label: t('theme_impact'), theme: 'Impact' },
+                            { label: t('theme_keynote'), theme: 'Keynote' },
+                            { label: t('theme_pitch'), theme: 'Pitch' },
+                            { label: t('theme_conference'), theme: 'Conference' },
+                            { label: t('theme_workshop'), theme: 'Workshop' },
+                            { label: t('theme_seminar'), theme: 'Seminar' },
+                            { label: t('theme_training'), theme: 'Training' },
+                            { label: t('theme_demo'), theme: 'Demo' }
                         ]
                     },
                     { separator: true },
-                    { label: 'Default', theme: 'Default' },
-                    { label: 'Custom (編集)', theme: 'Custom' }
+                    { label: t('default'), theme: 'Default' },
+                    { label: t('custom'), theme: 'Custom' }
                 ]
             },
-            { label: 'CSS編集', command: 'markdownPreviewCustomizer.editCustomCss' },
+            { label: t('editCss'), command: 'markdownPreviewCustomizer.editCustomCss' },
             { separator: true },
-            { label: 'HTML出力 (Folder)', command: 'markdownPreviewCustomizer.exportToHtmlFolder' },
-            { label: 'HTML出力 (BASE64)', command: 'markdownPreviewCustomizer.exportToHtmlBase64' },
-            { label: 'PDF出力', command: 'markdownPreviewCustomizer.exportToPdf' },
-            { label: '印刷 (Print)', internal: true, action: 'print' },
+            { label: t('exportHtmlFolder'), command: 'markdownPreviewCustomizer.exportToHtmlFolder' },
+            { label: t('exportHtmlBase64'), command: 'markdownPreviewCustomizer.exportToHtmlBase64' },
+            { label: t('exportPdf'), command: 'markdownPreviewCustomizer.exportToPdf' },
+            { label: t('print'), internal: true, action: 'print' },
             { separator: true },
-            { label: 'スライドショー開始', command: 'markdownPreviewCustomizer.startSlideshow' },
-            { label: 'スライド一覧 (Overview)', internal: true, action: 'showOverview' }
+
+            { label: t('slideOverview'), internal: true, action: 'showOverview' },
+            { label: t('exportSlideshow'), command: 'markdownPreviewCustomizer.exportSlideshowToHtml' },
+            { separator: true },
         ];
 
         function buildMenu(container, items) {
@@ -230,7 +354,7 @@ console.log('MPC: script loaded from media/preview-customizer.js');
 
                 const button = document.createElement('button');
                 button.className = 'mpc-copy-btn';
-                button.innerText = 'Copy';
+                button.innerText = t('btnCopy');
                 Object.assign(button.style, {
                     position: 'absolute', right: '8px', top: '8px', zIndex: '10',
                     padding: '4px 8px', fontSize: '12px',
@@ -242,8 +366,8 @@ console.log('MPC: script loaded from media/preview-customizer.js');
                 button.addEventListener('click', async () => {
                     try {
                         await navigator.clipboard.writeText(codeBlock.textContent || '');
-                        button.innerText = 'Copied!';
-                        setTimeout(() => button.innerText = 'Copy', 2000);
+                        button.innerText = t('copied');
+                        setTimeout(() => button.innerText = t('btnCopy'), 2000);
                     } catch (e) { log('Copy button failed: ' + e.message); }
                 });
                 pre.appendChild(button);
@@ -281,10 +405,11 @@ console.log('MPC: script loaded from media/preview-customizer.js');
 
                 const canvas = document.createElement('canvas');
                 canvas.style.maxWidth = '100%';
+                canvas.style.maxHeight = '100%';
 
                 const container = document.createElement('div');
                 container.className = 'mpc-chart-container';
-                container.style.cssText = 'position: relative; height: 400px; width: 100%;';
+                container.style.cssText = 'position: relative; height: 100%; width: 100%;';
                 container.appendChild(canvas);
 
                 if (isContainer) {
@@ -328,11 +453,12 @@ console.log('MPC: script loaded from media/preview-customizer.js');
                                 if (titleEl) block.appendChild(titleEl);
                                 block.appendChild(container);
 
-                                new Chart(canvas, {
+                                const chartInstance = new Chart(canvas, {
                                     type: chartType,
                                     data: { labels, datasets },
-                                    options: { responsiveness: true, maintainAspectRatio: false }
+                                    options: { responsive: true, maintainAspectRatio: false }
                                 });
+                                canvas._mpc_chart = chartInstance; // Attach instance
                                 return; // Done for this block
                             }
                         } catch (err) {
@@ -396,14 +522,15 @@ console.log('MPC: script loaded from media/preview-customizer.js');
                         config = {
                             type: defaultType,
                             data: { labels: labels, datasets: datasets },
-                            options: { responsiveness: true, maintainAspectRatio: false }
+                            options: { responsive: true, maintainAspectRatio: false }
                         };
                     }
                 }
 
                 if (config) {
                     try {
-                        new Chart(canvas, config);
+                        const chartInstance = new Chart(canvas, config);
+                        canvas._mpc_chart = chartInstance; // Attach instance
                     } catch (err) {
                         feedbackEl.innerText = 'Chart Error: ' + err.message;
                         feedbackEl.style.color = 'red';
@@ -447,8 +574,11 @@ console.log('MPC: script loaded from media/preview-customizer.js');
                     currentSlideNodes.forEach(node => {
                         if (node.nodeType === 1 && node.classList.contains('mpc-column')) {
                             if (!columnGroup) {
-                                columnGroup = document.createElement('div');
                                 columnGroup.className = 'mpc-columns';
+                                if (document.querySelector('.slide-2col')) {
+                                    // If we are in a 2col slide, ensure this gets treated as row
+                                    columnGroup.style.flexDirection = 'row';
+                                }
                                 processedNodes.push(columnGroup);
                             }
                             columnGroup.appendChild(node);
@@ -460,19 +590,39 @@ console.log('MPC: script loaded from media/preview-customizer.js');
 
                     processedNodes.forEach(node => {
                         if (node.nodeType === 1) {
+                            let nodeToAppend = node;
+
                             if (node.classList.contains('mpc-container')) {
-                                const classes = Array.from(node.classList);
-                                const masterCandidate = classes.find(c => c.startsWith('slide-'));
-                                if (masterCandidate) slideDiv.classList.add(masterCandidate);
+                                node.classList.remove('mpc-container'); // Remove generic class
+                                node.classList.add('slide-base');       // Add common base class
+
+                                // Identify slide master class - Removed hoisting to root
+                                // const classes = Array.from(node.classList);
+                                // const masterCandidate = classes.find(c => c.startsWith('slide-'));
+                                // if (masterCandidate) slideDiv.classList.add(masterCandidate);
+
+                                // Create Wrapper: <div class="mpc-slide-container"><div class="slide-*">...</div></div>
+                                const wrapper = document.createElement('div');
+                                wrapper.className = 'mpc-slide-container';
+                                wrapper.appendChild(node);
+
+                                nodeToAppend = wrapper;
                             }
-                            const bgImg = node.querySelector('img[alt="bg"]') || (node.tagName === 'IMG' && node.alt === 'bg' ? node : null);
+
+                            // Check for BG Image in original node (now inside wrapper if wrapped)
+                            const checkNode = nodeToAppend.classList.contains('mpc-slide-container') ? node : nodeToAppend;
+                            const bgImg = checkNode.querySelector('img[alt="bg"]') || (checkNode.tagName === 'IMG' && checkNode.alt === 'bg' ? checkNode : null);
+
                             if (bgImg) {
                                 slideDiv.classList.add('has-bg');
                                 slideDiv.style.backgroundImage = `url(${bgImg.src})`;
                                 bgImg.style.display = 'none';
                             }
+
+                            inner.appendChild(nodeToAppend);
+                        } else {
+                            inner.appendChild(node);
                         }
-                        inner.appendChild(node);
                     });
 
                     slideDiv.appendChild(inner);
@@ -528,6 +678,18 @@ console.log('MPC: script loaded from media/preview-customizer.js');
             if (index < 0 || index >= slides.length) return;
             currentSlideIndex = index;
             slides.forEach((s, i) => s.style.display = (i === index) ? 'flex' : 'none');
+
+            // Force Resize Charts in this slide
+            if (slides[index]) {
+                const canvases = slides[index].querySelectorAll('canvas');
+                canvases.forEach(canvas => {
+                    if (canvas._mpc_chart) {
+                        requestAnimationFrame(() => {
+                            canvas._mpc_chart.resize();
+                        });
+                    }
+                });
+            }
 
             // Sync with Editor
             if (slides[index].dataset.line && vscode) {
@@ -720,10 +882,13 @@ console.log('MPC: script loaded from media/preview-customizer.js');
             const stateMarker = document.getElementById('mpc-state-marker');
             if (stateMarker && stateMarker.dataset.state) {
                 const savedState = JSON.parse(stateMarker.dataset.state);
+                // スライドショーモードの自動復元を無効化
+                /*
                 if (savedState.isSlideshowMode) {
                     currentSlideIndex = savedState.currentSlideIndex || 0;
                     toggleSlideshowMode(true);
                 }
+                */
             }
         } catch (e) { log('Final init error: ' + e.message); }
     };

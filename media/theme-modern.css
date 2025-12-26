@@ -37,3 +37,11 @@ body.mpc-theme-modern img {
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
+
+/* Slideshow Integration */
+body.mpc-theme-modern .mpc-slide {
+    --mpc-color-base: var(--mpc-color-bg, #ffffff);
+    --mpc-color-text: var(--mpc-color-fg, var(--mpc-color-text, #000000));
+    --mpc-color-main: var(--mpc-color-main, #1A365D);
+    --mpc-color-accent: var(--mpc-color-accent, #F6AD55);
+}

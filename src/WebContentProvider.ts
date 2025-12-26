@@ -15,7 +15,33 @@ export class WebContentProvider {
         const bodyContent = md.render(document.getText());
 
         const config = vscode.workspace.getConfiguration('markdownPreviewCustomizer');
-        const theme = config.get<string>('theme') || 'Default';
+        let theme = config.get<string>('theme') || 'Default';
+
+        // --- Local Configuration (.vscode/markdown-preview-customizer.json) ---
+        if (vscode.workspace.workspaceFolders && vscode.workspace.workspaceFolders.length > 0) {
+            let currentDir = vscode.Uri.file(path.dirname(document.uri.fsPath));
+            const rootUri = vscode.workspace.workspaceFolders[0].uri;
+
+            for (let i = 0; i < 15; i++) {
+                const configUri = vscode.Uri.joinPath(currentDir, '.vscode', 'markdown-preview-customizer.json');
+                try {
+                    const stats = await vscode.workspace.fs.stat(configUri);
+                    if (stats.type === vscode.FileType.File) {
+                        const content = await vscode.workspace.fs.readFile(configUri);
+                        const json = JSON.parse(new TextDecoder().decode(content));
+                        if (json && json.theme) {
+                            theme = json.theme;
+                            console.log(`MPC: Applied local theme override: ${theme} from ${configUri.fsPath}`);
+                        }
+                        break;
+                    }
+                } catch {
+                    const parentDir = vscode.Uri.file(path.dirname(currentDir.fsPath));
+                    if (parentDir.fsPath === currentDir.fsPath) { break; }
+                    currentDir = parentDir;
+                }
+            }
+        }
         const isCustomTheme = theme === 'Custom';
 
         let cssFiles = [
@@ -44,13 +70,14 @@ export class WebContentProvider {
             );
         }
 
+        const timestamp = Date.now();
         const cssLinks = cssFiles.map(file => {
             const uri = webview.asWebviewUri(vscode.Uri.file(path.join(this.context.extensionPath, 'media', file)));
-            return `<link rel="stylesheet" href="${uri}">`;
+            return `<link rel="stylesheet" href="${uri}?t=${timestamp}">`;
         }).join('\n');
 
-        const chartJsUri = webview.asWebviewUri(vscode.Uri.file(path.join(this.context.extensionPath, 'media', 'chart.min.js')));
-        const jsUri = webview.asWebviewUri(vscode.Uri.file(path.join(this.context.extensionPath, 'media', 'preview-customizer.js')));
+        const chartJsUri = webview.asWebviewUri(vscode.Uri.file(path.join(this.context.extensionPath, 'media', 'chart.min.js'))) + `?t=${timestamp}`;
+        const jsUri = webview.asWebviewUri(vscode.Uri.file(path.join(this.context.extensionPath, 'media', 'preview-customizer.js'))) + `?t=${timestamp}`;
 
         // Theme Handling
         const themeClass = `mpc-theme-${theme.toLowerCase()}`;
@@ -62,21 +89,35 @@ export class WebContentProvider {
         console.log('MPC DEBUG: Generated CSP:', csp);
 
 
-        // Custom CSS Handling
+        // Custom CSS Handling (Recursive Search)
         let customCssLink = '';
         if (vscode.workspace.workspaceFolders && vscode.workspace.workspaceFolders.length > 0) {
-            const rootUri = vscode.workspace.workspaceFolders[0].uri;
-            const cssUri = vscode.Uri.joinPath(rootUri, '.vscode', 'markdownPreviewCustomizer.css');
-            try {
-                // Check if file exists (dummy stat)
-                await vscode.workspace.fs.stat(cssUri);
-                // Convert to Webview URI
-                const customCssWebviewUri = webview.asWebviewUri(cssUri);
-                customCssLink = `<link rel="stylesheet" href="${customCssWebviewUri}">`;
-            } catch {
-                // File does not exist, ignore
+            let currentDir = vscode.Uri.file(path.dirname(document.uri.fsPath));
+            const rootUri = vscode.workspace.workspaceFolders[0].uri; // fallback root
+
+            // Loop upwards until we find the file or hit the root of the drive (or workspace root)
+            // Safety: Limit depth to 15 to prevent infinite loops in weird FS setups
+            for (let i = 0; i < 15; i++) {
+                const cssUri = vscode.Uri.joinPath(currentDir, '.vscode', 'markdown-preview-customizer.css');
+                try {
+                    await vscode.workspace.fs.stat(cssUri);
+                    // Found it!
+                    const customCssWebviewUri = webview.asWebviewUri(cssUri);
+                    customCssLink = `<link rel="stylesheet" href="${customCssWebviewUri}">`;
+                    console.log(`MPC: Found custom CSS at ${cssUri.fsPath}`);
+                    break;
+                } catch {
+                    // Not found, go up one level
+                    const parentDir = vscode.Uri.file(path.dirname(currentDir.fsPath));
+                    if (parentDir.fsPath === currentDir.fsPath) {
+                        break; // Reached root of drive
+                    }
+                    currentDir = parentDir;
+                }
             }
         }
+
+        const showDebugLog = vscode.workspace.getConfiguration('markdownPreviewCustomizer').get('showDebugLog', false);
 
         return `<!DOCTYPE html>
             <html lang="en">
@@ -97,7 +138,7 @@ export class WebContentProvider {
                 ${cssLinks}
                 ${customCssLink}
             </head>
-            <body class="mpc-preview ${themeClass}">
+            <body class="mpc-preview ${themeClass}" data-show-debug-log="${showDebugLog}">
                 <div id="mpc-content">${bodyContent}</div>
                 
                 <script>

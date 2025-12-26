@@ -28,6 +28,27 @@ export class PreviewManager {
 
         // Listen for config changes (Theme)
         vscode.workspace.onDidChangeConfiguration(this.onConfigChanged, this, this.disposables);
+
+        // Listen for local config file changes
+        this.setupLocalConfigWatcher();
+    }
+
+    private setupLocalConfigWatcher() {
+        const watcher = vscode.workspace.createFileSystemWatcher('**/.vscode/markdown-preview-customizer.json');
+
+        const refresh = async (uri: vscode.Uri) => {
+            this.outputChannel.appendLine(`MPC: Local config changed: ${uri.fsPath}. Refreshing...`);
+            const editor = vscode.window.activeTextEditor || vscode.window.visibleTextEditors.find(e => e.document.languageId === 'markdown');
+            if (this.panel && this.panel.visible && editor) {
+                await this.updatePreview(editor.document);
+            }
+        };
+
+        watcher.onDidChange(refresh, this, this.disposables);
+        watcher.onDidCreate(refresh, this, this.disposables);
+        watcher.onDidDelete(refresh, this, this.disposables);
+
+        this.disposables.push(watcher);
     }
 
     public static startSlideshow(context: vscode.ExtensionContext, outputChannel: vscode.OutputChannel, newWindow: boolean = false) {
@@ -109,7 +130,7 @@ export class PreviewManager {
                         this.syncEditorToLine(message.line, message.isAtBottom);
                         break;
                     case 'persistState':
-                        this.slideshowState = message.state;
+                        // this.slideshowState = message.state; // Disable state persistence
                         break;
                     case 'print':
                         this.handlePrint(message.styles);
@@ -152,7 +173,9 @@ export class PreviewManager {
         const html = await this.contentProvider.provideContent(document, this.panel.webview);
 
         // Inject state marker at the end of body
-        const stateJson = JSON.stringify(this.slideshowState);
+        // Force default state to disable auto-restore of slideshow mode
+        const stateJson = JSON.stringify({ isSlideshowMode: false, currentSlideIndex: 0 });
+        // const stateJson = JSON.stringify(this.slideshowState);
         const htmlWithState = html.replace('</body>', `<div id="mpc-state-marker" data-state='${stateJson}' style="display:none;"></div></body>`);
 
         this.panel.webview.html = htmlWithState;

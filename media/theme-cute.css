@@ -43,3 +43,11 @@ body.mpc-theme-cute .mpc-container {
     border: 2px dashed #ff9ff3;
     border-radius: 15px;
 }
+
+/* Slideshow Integration */
+body.mpc-theme-cute .mpc-slide {
+    --mpc-color-base: var(--mpc-color-bg, #ffffff);
+    --mpc-color-text: var(--mpc-color-fg, var(--mpc-color-text, #000000));
+    --mpc-color-main: var(--mpc-color-main, #1A365D);
+    --mpc-color-accent: var(--mpc-color-accent, #F6AD55);
+}

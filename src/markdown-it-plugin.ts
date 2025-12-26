@@ -97,9 +97,24 @@ export function extendMarkdownIt(md: any) {
         }
     });
 
+    // 6. Note Container
+    md.use(container, 'note', {
+        validate: function (params: string) {
+            return params.trim().match(/^note\s*(.*)$/);
+        },
+        render: function (tokens: any[], idx: number) {
+            if (tokens[idx].nesting === 1) {
+                const lineAttr = tokens[idx].map ? ` data-line="${tokens[idx].map[0]}"` : '';
+                return '<div class="mpc-note"' + lineAttr + '>\n';
+            } else {
+                return '</div>\n';
+            }
+        }
+    });
+
     // 6. Generic/Custom Container (Catch-all for ::: my-box)
     // Allows users to define ::: my-style and use .mpc-container.my-style in CSS
-    const knownTypes = ['alert', 'info', 'tip', 'warning', 'danger', 'details', 'card', 'columns', 'column'];
+    const knownTypes = ['alert', 'info', 'tip', 'warning', 'danger', 'details', 'card', 'columns', 'column', 'note'];
     md.use(container, 'generic', {
         validate: function (params: string) {
             const type = params.trim().split(' ')[0];

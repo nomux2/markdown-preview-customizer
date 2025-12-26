@@ -38,3 +38,11 @@ body.mpc-theme-clean pre {
     border-radius: 6px;
     padding: 16px;
 }
+
+/* Slideshow Integration */
+body.mpc-theme-tech-clean .mpc-slide {
+    --mpc-color-base: var(--mpc-color-bg, #ffffff);
+    --mpc-color-text: var(--mpc-color-fg, var(--mpc-color-text, #000000));
+    --mpc-color-main: var(--mpc-color-main, #1A365D);
+    --mpc-color-accent: var(--mpc-color-accent, #F6AD55);
+}

@@ -67,3 +67,11 @@ body.mpc-theme-keynote img {
     border-radius: 12px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
+
+/* Slideshow Integration */
+body.mpc-theme-keynote .mpc-slide {
+    --mpc-color-base: var(--mpc-color-bg, #ffffff);
+    --mpc-color-text: var(--mpc-color-fg, var(--mpc-color-text, #000000));
+    --mpc-color-main: var(--mpc-color-main, #1A365D);
+    --mpc-color-accent: var(--mpc-color-accent, #F6AD55);
+}

@@ -216,3 +216,67 @@ pre code {
     border: none !important;
     padding: 0 !important;
 }
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border-radius: 8px 8px 0 0;
+    overflow: hidden;
+    /* 角丸を適用するため */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+table thead tr {
+    background-color: var(--mpc-color-accent);
+    color: var(--mpc-color-text);
+    text-align: left;
+    font-weight: bold;
+}
+
+table th,
+table td {
+    padding: 12px 15px;
+}
+
+table tbody tr {
+    border-bottom: 1px solid var(--mpc-color-accent);
+}
+
+/* 偶数行の色を変える（ストライプ） */
+table tbody tr:nth-of-type(even) {
+    background-color: var(--mpc-color-accent);
+    color: var(--mpc-color-text);
+}
+
+/* 最後の行の境界線を太くする */
+table tbody tr:last-of-type {
+    border-bottom: 2px solid var(--mpc-color-accent);
+}
+
+blockquote {
+    position: relative;
+    margin: 2em 0;
+    padding: 30px 40px;
+    background: #fff;
+    border: 1px solid #ddd;
+    quotes: "\201C" "\201D";
+}
+
+blockquote::before {
+    content: "\201C";
+    /* 左引用符 */
+    font-family: serif;
+    font-size: 60px;
+    color: #eee;
+    position: absolute;
+    top: -10px;
+    left: 10px;
+}
+
+blockquote p {
+    position: relative;
+    z-index: 1;
+    margin: 0;
+    color: #888;
+}

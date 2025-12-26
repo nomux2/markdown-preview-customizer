@@ -307,7 +307,7 @@ export async function generateStandaloneHtml(context: vscode.ExtensionContext, o
     // Also embed custom stylesheet from .vscode if it exists
     if (vscode.workspace.workspaceFolders && vscode.workspace.workspaceFolders.length > 0) {
         const rootUri = vscode.workspace.workspaceFolders[0].uri;
-        const customCssPath = path.join(rootUri.fsPath, '.vscode', 'markdownPreviewCustomizer.css');
+        const customCssPath = path.join(rootUri.fsPath, '.vscode', 'markdown-preview-customizer.css');
         if (fs.existsSync(customCssPath)) {
             outputChannel.appendLine(`MPC: Embedding user custom CSS: ${customCssPath}`);
             styleContent += '\n/* --- User Custom CSS --- */\n' + fs.readFileSync(customCssPath, 'utf8');

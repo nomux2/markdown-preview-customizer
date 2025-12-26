@@ -5,10 +5,12 @@ import { extendMarkdownIt } from './markdown-it-plugin';
 import { exportToPdf } from './export/pdf';
 import { exportToWord } from './export/word';
 import { exportToHtml } from './export/html';
+import { init as initI18n, localize, localizeArgs } from './i18n';
 
 import { PreviewManager } from './PreviewManager';
 
 export function activate(context: vscode.ExtensionContext) {
+    initI18n(context);
     console.log('Congratulations, your extension "markdown-preview-customizer" is now active!');
 
     // Create Output Channel
@@ -26,13 +28,13 @@ export function activate(context: vscode.ExtensionContext) {
     // 1. Export Commands
     let disposablePdf = vscode.commands.registerCommand('markdownPreviewCustomizer.exportToPdf', () => {
         outputChannel.appendLine('MPC: exportToPdf command triggered');
-        vscode.window.showInformationMessage('Markdown Preview Customizer: Exporting to PDF...');
+        vscode.window.showInformationMessage(localize('msg.exportingPdf', 'Markdown Preview Customizer: Exporting to PDF...'));
         exportToPdf(context, outputChannel);
     });
 
     let disposableWord = vscode.commands.registerCommand('markdownPreviewCustomizer.exportToWord', () => {
         outputChannel.appendLine('MPC: exportToWord command triggered');
-        vscode.window.showInformationMessage('Markdown Preview Customizer: Exporting to Word...');
+        vscode.window.showInformationMessage(localize('msg.exportingWord', 'Markdown Preview Customizer: Exporting to Word...'));
         exportToWord(context, outputChannel);
     });
 
@@ -43,13 +45,13 @@ export function activate(context: vscode.ExtensionContext) {
 
     let disposableHtmlFolder = vscode.commands.registerCommand('markdownPreviewCustomizer.exportToHtmlFolder', () => {
         outputChannel.appendLine('MPC: exportToHtmlFolder command triggered');
-        vscode.window.showInformationMessage('Markdown Preview Customizer: Exporting to HTML (Folder)...');
+        vscode.window.showInformationMessage(localize('msg.exportingHtmlFolder', 'Markdown Preview Customizer: Exporting to HTML (Folder)...'));
         exportToHtml(context, outputChannel, 'folder');
     });
 
     let disposableHtmlBase64 = vscode.commands.registerCommand('markdownPreviewCustomizer.exportToHtmlBase64', () => {
         outputChannel.appendLine('MPC: exportToHtmlBase64 command triggered');
-        vscode.window.showInformationMessage('Markdown Preview Customizer: Exporting to HTML (Base64)...');
+        vscode.window.showInformationMessage(localize('msg.exportingHtmlBase64', 'Markdown Preview Customizer: Exporting to HTML (Base64)...'));
         exportToHtml(context, outputChannel, 'base64');
     });
 
@@ -87,7 +89,7 @@ export function activate(context: vscode.ExtensionContext) {
 
         if (themeName) {
             console.log(`MPC: Setting theme to ${themeName}`);
-            vscode.window.showInformationMessage(`Markdown Preview Customizer: Switched theme to ${themeName}`);
+            vscode.window.showInformationMessage(localizeArgs('msg.switchedTheme', 'Markdown Preview Customizer: Switched theme to {0}', themeName));
             await vscode.workspace.getConfiguration('markdownPreviewCustomizer').update('theme', themeName, vscode.ConfigurationTarget.Global);
             // v2: If Custom Preview is active, it will auto-update if we implement config listener, 
             // or we can force refresh here. For simplicity, we rely on user action or future improvement.
@@ -95,7 +97,7 @@ export function activate(context: vscode.ExtensionContext) {
             // Let's create a refresh command or handle it in PreviewManager later.
             vscode.commands.executeCommand('markdown.preview.refresh'); // Legacy
         } else {
-            vscode.window.showErrorMessage('Markdown Preview Customizer: Failed to parse theme name from arguments.');
+            vscode.window.showErrorMessage(localize('msg.failedParseTheme', 'Markdown Preview Customizer: Failed to parse theme name from arguments.'));
         }
     });
 
@@ -103,13 +105,13 @@ export function activate(context: vscode.ExtensionContext) {
     let disposableCss = vscode.commands.registerCommand('markdownPreviewCustomizer.editCustomCss', async () => {
         const workspaceFolders = vscode.workspace.workspaceFolders;
         if (!workspaceFolders) {
-            vscode.window.showErrorMessage('Markdown Preview Customizer: Please open a folder to use Custom CSS features.');
+            vscode.window.showErrorMessage(localize('msg.openFolderCss', 'Markdown Preview Customizer: Please open a folder to use Custom CSS features.'));
             return;
         }
 
         const rootUri = workspaceFolders[0].uri;
         const vscodeDir = vscode.Uri.joinPath(rootUri, '.vscode');
-        const cssUri = vscode.Uri.joinPath(vscodeDir, 'markdownPreviewCustomizer.css');
+        const cssUri = vscode.Uri.joinPath(vscodeDir, 'markdown-preview-customizer.css');
 
         try {
             // Ensure .vscode directory exists
@@ -169,10 +171,10 @@ body {
             // Open document
             const doc = await vscode.workspace.openTextDocument(cssUri);
             await vscode.window.showTextDocument(doc);
-            vscode.window.showInformationMessage('Markdown Preview Customizer: Custom CSS file opened.');
+            vscode.window.showInformationMessage(localize('msg.customCssOpened', 'Markdown Preview Customizer: Custom CSS file opened.'));
 
         } catch (error: any) {
-            vscode.window.showErrorMessage(`Markdown Preview Customizer: Failed to setup custom CSS. ${error.message}`);
+            vscode.window.showErrorMessage(localizeArgs('msg.failedSetupCss', 'Markdown Preview Customizer: Failed to setup custom CSS. {0}', error.message));
         }
     });
 

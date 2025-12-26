@@ -1,8 +1,8 @@
 {
     "name": "markdown-preview-customizer",
     "displayName": "Markdown Preview Customizer",
-    "description": "Powerful Markdown preview with customizable themes, slideshow mode, and advanced export capabilities.",
-    "version": "2.0.0",
+    "description": "%description%",
+    "version": "0.1.0-beta.1",
     "engines": {
         "vscode": "^1.80.0"
     },
@@ -17,55 +17,55 @@
         "commands": [
             {
                 "command": "markdownPreviewCustomizer.openPreview",
-                "title": "Markdown Preview: Open Preview to the Side",
+                "title": "%command.openPreview.title%",
                 "icon": "$(preview)"
             },
             {
                 "command": "markdownPreviewCustomizer.exportToPdf",
-                "title": "Markdown Preview: Export to PDF"
+                "title": "%command.exportToPdf.title%"
             },
             {
                 "command": "markdownPreviewCustomizer.exportToWord",
-                "title": "Markdown Preview: Export to Word (.docx)"
+                "title": "%command.exportToWord.title%"
             },
             {
                 "command": "markdownPreviewCustomizer.exportToHtml",
-                "title": "Markdown Preview: Export to HTML (Select Mode)"
+                "title": "%command.exportToHtml.title%"
             },
             {
                 "command": "markdownPreviewCustomizer.exportToHtmlFolder",
-                "title": "Markdown Preview: Export to HTML (Folder)"
+                "title": "%command.exportToHtmlFolder.title%"
             },
             {
                 "command": "markdownPreviewCustomizer.exportToHtmlBase64",
-                "title": "Markdown Preview: Export to HTML (Base64)"
+                "title": "%command.exportToHtmlBase64.title%"
             },
             {
                 "command": "markdownPreviewCustomizer.setTheme",
-                "title": "Markdown Preview: Set Theme"
+                "title": "%command.setTheme.title%"
             },
             {
                 "command": "markdownPreviewCustomizer.editCustomCss",
-                "title": "Markdown Preview: Edit Custom CSS"
+                "title": "%command.editCustomCss.title%"
             },
             {
                 "command": "markdownPreviewCustomizer.startSlideshow",
-                "title": "Markdown Preview: Start Slideshow",
+                "title": "%command.startSlideshow.title%",
                 "icon": "$(play)"
             },
             {
                 "command": "markdownPreviewCustomizer.startSlideshowInNewWindow",
-                "title": "Markdown Preview: 別ウィンドウでスライド起動",
+                "title": "%command.startSlideshowInNewWindow.title%",
                 "icon": "$(empty-window)"
             },
             {
                 "command": "markdownPreviewCustomizer.exportSlideshowToHtml",
-                "title": "Markdown Preview: スライド出力 (Standalone HTML)",
+                "title": "%command.exportSlideshowToHtml.title%",
                 "icon": "$(save-as)"
             },
             {
                 "command": "markdownPreviewCustomizer.toggleLiveUpdate",
-                "title": "Markdown Preview: 自動更新を切り替え",
+                "title": "%command.toggleLiveUpdate.title%",
                 "icon": "$(sync)"
             }
         ],
@@ -81,7 +81,12 @@
                         "Manuscript",
                         "Custom"
                     ],
-                    "description": "Select the theme for Markdown preview."
+                    "description": "%config.theme.description%"
+                },
+                "markdownPreviewCustomizer.showDebugLog": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "%config.showDebugLog.description%"
                 }
             }
         },
@@ -139,16 +144,6 @@
                     "command": "markdownPreviewCustomizer.startSlideshowInNewWindow",
                     "when": "editorLangId == markdown",
                     "group": "navigation@2"
-                },
-                {
-                    "command": "markdownPreviewCustomizer.exportSlideshowToHtml",
-                    "when": "editorLangId == markdown",
-                    "group": "navigation@3"
-                },
-                {
-                    "command": "markdownPreviewCustomizer.exportToPdf",
-                    "when": "editorLangId == markdown && !isInEmbeddedEditor",
-                    "group": "navigation"
                 }
             ]
         }
@@ -183,6 +178,7 @@
         "katex": "^0.16.27",
         "markdown-it": "^14.1.0",
         "markdown-it-container": "^3.0.0",
-        "puppeteer-core": "^21.0.0"
+        "puppeteer-core": "^21.0.0",
+        "vscode-nls": "^5.2.0"
     }
 }
