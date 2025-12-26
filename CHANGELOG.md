@@ -2,6 +2,10 @@
 
 All notable changes to the "Markdown Preview Customizer" extension will be documented in this file.
 
+## [0.1.2] - 2025-12-26
+- **Refinements**: Minor style adjustments and bug fixes (Slideshow, Menu, Preview logic).
+- **Documentation**: Updated README with bilingual support.
+
 ## [0.1.0] - 2025-12-26
 
 ### Added

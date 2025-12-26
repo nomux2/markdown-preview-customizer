@@ -151,11 +151,22 @@
 
 /* --- コンテンツ（それ以外の要素すべて） --- */
 /* 見出し以外のすべての直下要素を2行目以降に流す */
-.mpc-slide .slide-standard>*:not(h1):not(h2) {
+.mpc-slide .slide-standard>*:not(h1):not(h2):not(ul):not(li) {
     flex: 0 1 auto;
     height: auto;
     margin: 0;
     padding: 10px 0;
+    /* 詰まりすぎないように上下余白をつける */
+    font-size: clamp(0.5rem, 2vw, 10rem);
+}
+
+
+
+.mpc-slide .slide-standard ul li {
+    flex: 0 1 auto;
+    height: auto;
+    margin: 0;
+    /* padding: 10px 0; */
     /* 詰まりすぎないように上下余白をつける */
     font-size: clamp(0.5rem, 2vw, 10rem);
 }
@@ -173,7 +184,7 @@
 
     height: 100%;
     box-sizing: border-box;
-    gap: 20px 40px;
+    gap: 0px 40px;
     /* 縦の隙間 20px / 横の隙間 40px */
     background-color: var(--mpc-color-main, #1A365D);
     color: var(--mpc-color-base, #ffffff);
@@ -225,6 +236,8 @@
     padding-bottom: 15px;
     border-bottom: 3px solid #ffd700;
     flex: 0 0 auto;
+    font-size: clamp(2rem, 4vw, 6rem);
+
 }
 
 /* まとめリストを包む箱 (.mpc-column) */
@@ -250,7 +263,7 @@
 
 .mpc-slide .slide-summary li {
     font-size: clamp(1.5rem, 3vw, 2.5rem);
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.5rem;
     line-height: 1.4;
 }
 

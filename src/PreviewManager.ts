@@ -130,7 +130,7 @@ export class PreviewManager {
                         this.syncEditorToLine(message.line, message.isAtBottom);
                         break;
                     case 'persistState':
-                        // this.slideshowState = message.state; // Disable state persistence
+                        this.slideshowState = message.state; // Disable state persistence
                         break;
                     case 'print':
                         this.handlePrint(message.styles);
@@ -174,8 +174,8 @@ export class PreviewManager {
 
         // Inject state marker at the end of body
         // Force default state to disable auto-restore of slideshow mode
-        const stateJson = JSON.stringify({ isSlideshowMode: false, currentSlideIndex: 0 });
-        // const stateJson = JSON.stringify(this.slideshowState);
+        // const stateJson = JSON.stringify({ isSlideshowMode: false, currentSlideIndex: 0 });
+        const stateJson = JSON.stringify(this.slideshowState);
         const htmlWithState = html.replace('</body>', `<div id="mpc-state-marker" data-state='${stateJson}' style="display:none;"></div></body>`);
 
         this.panel.webview.html = htmlWithState;

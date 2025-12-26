@@ -613,10 +613,26 @@ console.log('MPC: script loaded from media/preview-customizer.js');
                             const checkNode = nodeToAppend.classList.contains('mpc-slide-container') ? node : nodeToAppend;
                             const bgImg = checkNode.querySelector('img[alt="bg"]') || (checkNode.tagName === 'IMG' && checkNode.alt === 'bg' ? checkNode : null);
 
+                            // Determine Background Target
+                            let bgTarget = inner;
+                            if (nodeToAppend.classList.contains('mpc-slide-container')) {
+                                bgTarget = nodeToAppend;
+                            }
+
                             if (bgImg) {
                                 slideDiv.classList.add('has-bg');
-                                slideDiv.style.backgroundImage = `url(${bgImg.src})`;
+                                bgTarget.style.backgroundImage = `url(${bgImg.src})`;
+                                bgTarget.style.backgroundSize = 'cover';
+                                bgTarget.style.backgroundPosition = 'center';
                                 bgImg.style.display = 'none';
+
+                                // FIX: If applied to container, make inner slide-base transparent so image shows
+                                if (bgTarget.classList.contains('mpc-slide-container')) {
+                                    // Make direct children (likely slide-base) transparent
+                                    Array.from(bgTarget.children).forEach(child => {
+                                        child.style.backgroundColor = 'transparent';
+                                    });
+                                }
                             }
 
                             inner.appendChild(nodeToAppend);
@@ -883,12 +899,12 @@ console.log('MPC: script loaded from media/preview-customizer.js');
             if (stateMarker && stateMarker.dataset.state) {
                 const savedState = JSON.parse(stateMarker.dataset.state);
                 // スライドショーモードの自動復元を無効化
-                /*
+
                 if (savedState.isSlideshowMode) {
                     currentSlideIndex = savedState.currentSlideIndex || 0;
                     toggleSlideshowMode(true);
                 }
-                */
+
             }
         } catch (e) { log('Final init error: ' + e.message); }
     };

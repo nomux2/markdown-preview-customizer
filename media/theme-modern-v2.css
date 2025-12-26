@@ -31,6 +31,7 @@ body.mpc-theme-modern-v2 {
 
 /* Glassmorphism Containers */
 body.mpc-theme-modern-v2 .mpc-container,
+body.mpc-theme-modern-v2 .mpc-card,
 body.mpc-theme-modern-v2 pre,
 body.mpc-theme-modern-v2 blockquote,
 body.mpc-theme-modern-v2 table {
@@ -47,6 +48,7 @@ body.mpc-theme-modern-v2 table {
 body.mpc-theme-modern-v2 h1,
 body.mpc-theme-modern-v2 h2 {
     background: linear-gradient(90deg, var(--mpc-color-main), var(--mpc-color-accent));
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     border-bottom: none;
@@ -109,9 +111,57 @@ body.mpc-theme-modern-v2 a:hover {
 }
 
 /* Slideshow Integration */
-body.mpc-theme-modern-v2 .mpc-slide {
-    --mpc-color-base: var(--mpc-color-bg, #ffffff);
-    --mpc-color-text: var(--mpc-color-fg, var(--mpc-color-text, #000000));
-    --mpc-color-main: var(--mpc-color-main, #1A365D);
-    --mpc-color-accent: var(--mpc-color-accent, #F6AD55);
+/* Slideshow Integration: Variables inherited from body */
+/* Removed redundant variable re-definitions that caused potential cycles */
+
+/* Slideshow Integration */
+body.mpc-theme-modern-v2 .mpc-slide .slide-base {
+    font-family: var(--mpc-font-family);
+    background-color: var(--mpc-color-bg) !important;
+    color: #ffffff;
+    /* Fix: High contrast text for dark gradient background */
+    background-image:
+        radial-gradient(at 0% 0%, hsla(253, 16%, 7%, 1) 0, transparent 50%),
+        radial-gradient(at 50% 0%, hsla(225, 39%, 30%, 1) 0, transparent 50%),
+        radial-gradient(at 100% 0%, hsla(339, 49%, 30%, 1) 0, transparent 50%);
+    background-size: 100% 500px;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
+
+/* Slideshow Integration */
+body.mpc-theme-modern-v2 .mpc-slide .slide-base h1,
+body.mpc-theme-modern-v2 .mpc-slide .slide-base h2 {
+    background: linear-gradient(90deg, var(--mpc-color-main), var(--mpc-color-accent));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    border-bottom: none;
+    display: inline-block;
+    color: #63b3ed;
+    /* Fallback: Lighter blue for better visibility on dark background */
+}
+
+/* Apply same gradient to slide-section headers */
+/* Apply same gradient to slide-section headers */
+body.mpc-theme-modern-v2 .mpc-slide .slide-section h1,
+body.mpc-theme-modern-v2 .mpc-slide .slide-section h2 {
+    background: linear-gradient(90deg, var(--mpc-color-main), var(--mpc-color-accent)) !important;
+    background-clip: text !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    border-bottom: none;
+    display: inline-block;
+    color: #63b3ed !important;
+}
+
+/* Fix: Apply white text to all slide types, not just slide-base */
+body.mpc-theme-modern-v2 .mpc-slide .slide-section,
+body.mpc-theme-modern-v2 .mpc-slide .slide-title,
+body.mpc-theme-modern-v2 .mpc-slide .slide-standard,
+body.mpc-theme-modern-v2 .mpc-slide .slide-2col,
+body.mpc-theme-modern-v2 .mpc-slide .slide-summary {
+    color: #ffffff;
+}
+
+/* Merged with main header rule above */

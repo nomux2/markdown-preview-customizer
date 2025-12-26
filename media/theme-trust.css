@@ -69,7 +69,9 @@ body.mpc-theme-trust td {
 }
 
 body.mpc-theme-trust tr:nth-child(even) {
-    background-color: #f8f9fa;
+    background-color: #f0f7ff;
+
+    color: var(--mpc-color-fg);
 }
 
 /* Links */
@@ -104,7 +106,7 @@ body.mpc-theme-trust blockquote {
     /* Dark contrast */
     color: #eceff1;
     border-radius: 4px;
-    padding: 15px;
+    padding: 35px 15px 15px 15px;
 }
 
 /* Slideshow Integration */
@@ -118,4 +120,15 @@ body.mpc-theme-trust .mpc-slide {
 /* Slideshow Integration */
 body.mpc-theme-trust .mpc-card {
     color: #eceff1;
+}
+
+body.mpc-theme-trust .mpc-slide .slide-title h2 {
+    background-color: var(--mpc-color-main);
+    border-left: 6px solid var(--mpc-color-main);
+    padding: 10px 15px;
+    border-bottom: none;
+}
+
+body.mpc-theme-trust .mpc-slide h2 {
+    background-color: var(--mpc-color-main);
 }
