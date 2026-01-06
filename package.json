@@ -220,6 +220,7 @@
         "katex": "^0.16.27",
         "markdown-it": "^14.1.0",
         "markdown-it-container": "^3.0.0",
+        "mermaid": "^11.12.2",
         "puppeteer-core": "^21.0.0",
         "vscode-nls": "^5.2.0"
     }

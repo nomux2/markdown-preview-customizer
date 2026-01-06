@@ -1,167 +1,37 @@
-﻿/* Theme: Modern V2 (現代)
-   Concept: Glassmorphism, Tech Startup, Gradient
-*/
-
-@font-face {
-    font-family: 'M PLUS 1p';
-    src: url('fonts/MPLUS1p-Regular.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
+﻿/* MPC Theme: Modern V2 */
+.mpc-theme-modern-v2 {
+    --mpc-color-main: #3B82F6;
+    --mpc-color-accent: #10B981;
+    --mpc-color-bg: #1F2937;
+    --mpc-color-text: #F9FAFB;
+    --vscode-font-family: var(--font-main);
+    --vscode-editor-font-family: var(--font-main);
 }
 
-body.mpc-theme-modern-v2 {
-    --mpc-font-family: 'M PLUS 1p', 'Segoe UI', sans-serif;
-    --mpc-color-bg: #f0f2f5;
-    --mpc-color-fg: #1a202c;
-    --mpc-color-main: #3182ce;
-    --mpc-color-accent: #6b46c1;
-    /* Purple accent */
-
-    font-family: var(--mpc-font-family);
-    background-color: var(--mpc-color-bg);
-    color: var(--mpc-color-fg);
-    background-image:
-        radial-gradient(at 0% 0%, hsla(253, 16%, 7%, 1) 0, transparent 50%),
-        radial-gradient(at 50% 0%, hsla(225, 39%, 30%, 1) 0, transparent 50%),
-        radial-gradient(at 100% 0%, hsla(339, 49%, 30%, 1) 0, transparent 50%);
-    background-size: 100% 500px;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+.mpc-theme-modern-v2 h1, 
+.mpc-theme-modern-v2 h2, 
+.mpc-theme-modern-v2 h3,
+.mpc-theme-modern-v2 h4,
+.mpc-theme-modern-v2 h5,
+.mpc-theme-modern-v2 h6 {
+    color: var(--mpc-color-main);
+    font-family: var(--vscode-font-family);
 }
 
-/* Glassmorphism Containers */
-body.mpc-theme-modern-v2 .mpc-container,
-body.mpc-theme-modern-v2 .mpc-card,
-body.mpc-theme-modern-v2 pre,
-body.mpc-theme-modern-v2 blockquote,
-body.mpc-theme-modern-v2 table {
-    background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    border-radius: 12px;
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
-    margin-bottom: 24px;
-}
-
-/* Gradient Headers */
-body.mpc-theme-modern-v2 h1,
-body.mpc-theme-modern-v2 h2 {
-    background: linear-gradient(90deg, var(--mpc-color-main), var(--mpc-color-accent));
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    border-bottom: none;
-    display: inline-block;
-}
-
-body.mpc-theme-modern-v2 h1 {
-    font-size: 2.5em;
-    font-weight: 800;
-    letter-spacing: -1px;
-    margin-bottom: 30px;
-    border-bottom: 2px solid transparent;
-    /* spacing fix */
-}
-
-body.mpc-theme-modern-v2 h2 {
-    margin-top: 40px;
-    font-size: 1.8em;
-}
-
-/* Separator */
-body.mpc-theme-modern-v2 hr {
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--mpc-color-main), transparent);
-    border: none;
-    margin: 40px 0;
-}
-
-/* Code */
-body.mpc-theme-modern-v2 code {
-    background: rgba(255, 255, 255, 0.5);
-    border: 1px solid rgba(0, 0, 0, 0.05);
-    border-radius: 4px;
+.mpc-theme-modern-v2 a {
     color: var(--mpc-color-accent);
 }
 
-body.mpc-theme-modern-v2 pre {
-    padding: 16px;
-    background: rgba(26, 32, 44, 0.9);
-    /* Darker for code readability */
-    color: #e2e8f0;
+.mpc-theme-modern-v2 blockquote {
+    border-left-color: var(--mpc-color-accent);
+    background-color: rgba(0,0,0,0.05);
 }
 
-body.mpc-theme-modern-v2 pre code {
-    background: transparent;
-    color: inherit;
-    border: none;
+/* Specific overrides for Hand/Pop fonts to ensure they apply */
+.mpc-theme-modern-v2 body,
+.mpc-theme-modern-v2 p,
+.mpc-theme-modern-v2 li,
+.mpc-theme-modern-v2 table {
+    font-family: var(--vscode-font-family);
 }
 
-/* Links */
-body.mpc-theme-modern-v2 a {
-    color: var(--mpc-color-main);
-    text-decoration: none;
-    border-bottom: 1px solid transparent;
-    transition: all 0.2s;
-}
-
-body.mpc-theme-modern-v2 a:hover {
-    border-bottom-color: var(--mpc-color-main);
-}
-
-/* Slideshow Integration */
-/* Slideshow Integration: Variables inherited from body */
-/* Removed redundant variable re-definitions that caused potential cycles */
-
-/* Slideshow Integration */
-body.mpc-theme-modern-v2 .mpc-slide .slide-base {
-    font-family: var(--mpc-font-family);
-    background-color: var(--mpc-color-bg) !important;
-    color: #ffffff;
-    /* Fix: High contrast text for dark gradient background */
-    background-image:
-        radial-gradient(at 0% 0%, hsla(253, 16%, 7%, 1) 0, transparent 50%),
-        radial-gradient(at 50% 0%, hsla(225, 39%, 30%, 1) 0, transparent 50%),
-        radial-gradient(at 100% 0%, hsla(339, 49%, 30%, 1) 0, transparent 50%);
-    background-size: 100% 500px;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-}
-
-/* Slideshow Integration */
-body.mpc-theme-modern-v2 .mpc-slide .slide-base h1,
-body.mpc-theme-modern-v2 .mpc-slide .slide-base h2 {
-    background: linear-gradient(90deg, var(--mpc-color-main), var(--mpc-color-accent));
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    border-bottom: none;
-    display: inline-block;
-    color: #63b3ed;
-    /* Fallback: Lighter blue for better visibility on dark background */
-}
-
-/* Apply same gradient to slide-section headers */
-/* Apply same gradient to slide-section headers */
-body.mpc-theme-modern-v2 .mpc-slide .slide-section h1,
-body.mpc-theme-modern-v2 .mpc-slide .slide-section h2 {
-    background: linear-gradient(90deg, var(--mpc-color-main), var(--mpc-color-accent)) !important;
-    background-clip: text !important;
-    -webkit-background-clip: text !important;
-    -webkit-text-fill-color: transparent !important;
-    border-bottom: none;
-    display: inline-block;
-    color: #63b3ed !important;
-}
-
-/* Fix: Apply white text to all slide types, not just slide-base */
-body.mpc-theme-modern-v2 .mpc-slide .slide-section,
-body.mpc-theme-modern-v2 .mpc-slide .slide-title,
-body.mpc-theme-modern-v2 .mpc-slide .slide-standard,
-body.mpc-theme-modern-v2 .mpc-slide .slide-2col,
-body.mpc-theme-modern-v2 .mpc-slide .slide-summary {
-    color: #ffffff;
-}
-
-/* Merged with main header rule above */

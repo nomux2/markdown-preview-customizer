@@ -1,134 +1,37 @@
-﻿/* Theme: Trust (信頼)
-   Concept: Corporate Blue, Solid, Reliable
-*/
-
-@font-face {
-    font-family: 'M PLUS 1p';
-    src: url('fonts/MPLUS1p-Regular.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
+﻿/* MPC Theme: Trust */
+.mpc-theme-trust {
+    --mpc-color-main: #1A365D;
+    --mpc-color-accent: #3182CE;
+    --mpc-color-bg: #FFFFFF;
+    --mpc-color-text: #2D3748;
+    --vscode-font-family: var(--font-main);
+    --vscode-editor-font-family: var(--font-main);
 }
 
-body.mpc-theme-trust {
-    --mpc-font-family: 'M PLUS 1p', 'Segoe UI', sans-serif;
-    --mpc-color-bg: #ffffff;
-    --mpc-color-fg: #333333;
-    --mpc-color-main: #0056b3;
-    /* Deep Blue */
-    --mpc-color-accent: #00a8cc;
-    /* Lighter Cyan */
-    --mpc-color-border: #e9ecef;
-
-    font-family: var(--mpc-font-family);
-    background-color: var(--mpc-color-bg);
-    color: var(--mpc-color-fg);
-    line-height: 1.6;
-}
-
-/* Solid Headers with Side Border */
-body.mpc-theme-trust h1,
-body.mpc-theme-trust h2,
-body.mpc-theme-trust h3 {
+.mpc-theme-trust h1, 
+.mpc-theme-trust h2, 
+.mpc-theme-trust h3,
+.mpc-theme-trust h4,
+.mpc-theme-trust h5,
+.mpc-theme-trust h6 {
     color: var(--mpc-color-main);
-    font-weight: 600;
+    font-family: var(--vscode-font-family);
 }
 
-body.mpc-theme-trust h1 {
-    font-size: 2.2em;
-    border-bottom: 2px solid var(--mpc-color-main);
-    padding-bottom: 10px;
-    margin-bottom: 20px;
+.mpc-theme-trust a {
+    color: var(--mpc-color-accent);
 }
 
-body.mpc-theme-trust h2 {
-    background-color: #f0f7ff;
-    border-left: 6px solid var(--mpc-color-main);
-    padding: 10px 15px;
-    font-size: 1.5em;
-    border-bottom: none;
+.mpc-theme-trust blockquote {
+    border-left-color: var(--mpc-color-accent);
+    background-color: rgba(0,0,0,0.05);
 }
 
-/* Clean Tables */
-body.mpc-theme-trust table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
-    border: 1px solid var(--mpc-color-border);
+/* Specific overrides for Hand/Pop fonts to ensure they apply */
+.mpc-theme-trust body,
+.mpc-theme-trust p,
+.mpc-theme-trust li,
+.mpc-theme-trust table {
+    font-family: var(--vscode-font-family);
 }
 
-body.mpc-theme-trust th {
-    background-color: var(--mpc-color-main);
-    color: white;
-    padding: 12px;
-    text-align: left;
-}
-
-body.mpc-theme-trust td {
-    padding: 12px;
-    border-bottom: 1px solid var(--mpc-color-border);
-}
-
-body.mpc-theme-trust tr:nth-child(even) {
-    background-color: #f0f7ff;
-
-    color: var(--mpc-color-fg);
-}
-
-/* Links */
-body.mpc-theme-trust a {
-    color: var(--mpc-color-main);
-    text-decoration: none;
-    font-weight: 500;
-}
-
-body.mpc-theme-trust a:hover {
-    text-decoration: underline;
-}
-
-/* Code */
-body.mpc-theme-trust code {
-    background-color: #e3f2fd;
-    color: #0d47a1;
-    padding: 2px 5px;
-    border-radius: 3px;
-}
-
-body.mpc-theme-trust pre {
-    background-color: var(--mpc-color-fg);
-    /* Dark contrast */
-    color: #eceff1;
-    border-radius: 4px;
-    padding: 15px;
-}
-
-body.mpc-theme-trust blockquote {
-    background-color: var(--mpc-color-fg);
-    /* Dark contrast */
-    color: #eceff1;
-    border-radius: 4px;
-    padding: 35px 15px 15px 15px;
-}
-
-/* Slideshow Integration */
-body.mpc-theme-trust .mpc-slide {
-    --mpc-color-base: var(--mpc-color-bg, #ffffff);
-    --mpc-color-text: var(--mpc-color-fg, var(--mpc-color-text, #000000));
-    --mpc-color-main: var(--mpc-color-main, #1A365D);
-    --mpc-color-accent: var(--mpc-color-accent, #F6AD55);
-}
-
-/* Slideshow Integration */
-body.mpc-theme-trust .mpc-card {
-    color: #eceff1;
-}
-
-body.mpc-theme-trust .mpc-slide .slide-title h2 {
-    background-color: var(--mpc-color-main);
-    border-left: 6px solid var(--mpc-color-main);
-    padding: 10px 15px;
-    border-bottom: none;
-}
-
-body.mpc-theme-trust .mpc-slide h2 {
-    background-color: var(--mpc-color-main);
-}

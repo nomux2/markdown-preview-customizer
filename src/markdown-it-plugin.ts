@@ -10,6 +10,22 @@ export function extendMarkdownIt(md: any) {
         errorColor: ' #cc0000'
     });
 
+    // 0. Mermaid Support
+    const defaultFence = md.renderer.rules.fence || function (tokens: any[], idx: number, options: any, env: any, self: any) {
+        return self.renderToken(tokens, idx, options);
+    };
+
+    md.renderer.rules.fence = (tokens: any[], idx: number, options: any, env: any, self: any) => {
+        const token = tokens[idx];
+        const info = token.info ? md.utils.unescapeAll(token.info).trim() : '';
+
+        if (info === 'mermaid') {
+            return `<div class="mermaid">${token.content}</div>`;
+        }
+
+        return defaultFence(tokens, idx, options, env, self);
+    };
+
     // 0. Inject Theme Marker
     md.core.ruler.push('mpc_theme_injector', (state: any) => {
         const token = new state.Token('html_block', '', 0);

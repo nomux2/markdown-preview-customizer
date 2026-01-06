@@ -1,78 +1,37 @@
-﻿/* Theme: Contract (契約書)
-   Concept: Legal, Monospaced, Standardized
-*/
-
-body.mpc-theme-contract {
-    --mpc-font-family: 'Courier New', Courier, monospace;
-    --mpc-color-bg: #fff;
-    --mpc-color-fg: #000;
-
-    font-family: var(--mpc-font-family);
-    background-color: var(--mpc-color-bg);
-    color: var(--mpc-color-fg);
-    font-size: 14px;
-    line-height: 1.6;
-    text-align: justify;
-    /* Justify all text */
-    max-width: 210mm;
-    margin: 0 auto;
-    padding: 40px;
+﻿/* MPC Theme: Contract */
+.mpc-theme-contract {
+    --mpc-color-main: #111827;
+    --mpc-color-accent: #374151;
+    --mpc-color-bg: #FFFFFF;
+    --mpc-color-text: #000000;
+    --vscode-font-family: var(--font-serif);
+    --vscode-editor-font-family: var(--font-serif);
 }
 
-/* Legal Headers */
-body.mpc-theme-contract h1 {
-    text-align: center;
-    text-decoration: underline;
-    text-transform: uppercase;
-    margin-bottom: 40px;
-    font-size: 1.4em;
+.mpc-theme-contract h1, 
+.mpc-theme-contract h2, 
+.mpc-theme-contract h3,
+.mpc-theme-contract h4,
+.mpc-theme-contract h5,
+.mpc-theme-contract h6 {
+    color: var(--mpc-color-main);
+    font-family: var(--vscode-font-family);
 }
 
-body.mpc-theme-contract h2 {
-    font-size: 1.1em;
-    font-weight: bold;
-    margin-top: 20px;
-    text-transform: uppercase;
+.mpc-theme-contract a {
+    color: var(--mpc-color-accent);
 }
 
-/* Numbering emulation or expectation that MD has standard lists */
-
-/* Signature Blocks */
-body.mpc-theme-contract hr {
-    margin-top: 50px;
-    margin-bottom: 50px;
-    border: 1px solid #000;
+.mpc-theme-contract blockquote {
+    border-left-color: var(--mpc-color-accent);
+    background-color: rgba(0,0,0,0.05);
 }
 
-/* Clauses */
-body.mpc-theme-contract p {
-    margin-bottom: 15px;
-    text-indent: 2em;
-    /* Indent paragraphs */
+/* Specific overrides for Hand/Pop fonts to ensure they apply */
+.mpc-theme-contract body,
+.mpc-theme-contract p,
+.mpc-theme-contract li,
+.mpc-theme-contract table {
+    font-family: var(--vscode-font-family);
 }
 
-/* Important Terms */
-body.mpc-theme-contract strong {
-    text-transform: uppercase;
-    text-decoration: underline;
-}
-
-/* No fancy elements */
-body.mpc-theme-contract img {
-    display: none;
-    /* Usually no images in contracts */
-}
-
-body.mpc-theme-contract code {
-    /* Definitions */
-    font-weight: bold;
-    background: none;
-}
-
-/* Slideshow Integration */
-body.mpc-theme-contract .mpc-slide {
-    --mpc-color-base: var(--mpc-color-bg, #ffffff);
-    --mpc-color-text: var(--mpc-color-fg, var(--mpc-color-text, #000000));
-    --mpc-color-main: var(--mpc-color-main, #1A365D);
-    --mpc-color-accent: var(--mpc-color-accent, #F6AD55);
-}

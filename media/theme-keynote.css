@@ -1,77 +1,37 @@
-﻿/* Theme: Keynote (基調講演)
-   Concept: Apple-style, Gradient, Clean, Big
-*/
-
-body.mpc-theme-keynote {
-    --mpc-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    --mpc-color-bg: #000;
-    /* Dark Mode base */
-    --mpc-color-fg: #ccc;
-    --mpc-color-main: #3b82f6;
-    /* Blue */
-    --mpc-color-accent: #a855f7;
-    /* Purple */
-
-    font-family: var(--mpc-font-family);
-    background-color: var(--mpc-color-bg);
-    color: var(--mpc-color-fg);
-    font-size: 18px;
-    text-align: center;
-    /* Center everything like slides */
+﻿/* MPC Theme: Keynote */
+.mpc-theme-keynote {
+    --mpc-color-main: #A855F7;
+    --mpc-color-accent: #D8B4FE;
+    --mpc-color-bg: #1F2937;
+    --mpc-color-text: #F3F4F6;
+    --vscode-font-family: var(--font-main);
+    --vscode-editor-font-family: var(--font-main);
 }
 
-/* Beautiful Gradient Text */
-body.mpc-theme-keynote h1 {
-    font-size: 3.5em;
-    font-weight: 700;
-    background: linear-gradient(to right, #60a5fa, #c084fc);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    margin-bottom: 0.5em;
-    margin-top: 1em;
+.mpc-theme-keynote h1, 
+.mpc-theme-keynote h2, 
+.mpc-theme-keynote h3,
+.mpc-theme-keynote h4,
+.mpc-theme-keynote h5,
+.mpc-theme-keynote h6 {
+    color: var(--mpc-color-main);
+    font-family: var(--vscode-font-family);
 }
 
-body.mpc-theme-keynote h2 {
-    font-size: 2.5em;
-    color: #fff;
-    font-weight: 300;
+.mpc-theme-keynote a {
+    color: var(--mpc-color-accent);
 }
 
-/* Cards / Content Boxes */
-body.mpc-theme-keynote .mpc-container,
-body.mpc-theme-keynote pre {
-    text-align: left;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(20px);
-    border-radius: 20px;
-    padding: 30px;
-    margin: 40px auto;
-    max-width: 800px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+.mpc-theme-keynote blockquote {
+    border-left-color: var(--mpc-color-accent);
+    background-color: rgba(0,0,0,0.05);
 }
 
-/* Checkmarks */
-body.mpc-theme-keynote ul {
-    text-align: left;
-    display: inline-block;
+/* Specific overrides for Hand/Pop fonts to ensure they apply */
+.mpc-theme-keynote body,
+.mpc-theme-keynote p,
+.mpc-theme-keynote li,
+.mpc-theme-keynote table {
+    font-family: var(--vscode-font-family);
 }
 
-body.mpc-theme-keynote li {
-    font-size: 1.5em;
-    margin-bottom: 15px;
-    color: #fff;
-}
-
-/* Images */
-body.mpc-theme-keynote img {
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-}
-
-/* Slideshow Integration */
-body.mpc-theme-keynote .mpc-slide {
-    --mpc-color-base: var(--mpc-color-bg, #ffffff);
-    --mpc-color-text: var(--mpc-color-fg, var(--mpc-color-text, #000000));
-    --mpc-color-main: var(--mpc-color-main, #1A365D);
-    --mpc-color-accent: var(--mpc-color-accent, #F6AD55);
-}

@@ -1,91 +1,37 @@
-﻿/* Theme: Report (報告書)
-   Concept: A4 Paper, Document, Formal
-*/
-
-body.mpc-theme-report {
-    --mpc-font-family: 'Cambria', 'Georgia', serif;
-    --mpc-color-bg: #888;
-    /* Desktop background */
-    --mpc-color-paper: #fff;
-    --mpc-color-fg: #000;
-    --mpc-color-main: #000;
-
-    font-family: var(--mpc-font-family);
-    background-color: var(--mpc-color-bg);
-    color: var(--mpc-color-fg);
-
-    /* Paper Emulation */
-    max-width: 210mm;
-    /* A4 Width */
-    min-height: 297mm;
-    margin: 20px auto;
-    padding: 25mm !important;
-    /* Standard Margins */
-    background-color: var(--mpc-color-paper);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    line-height: 1.5;
+﻿/* MPC Theme: Report */
+.mpc-theme-report {
+    --mpc-color-main: #374151;
+    --mpc-color-accent: #6B7280;
+    --mpc-color-bg: #FFFFFF;
+    --mpc-color-text: #111827;
+    --vscode-font-family: var(--font-serif);
+    --vscode-editor-font-family: var(--font-serif);
 }
 
-/* Reset for print/preview-window matches */
-@media screen {
-    body.mpc-theme-report {
-        /* Keep margins centered */
-    }
+.mpc-theme-report h1, 
+.mpc-theme-report h2, 
+.mpc-theme-report h3,
+.mpc-theme-report h4,
+.mpc-theme-report h5,
+.mpc-theme-report h6 {
+    color: var(--mpc-color-main);
+    font-family: var(--vscode-font-family);
 }
 
-/* Formal Headers */
-body.mpc-theme-report h1 {
-    text-align: center;
-    font-size: 24pt;
-    margin-bottom: 2em;
-    font-weight: bold;
+.mpc-theme-report a {
+    color: var(--mpc-color-accent);
 }
 
-body.mpc-theme-report h2 {
-    font-size: 16pt;
-    border-bottom: 1px solid #000;
-    margin-top: 1.5em;
-    padding-bottom: 0.2em;
+.mpc-theme-report blockquote {
+    border-left-color: var(--mpc-color-accent);
+    background-color: rgba(0,0,0,0.05);
 }
 
-body.mpc-theme-report h3 {
-    font-size: 14pt;
-    font-weight: bold;
-    margin-top: 1.2em;
+/* Specific overrides for Hand/Pop fonts to ensure they apply */
+.mpc-theme-report body,
+.mpc-theme-report p,
+.mpc-theme-report li,
+.mpc-theme-report table {
+    font-family: var(--vscode-font-family);
 }
 
-/* Body Text */
-body.mpc-theme-report p {
-    text-align: justify;
-    margin-bottom: 1em;
-    font-size: 11pt;
-}
-
-/* Captions */
-body.mpc-theme-report img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin: 1em auto;
-}
-
-body.mpc-theme-report img+em,
-body.mpc-theme-report img+p>em {
-    display: block;
-    text-align: center;
-    font-size: 0.9em;
-    color: #444;
-}
-
-/* Table of Contents Lookalike (Lists) */
-body.mpc-theme-report ul {
-    list-style-type: disc;
-}
-
-/* Slideshow Integration */
-body.mpc-theme-report .mpc-slide {
-    --mpc-color-base: var(--mpc-color-bg, #ffffff);
-    --mpc-color-text: var(--mpc-color-fg, var(--mpc-color-text, #000000));
-    --mpc-color-main: var(--mpc-color-main, #1A365D);
-    --mpc-color-accent: var(--mpc-color-accent, #F6AD55);
-}

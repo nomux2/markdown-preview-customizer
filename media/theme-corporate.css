@@ -1,96 +1,37 @@
-﻿/* Theme: Corporate (企業)
-   Concept: Structured, Rigid, Brand Colors
-*/
-
-body.mpc-theme-corporate {
-    --mpc-font-family: 'Arial', 'Helvetica Neue', Helvetica, sans-serif;
-    --mpc-color-bg: #fff;
-    --mpc-color-fg: #333;
-    --mpc-color-main: #003366;
-    /* Dark Corporate Blue */
-    --mpc-color-accent: #cc0000;
-    /* Subtle Red Alert */
-
-    font-family: var(--mpc-font-family);
-    background-color: var(--mpc-color-bg);
-    color: var(--mpc-color-fg);
-    border-top: 10px solid var(--mpc-color-main);
-    border-bottom: 20px solid var(--mpc-color-main);
-    min-height: 90vh;
-    /* Ensure border bottom visible */
-    margin: 0;
-    padding: 40px;
+﻿/* MPC Theme: Corporate */
+.mpc-theme-corporate {
+    --mpc-color-main: #1E40AF;
+    --mpc-color-accent: #3B82F6;
+    --mpc-color-bg: #FFFFFF;
+    --mpc-color-text: #1E3A8A;
+    --vscode-font-family: var(--font-main);
+    --vscode-editor-font-family: var(--font-main);
 }
 
-/* Header Strip Styling */
-body.mpc-theme-corporate h1 {
-    background-color: #f2f2f2;
+.mpc-theme-corporate h1, 
+.mpc-theme-corporate h2, 
+.mpc-theme-corporate h3,
+.mpc-theme-corporate h4,
+.mpc-theme-corporate h5,
+.mpc-theme-corporate h6 {
     color: var(--mpc-color-main);
-    padding: 15px 20px;
-    border-left: 10px solid var(--mpc-color-main);
-    font-size: 2em;
-    text-transform: uppercase;
-    font-weight: bold;
-    margin-bottom: 30px;
+    font-family: var(--vscode-font-family);
 }
 
-body.mpc-theme-corporate h2 {
-    color: var(--mpc-color-main);
-    font-size: 1.5em;
-    border-bottom: 2px solid #ccc;
-    padding-bottom: 5px;
-    margin-top: 40px;
+.mpc-theme-corporate a {
+    color: var(--mpc-color-accent);
 }
 
-/* Metadata Box */
-body.mpc-theme-corporate blockquote {
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-left: 5px solid #999;
-    padding: 15px;
-    font-size: 0.9em;
-    color: #555;
-    margin: 20px 0;
+.mpc-theme-corporate blockquote {
+    border-left-color: var(--mpc-color-accent);
+    background-color: rgba(0,0,0,0.05);
 }
 
-/* Tables - Data Grid */
-body.mpc-theme-corporate table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 0.9em;
+/* Specific overrides for Hand/Pop fonts to ensure they apply */
+.mpc-theme-corporate body,
+.mpc-theme-corporate p,
+.mpc-theme-corporate li,
+.mpc-theme-corporate table {
+    font-family: var(--vscode-font-family);
 }
 
-body.mpc-theme-corporate th {
-    background-color: var(--mpc-color-main);
-    color: #fff;
-    padding: 8px;
-    text-align: left;
-    border: 1px solid var(--mpc-color-main);
-}
-
-body.mpc-theme-corporate td {
-    border: 1px solid #ccc;
-    padding: 8px;
-}
-
-/* Links */
-body.mpc-theme-corporate a {
-    color: var(--mpc-color-main);
-    text-decoration: underline;
-}
-
-/* Print Tweaks */
-@media print {
-    body.mpc-theme-corporate {
-        border: none;
-        /* Borders usually bad for basic print */
-    }
-}
-
-/* Slideshow Integration */
-body.mpc-theme-corporate .mpc-slide {
-    --mpc-color-base: var(--mpc-color-bg, #ffffff);
-    --mpc-color-text: var(--mpc-color-fg, var(--mpc-color-text, #000000));
-    --mpc-color-main: var(--mpc-color-main, #1A365D);
-    --mpc-color-accent: var(--mpc-color-accent, #F6AD55);
-}

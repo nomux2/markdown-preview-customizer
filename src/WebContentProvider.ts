@@ -159,6 +159,10 @@ export class WebContentProvider {
                         console.log('MPC: Chart loaded successfully inline.');
                     }
                 </script>
+                <script src="${webview.asWebviewUri(vscode.Uri.file(path.join(this.context.extensionPath, 'media', 'mermaid.min.js')))}"></script>
+                <script>
+                    mermaid.initialize({ startOnLoad: true, theme: document.body.classList.contains('vscode-dark') ? 'dark' : 'default' });
+                </script>
                 <script src="${jsUri}"></script>
             </body>
             </html>`;

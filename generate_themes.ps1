@@ -42,7 +42,7 @@ $themes = @(
     @{ Name = "Pop"; Slug = "pop"; Main = "#F472B6"; Accent = "#FBBF24"; Bg = "#FFFBEB"; Text = "#4B5563"; Font = "var(--font-pop)" }
 )
 
-$dest = "d:\myApp\AntigravityExtension\markdown-preview-customizer\media"
+$dest = Join-Path $PSScriptRoot "media"
 
 foreach ($theme in $themes) {
     $file = Join-Path $dest "theme-$($theme.Slug).css"

@@ -1,103 +1,37 @@
-﻿/* Theme: Minutes (議事録)
-   Concept: Checklists, Action Items, Clarity
-*/
-
-body.mpc-theme-minutes {
-    --mpc-font-family: 'Verdana', sans-serif;
-    --mpc-color-bg: #fff;
-    --mpc-color-fg: #333;
-    --mpc-color-main: #2e7d32;
-    /* Green for "Done" feel */
-    --mpc-color-accent: #d32f2f;
-    /* Red for "Issues" */
-
-    font-family: var(--mpc-font-family);
-    background-color: var(--mpc-color-bg);
-    color: var(--mpc-color-fg);
-    line-height: 1.5;
+﻿/* MPC Theme: Minutes */
+.mpc-theme-minutes {
+    --mpc-color-main: #047857;
+    --mpc-color-accent: #10B981;
+    --mpc-color-bg: #ECFDF5;
+    --mpc-color-text: #064E3B;
+    --vscode-font-family: var(--font-main);
+    --vscode-editor-font-family: var(--font-main);
 }
 
-/* Header Info Block */
-body.mpc-theme-minutes h1 {
-    background-color: var(--mpc-color-main);
-    color: #fff;
-    padding: 10px;
-    font-size: 1.8em;
-    border-radius: 4px;
-    text-align: center;
-}
-
-/* Section Dividers */
-body.mpc-theme-minutes h2 {
-    border-left: 5px solid var(--mpc-color-main);
-    padding-left: 10px;
+.mpc-theme-minutes h1, 
+.mpc-theme-minutes h2, 
+.mpc-theme-minutes h3,
+.mpc-theme-minutes h4,
+.mpc-theme-minutes h5,
+.mpc-theme-minutes h6 {
     color: var(--mpc-color-main);
-    border-bottom: 1px solid #eee;
-    margin-top: 30px;
+    font-family: var(--vscode-font-family);
 }
 
-/* Enhanced Lists (Checklists) */
-body.mpc-theme-minutes ul {
-    list-style: none;
-    /* Remove default bullets */
-    padding-left: 0;
+.mpc-theme-minutes a {
+    color: var(--mpc-color-accent);
 }
 
-body.mpc-theme-minutes ul li {
-    padding: 5px 0 5px 25px;
-    position: relative;
-    border-bottom: 1px dashed #eee;
+.mpc-theme-minutes blockquote {
+    border-left-color: var(--mpc-color-accent);
+    background-color: rgba(0,0,0,0.05);
 }
 
-body.mpc-theme-minutes ul li::before {
-    content: "☐";
-    position: absolute;
-    left: 0;
-    color: #999;
-    font-weight: bold;
+/* Specific overrides for Hand/Pop fonts to ensure they apply */
+.mpc-theme-minutes body,
+.mpc-theme-minutes p,
+.mpc-theme-minutes li,
+.mpc-theme-minutes table {
+    font-family: var(--vscode-font-family);
 }
 
-/* Simulate checked items if manual CSS class is available or pattern match? 
-   Hard without JS parsing content, but we can style blockquotes as decisions */
-
-/* Decision/Action Box */
-body.mpc-theme-minutes blockquote {
-    background-color: #e8f5e9;
-    border: 1px solid #c8e6c9;
-    border-radius: 4px;
-    padding: 10px;
-    color: #1b5e20;
-    margin: 10px 0;
-}
-
-body.mpc-theme-minutes blockquote::before {
-    content: "⚠ KEY DECISION: ";
-    font-weight: bold;
-}
-
-/* Participants Table */
-body.mpc-theme-minutes table {
-    width: 100%;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    font-size: 0.9em;
-}
-
-body.mpc-theme-minutes th {
-    background: #eee;
-    text-align: left;
-    padding: 5px;
-}
-
-body.mpc-theme-minutes td {
-    padding: 5px;
-    border-top: 1px solid #eee;
-}
-
-/* Slideshow Integration */
-body.mpc-theme-minutes .mpc-slide {
-    --mpc-color-base: var(--mpc-color-bg, #ffffff);
-    --mpc-color-text: var(--mpc-color-fg, var(--mpc-color-text, #000000));
-    --mpc-color-main: var(--mpc-color-main, #1A365D);
-    --mpc-color-accent: var(--mpc-color-accent, #F6AD55);
-}

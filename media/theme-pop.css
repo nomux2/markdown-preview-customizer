@@ -1,112 +1,37 @@
-﻿/* Theme: Pop (ポップ)
-   Concept: Cute, Playful, Sticker-like
-*/
-
-@font-face {
-    font-family: 'Hachi Maru Pop';
-    src: url('fonts/HachiMaruPop-Regular.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
+﻿/* MPC Theme: Pop */
+.mpc-theme-pop {
+    --mpc-color-main: #F472B6;
+    --mpc-color-accent: #FBBF24;
+    --mpc-color-bg: #FFFBEB;
+    --mpc-color-text: #4B5563;
+    --vscode-font-family: var(--font-pop);
+    --vscode-editor-font-family: var(--font-pop);
 }
 
-body.mpc-theme-pop {
-    --mpc-font-family: 'Hachi Maru Pop', 'Comic Sans MS', 'Chalkboard SE', sans-serif;
-    --mpc-color-bg: #fff0f5;
-    /* Lavender Blush */
-    --mpc-color-fg: #5d4037;
-    --mpc-color-main: #ff69b4;
-    /* HotPink */
-    --mpc-color-accent: #00bcd4;
-    /* Cyan */
-    --mpc-color-border: #ffb7b2;
-    --mpc-color-code-bg: #e1f5fe;
-
-    font-family: var(--mpc-font-family);
-    background-color: var(--mpc-color-bg);
-    color: var(--mpc-color-fg);
-    background-image: radial-gradient(#ffb7b2 20%, transparent 20%), radial-gradient(#ffb7b2 20%, transparent 20%);
-    background-position: 0 0, 10px 10px;
-    background-size: 20px 20px;
-}
-
-/* Rounded Containers */
-body.mpc-theme-pop .mpc-container,
-body.mpc-theme-pop pre,
-body.mpc-theme-pop blockquote,
-body.mpc-theme-pop table {
-    border-radius: 15px;
-    box-shadow: 3px 3px 0px var(--mpc-color-border);
-    background-color: rgba(255, 255, 255, 0.9);
-}
-
-/* Headers with Dotted Lines */
-body.mpc-theme-pop h1,
-body.mpc-theme-pop h2 {
-    border-bottom: 3px dotted var(--mpc-color-main);
+.mpc-theme-pop h1, 
+.mpc-theme-pop h2, 
+.mpc-theme-pop h3,
+.mpc-theme-pop h4,
+.mpc-theme-pop h5,
+.mpc-theme-pop h6 {
     color: var(--mpc-color-main);
-    text-shadow: 2px 2px 0px #fff;
+    font-family: var(--vscode-font-family);
 }
 
-body.mpc-theme-pop h1 {
-    font-size: 2.5em;
-    transform: rotate(-1deg);
-    display: inline-block;
-    padding: 0 10px;
-    background: #fff;
-    border: 2px dashed var(--mpc-color-main);
-    border-radius: 10px;
+.mpc-theme-pop a {
+    color: var(--mpc-color-accent);
 }
 
-/* Code Blocks */
-body.mpc-theme-pop code {
-    font-family: 'Hachi Maru Pop', monospace;
-    background-color: #fff9c4;
-    /* Yellow tint */
-    border-radius: 4px;
-    padding: 2px 4px;
-    color: #f57f17;
+.mpc-theme-pop blockquote {
+    border-left-color: var(--mpc-color-accent);
+    background-color: rgba(0,0,0,0.05);
 }
 
-body.mpc-theme-pop pre {
-    background-color: var(--mpc-color-code-bg);
-    border: 2px dashed var(--mpc-color-accent);
+/* Specific overrides for Hand/Pop fonts to ensure they apply */
+.mpc-theme-pop body,
+.mpc-theme-pop p,
+.mpc-theme-pop li,
+.mpc-theme-pop table {
+    font-family: var(--vscode-font-family);
 }
 
-/* Blockquotes as Speech Bubbles */
-body.mpc-theme-pop blockquote {
-    border-left: none;
-    background-color: #e8f5e9;
-    border: 2px solid #a5d6a7;
-    border-radius: 20px;
-    padding: 15px;
-    position: relative;
-    margin: 20px 0;
-}
-
-body.mpc-theme-pop blockquote::before {
-    content: "💬";
-    font-size: 24px;
-    position: absolute;
-    top: -15px;
-    left: 15px;
-    background: #e8f5e9;
-    padding: 0 5px;
-}
-
-/* Links */
-body.mpc-theme-pop a {
-    color: var(--mpc-color-main);
-    text-decoration-style: wavy;
-}
-
-body.mpc-theme-pop strong {
-    background: linear-gradient(transparent 60%, #fff9c4 60%);
-}
-
-/* Slideshow Integration */
-body.mpc-theme-pop .mpc-slide {
-    --mpc-color-base: var(--mpc-color-bg, #ffffff);
-    --mpc-color-text: var(--mpc-color-fg, var(--mpc-color-text, #000000));
-    --mpc-color-main: var(--mpc-color-main, #1A365D);
-    --mpc-color-accent: var(--mpc-color-accent, #F6AD55);
-}
